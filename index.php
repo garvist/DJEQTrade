@@ -10,6 +10,10 @@ switch( $controller_name )
 		require_once 'Controller/homepage.php';
 		$controller = new HomepageController();
 		break;
+	case "search":
+		require_once 'Controller/search.php';
+		$controller = new SearchController();
+		break;
 	default: //by default, use the homepage controller
 		require_once 'Controller/homepage.php';
 		$controller = new HomepageController();

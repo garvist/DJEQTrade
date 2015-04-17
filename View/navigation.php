@@ -28,8 +28,8 @@ class NavigationView extends View
 		echo "		<li>Post an ad</li>";
 		echo "		<li>View ads</li>";
 		echo "	</ul>";
-		echo "	<form>";
-		echo "		<input type=\"text\" placeholder=\"search\" name=\"search\" />";
+		echo "	<form method='GET' action='/?c=search'>";
+		echo "		<input type=\"text\" placeholder=\"search\" name=\"s\" />";
 		echo "	</form>";
 		echo "</div>";
 	}
