@@ -23,6 +23,18 @@ abstract class Controller
 		//output <link> tags for every css file that we need
 		foreach( $cssList as $cssFile )
 			echo "<link href='" .$cssFile. "' rel='stylesheet' type='text/css' />";
+		
+		//get a list of all JS files that our views need
+		$jsList = []; //create an empty array
+		foreach( $this->getViews() as $view ) //iterate through all of our views
+			$jsList = array_merge( $jsList, $view->requiredJS() ); //add the list of required JS files for this view
+		
+		//remove duplicates from the list
+		$jsList = array_unique( $jsList );
+		
+		//output <script> tags for every JS file that we need
+		foreach( $jsList as $jsFile )
+			echo "<script src='" .$jsFile. "'></script>";
 	}
 	
 	/** Outputs all HTML that needs to go in the <body> of the page */

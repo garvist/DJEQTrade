@@ -10,6 +10,12 @@ class NavigationView extends View
 		return ["/Static/main.css", "/Static/nav.css"]; //return an array containing the string "/Static/main.css"
 	}
 	
+	/** Returns an array of JavaScript files that this view needs */
+	public function requiredJS()
+	{
+		return ["http://code.jquery.com/jquery-1.11.2.min.js"];
+	}
+	
 	/** Outputs this view's HTML */
 	public function outputHTML()
 	{
@@ -28,9 +34,15 @@ class NavigationView extends View
 		echo "		<li>Post an ad</li>";
 		echo "		<li>View ads</li>";
 		echo "	</ul>";
-		echo "	<form method='GET' action='/?c=search'>";
-		echo "		<input type=\"text\" placeholder=\"search\" name=\"s\" />";
+		echo "	<form>";
+		echo "		<input type=\"text\" placeholder=\"search\" name=\"search\" />";
 		echo "	</form>";
+		echo "	<script>";
+		echo "		$('form input[name=search]').submit( function() {";
+		echo "			var searchtext = $('form input[name=search]').val();";
+		echo "			window.location = '/?c=search&s=' +searchtext;";
+		echo "		});";
+		echo "  </script>";
 		echo "</div>";
 	}
 }
