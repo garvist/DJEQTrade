@@ -37,13 +37,13 @@ class NavigationView extends View
 		echo "	<form>";
 		echo "		<input type=\"text\" placeholder=\"search\" name=\"search\" />";
 		echo "	</form>";
-		echo "	<script>";
-		echo "		$('form').submit( function(event) {";
-		echo "			var searchtext = $('form input[name=search]').val();";
-		echo "			window.location = '/?c=search&s=' +searchtext; //redirect to the search page";
-		echo "			event.preventDefault(); //prevent the browser from submitting the form";
-		echo "		});";
-		echo "  </script>";
+		echo "	<script>\n";
+		echo "		$('form').submit( function(event) {\n";
+		echo "			var searchtext = $('form input[name=search]').val();\n";
+		echo "			window.location = '/?c=search&s=' +searchtext; //redirect to the search page\n";
+		echo "			event.preventDefault(); //prevent the browser from submitting the form\n";
+		echo "		});\n";
+		echo "  </script>\n";
 		echo "</div>";
 	}
 }
