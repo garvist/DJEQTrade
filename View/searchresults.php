@@ -18,7 +18,7 @@ class SearchResultsView extends View
 		echo "<div class=\"page\">";
 		echo "	<div class=\"ad\">";
 		echo "		<h1 class=\"ad-title\">No search results found for '" .$searchterm. "'</h1>";
-		echo "  </div>"
+		echo "  </div>";
 		echo "</div>";
 	}
 }
