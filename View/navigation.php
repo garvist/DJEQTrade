@@ -7,7 +7,7 @@ class NavigationView extends View
 	/** Returns an array of CSS files that this view needs */
 	public function requiredCSS()
 	{
-		return ["/Static/main.css"]; //return an array containing the string "/Static/main.css"
+		return ["/Static/main.css", "/Static/nav.css"]; //return an array containing the string "/Static/main.css"
 	}
 	
 	/** Outputs this view's HTML */
