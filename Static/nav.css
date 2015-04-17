@@ -1,0 +1,65 @@
+.header {
+	margin-bottom: 1em;
+}
+
+.header ul.nav {
+	padding-left: 0;
+	font-size: 32px;
+}
+
+.header ul.nav li {
+	width: 20%;
+	list-style-type: none;
+	display: inline-block;
+	border-right: solid 1px black;
+	padding-left: 7px;
+	padding-right: 7px;
+	text-align: center;
+}
+
+.header ul.nav li:hover {
+	background-color: white;
+}
+
+.header ul.nav li:first-child:hover {
+	background-color: inherit;
+}
+
+.header ul.nav li:first-child {
+	width: 15%;
+	padding-right: 10px;
+	text-align: left;
+}
+
+.header ul.nav li:last-child {
+	border-right: none;
+}
+
+.header .nav li {
+	font-family: arial;
+	text-transform: lowercase;
+}
+
+.header .nav .logo .logo-dj,
+.header .nav .logo .logo-x {
+	font-weight: bold;
+}
+
+.header .nav .logo:hover .logo-eq:after {
+	content: "uipment";
+}
+
+.header .nav .logo .logo-x {
+	color: red;
+	text-transform: uppercase;
+}
+
+.header form {
+	padding-left: 10%;
+	padding-right: 10%;
+}
+
+.header form input[name='search'] {
+	width: 100%;
+	font-size: 1.25em;
+}
