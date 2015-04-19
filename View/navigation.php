@@ -23,13 +23,14 @@ class NavigationView extends View
 		echo "	<ul class=\"nav\">";
 		echo "		<!-- logo -->";
 		echo "		<li class=\"logo\">";
+		echo "			<a href=\"/?c=homepage\">";
 		echo "			<span class=\"logo-dj\">DJ</span><!--";
 		echo "			--><span class=\"logo-eq\">eq</span><!--";
 		echo "			--><span class=\"logo-x\">X</span>";
+		echo "			</a>";
 		echo "		</li>";
 		echo "";
 		echo "		<!-- nav options -->";
-		echo "		<li><a href=\"index.php\">Homepage</a></li>";
 		echo "		<li>Post an ad</li>";
 		echo "		<li>View ads</li>";
 		echo "		<li><a href=\"/?c=friends\">Friends</a></li>";
