@@ -32,7 +32,7 @@ class NavigationView extends View
 		echo "		<li><a href=\"index.php\">Homepage</a></li>";
 		echo "		<li>Post an ad</li>";
 		echo "		<li>View ads</li>";
-		echo "		<li><a href=\"View\FriendsList.php\">Friends</a></li>";
+		echo "		<li><a href=\"/?c=friends\">Friends</a></li>";
 		echo "		<li>Messages</li>";
 		echo "		<li>Logout</li>";
 		echo "	</ul>";
