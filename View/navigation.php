@@ -33,6 +33,7 @@ class NavigationView extends View
 		echo "		<li>Messages</li>";
 		echo "		<li>Post an ad</li>";
 		echo "		<li>View ads</li>";
+		echo "		<li>Friends</li>";
 		echo "	</ul>";
 		echo "	<form>";
 		echo "		<input type=\"text\" placeholder=\"search\" name=\"search\" />";
