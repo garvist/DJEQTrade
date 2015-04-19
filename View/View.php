@@ -1,5 +1,7 @@
 <?php
 
+//superclass for all views
+
 abstract class View
 {
 	/** Returns an array of CSS files that this view needs */
