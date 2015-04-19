@@ -7,7 +7,7 @@ $DB_NAME = "djex";
 function connect_to_db()
 {
 	$con = mysqli_connect( $DB_HOST, $DB_USER, $DB_PASS, $DB_NAME ); //create a connection to the database
-	if( $mysqli->connect_errno )
+	if( $con->connect_errno )
 		die("Failed to connect to server"); //stop the script with this error message
 	
 	return $con; //return the database connection
