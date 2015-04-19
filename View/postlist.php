@@ -22,7 +22,7 @@ class PostListView extends View
 		echo "		</div>";
 		echo "		";
 		echo "		<p class=\"ad-description\">";
-		echo "			I'm selling my old speakers. Message me with offers.";
+		echo "			I'm selling my old speakers. Message me with offers. This is such a funny little post. -Karl approves.";
 		echo "		</p>";
 		echo "		";
 		echo "		<img class=\"ad-image\" src=\"/blownspeakers.jpg\" />";
@@ -31,7 +31,7 @@ class PostListView extends View
 		echo "	</div>";
 		echo "	";
 		echo "	<div class=\"ad\">";
-		echo "		<h1 class=\"ad-title\">Jimbo's Amazing Subwoofers</h1>";
+		echo "		<h1 class=\"ad-title\">Jimbo's Amazing, Wonderful, loud, big, noisy, adjectives Subwoofers</h1>";
 		echo "		<div class=\"ad-meta\">";
 		echo "			<span class=\"ad-author\">Posted by DJ Jimbo</span>";
 		echo "			<span>Categories: speakers</span>";
