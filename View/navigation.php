@@ -29,11 +29,11 @@ class NavigationView extends View
 		echo "		</li>";
 		echo "";
 		echo "		<!-- nav options -->";
-		echo "		<li><a href=\"Controller/homepage.php\">Homepage</a></li>";
-		echo "		<li>Messages</li>";
+		echo "		<li><a href=\"homepage.php\">Homepage</a></li>";
 		echo "		<li>Post an ad</li>";
 		echo "		<li>View ads</li>";
 		echo "		<li>Friends</li>";
+		echo "		<li>Messages</li>";
 		echo "		<li>Logout</li>";
 		echo "	</ul>";
 		echo "	<form>";
