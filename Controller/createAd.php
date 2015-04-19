@@ -2,7 +2,7 @@
 
 require_once 'Controller/Controller.php'; //defines Controller class
 require_once 'View/navigation.php'; //defines NavigationView
-require_once 'View/FriendsList.php';
+require_once 'View/createAd.php';
 
 class CreateAdController extends Controller
 {
