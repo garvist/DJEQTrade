@@ -4,11 +4,11 @@
 
 .header ul.nav {
 	padding-left: 0;
-	font-size: 32px;
+	font-size: 20px;
 }
 
 .header ul.nav li {
-	width: 10%;
+	width: 13%;
 	list-style-type: none;
 	display: inline-block;
 	border-right: solid 1px black;
@@ -47,7 +47,7 @@
 
 .header .nav .logo:hover .logo-eq:after {
 	content: "uipment";
-	/*change width???*/
+	
 }
 
 .header .nav .logo .logo-x {
