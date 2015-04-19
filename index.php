@@ -18,6 +18,10 @@ switch( $controller_name )
 		require_once 'Controller/friends.php';
 		$controller = new FriendsController();
 		break;
+	case "post an ad":
+		require_once 'Controller/createAd.php';
+		$controller = new CreateAdController();
+		break;
 	default: //by default, use the homepage controller
 		require_once 'Controller/homepage.php';
 		$controller = new HomepageController();
