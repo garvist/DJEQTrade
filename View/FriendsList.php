@@ -20,7 +20,7 @@ class FriendsListView extends View
 		echo "	<div class=\"friend\">";
 		echo "		<h1 class=\"friend-title\">Friends List</h1>";
 		echo "  </div>";
-		echo "	<body><p>This is a description of your friends.</p></body>"
+		echo "	<body><p>This is a description of your friends.</p></body>";
 		echo "</div>";
 	}
 }
