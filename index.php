@@ -38,7 +38,7 @@ switch( $controller_name )
 		break;
 	case "my profile":
 		require_once 'Controller/myProfile.php';
-		$controller = new BrowseAdsController();
+		$controller = new MyProfileController();
 		break;
 	case "messages":
 		require_once 'Controller/messages.php';
