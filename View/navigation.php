@@ -35,7 +35,7 @@ class NavigationView extends View
 		echo "		<li><a href=\"/?c=post an ad\">Post an ad</a></li>";
 		echo "		<li>Browse ads</li>";
 		echo "		<li><a href=\"/?c=friends\">Friends</a></li>";
-		echo "		<li>Messages</li>";
+		echo "		<li><a href=\"/?c=messages\">Messages</a></li>";
 		echo "		<li>Logout</li>";
 		echo "	</ul>";
 		echo "<div class=\"page-description\">";
