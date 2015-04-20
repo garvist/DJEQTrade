@@ -4,17 +4,16 @@
 }
 
 .friends-list ul{
-	width: auto;
+	width: 40%;
 	font-size: 20px;
 	font-style: bold;
 	list-style-type: none;
-	padding-left: 7px;
-	padding-right: 7px;
+	padding-left: 20px;
+	padding-right: 5px;
 }
 
 .friends-list li {
-	border-left: solid 3px black;
-	border-radius: 10px;
+	border-left: solid 5px blue;
 }
 
 
