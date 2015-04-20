@@ -13,13 +13,14 @@ class HomepageController extends Controller
 	function __construct()
 	{
 		$this->nav_view = new NavigationView();
+		$this->postlist_view = new PostListView();
 		$this->myads_view = new MyAdsListView();
 	}
 	
 	/** Returns an array containing all of the views that this controller uses */
 	protected function getViews()
 	{
-		return [ $this->nav_view, $this->myads_view ];
+		return [ $this->nav_view, $this->postlist_view, $this->myads_view ];
 	}
 	
 	/** Outputs all HTML that needs to go in the <head> of the page */
@@ -39,6 +40,7 @@ class HomepageController extends Controller
 		//echo "	<p>Here you will find a bunch of things that I am too lazy to type out right now.</p>";
 		echo "</div>";
 		$this->nav_view->outputHTML();
+		$this->postlist_view->outputHTML();
 		$this->myads_view->outputHTML();
 	}
 }
