@@ -27,6 +27,8 @@ switch( $controller_name )
 		$controller = new HomepageController();
 		break;
 }
+
+$controller->executeBefore();
 ?>
 <!DOCTYPE html>
 <html>

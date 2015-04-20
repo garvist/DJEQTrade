@@ -6,6 +6,13 @@ abstract class Controller
 	/** Returns an array containing all of the views that this controller uses */
 	abstract protected function getViews();
 	
+	/** This is executed before HTML is outputted */
+	public function executeBefore()
+	{
+		//Do nothing.
+		//This can be overridden by subclasses
+	}
+	
 	/** Outputs all HTML that needs to go in the <head> of the page */
 	public function outputHead()
 	{
