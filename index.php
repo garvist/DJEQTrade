@@ -6,6 +6,10 @@ $controller_name = ( isset($_GET["c"]) ? $_GET["c"] : "homepage" );
 $controller = '';
 switch( $controller_name )
 {
+	case "log in":
+		require_once 'Controller/logIn.php';
+		$controller = new LogInController();
+		break;
 	case "homepage":
 		require_once 'Controller/homepage.php';
 		$controller = new HomepageController();
