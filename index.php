@@ -1,6 +1,12 @@
 <?php
 //determine the name of the Controller to use
-$controller_name = ( isset($_GET["c"]) ? $_GET["c"] : "homepage" );
+$controller_name = '';
+if( isset($_GET["c"]) )
+	$controller_name = $_GET["c"];
+else if( isset($_POST["c"]) )
+	$controller_name = $_POST["c"];
+else
+	$controller_name = "homepage";
 
 //create the Controller object
 $controller = '';
