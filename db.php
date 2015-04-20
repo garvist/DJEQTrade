@@ -74,6 +74,11 @@ class DJEXDB
 		mysqli_close( $this->con );
 	}
 	
+	private function error($error_msg)
+	{
+		die("DB Error: " .$error_msg);
+	}
+	
 	//login
 	private function checkLoginState()
 	{
