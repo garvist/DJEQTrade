@@ -14,7 +14,9 @@ class PostListView extends View
 	public function outputHTML()
 	{
 		echo "<div class=\"page\">";
-		echo "<h1>Posts by others</h1>";
+		echo "<div class =\"page-title\">";
+		echo "	<h1>Posts by others</h1>";
+		echo "</div>";
 		echo "	<div class=\"ad\">";
 		echo "		<h1 class=\"ad-title\">Jimbo's Amazing Speakers</h1>";
 		echo "		<div class=\"ad-meta\">";
