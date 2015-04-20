@@ -20,7 +20,7 @@ class CreateAdView extends View
 		echo "	<div class=\"createAd\">";
 		echo "		<h1 class=\"createAd-title\">Create Ad</h1>";
 		echo "  </div>";
-		echo "	<body><p>This page craetes an ad.</p></body>";
+		echo "	<body><p>This page creates an ad. Insert a form here that connects to the database.</p></body>";
 		echo "</div>";
 	}
 }

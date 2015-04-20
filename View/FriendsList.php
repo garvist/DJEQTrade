@@ -17,7 +17,7 @@ class FriendsListView extends View
 		//$searchterm = ( isset($_GET['s']) ? $_GET['s'] : '' );
 		
 		echo "<div class=\"page\">";
-		echo "<h2>Friends List</h2>";
+		echo "<h1>Friends List</h1>";
 		echo "	<div class=\"friends-list\">";
 		echo "		<p class=\"description\">Run sql code to generate list of friends. Print them out here. Each friend is a link. Click on the link to take them to their profile. Change the search bar so it searches through your friends list.</p>";
 		echo "		<ul class=\"friends-list\">";
