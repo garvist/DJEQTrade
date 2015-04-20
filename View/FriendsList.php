@@ -25,7 +25,7 @@ class FriendsListView extends View
 		echo "			<li><a href=\"/?c=post an ad\">Adam Sandler</a></li>"; //link to a general friends page, yet to be created.
 		echo "			<li>Brad pitt</li>";
 		echo "			<li>Emil Gilles</li>";
-		echo "		</ol>"
+		echo "		</ol>";
 		echo "  </div>";
 		echo "</div>";
 	}
