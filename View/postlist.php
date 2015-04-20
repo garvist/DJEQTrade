@@ -28,7 +28,7 @@ class PostListView extends View
 		echo "			I'm selling my old speakers. Message me with offers. This is such a funny little post. -Karl approves.";
 		echo "		</p>";
 		echo "		";
-		echo "		<img class=\"ad-image\" src=\"/https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQzKQ9x7noOssYlplpI5hlkhgCsxII2rYiUECiYffX7YP_5tmbYtw\" />";
+		echo "		<img class=\"ad-image\" src=\"/blownspeakers.jpg\" />";
 		echo "		";
 		echo "		<span class=\"ad-byline\">Posted by DJ Jimbo on Apr 2 @ 4:30pm</span>";
 		echo "	</div>";
