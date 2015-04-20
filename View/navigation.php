@@ -58,7 +58,7 @@ class NavigationView extends View
 		echo "	</form>";
 		echo "	<script>\n";
 		echo "		$('form').submit( function(event) {\n";
-		echo "			var searchtext = $('form input[name=search]').val();\n";
+		echo "			var searchtext = $('form input[name=search everything]').val();\n";
 		echo "			window.location = '/?c=search&s=' +searchtext; //redirect to the search page\n";
 		echo "			event.preventDefault(); //prevent the browser from submitting the form\n";
 		echo "		});\n";
