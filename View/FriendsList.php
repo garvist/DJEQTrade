@@ -17,10 +17,16 @@ class FriendsListView extends View
 		//$searchterm = ( isset($_GET['s']) ? $_GET['s'] : '' );
 		
 		echo "<div class=\"page\">";
-		echo "	<div class=\"friend\">";
-		echo "		<h1 class=\"friend-title\">Friends List</h1>";
+		echo "<h2>Friends List</h2>";
+		echo "	<div class=\"friends-list\">";
+		echo "		<p class=\"description\">Run sql code to generate list of friends. Print them out here. Each friend is a link. Click on the link to take them to their profile.</p>";
+		echo "		<ol class=\"friends-list\">";
+		echo "			<!-- list of friends -->";
+		echo "			<li><a href=\"/?c=post an ad\">Adam Sandler</a></li>"; //link to a general friends page, yet to be created.
+		echo "			<li>Brad pitt</li>";
+		echo "			<li>Emil Gilles</li>";
+		echo "		</ol>"
 		echo "  </div>";
-		echo "	<body><p>This is a description of your friends.</p></body>";
 		echo "</div>";
 	}
 }
