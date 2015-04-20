@@ -7,9 +7,12 @@
 	width: 40%;
 	font-size: 20px;
 	font-style: bold;
+	font-family: Verdana, sans-serif;
 	list-style-type: none;
 	padding-left: 20px;
 	padding-right: 5px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 }
 
 .friends-list li {
