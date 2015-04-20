@@ -35,6 +35,7 @@ switch( $controller_name )
 	case "browse ads":
 		require_once 'Controller/browseAds.php';
 		$controller = new BrowseAdsController();
+		break;
 	case "messages":
 		require_once 'Controller/messages.php';
 		$controller = new MessagesController();
