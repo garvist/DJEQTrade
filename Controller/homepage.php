@@ -38,8 +38,8 @@ class HomepageController extends Controller
 		//$this->postlist_view->outputHTML();
 		echo "<div class=\"welcome\">";
 		echo "	<h1>Welcome to DJ Equipment Trade!</h1>";
-		echo "	<p>Here you will find a bunch of things that I am too lazy to type out right now.</p>"
-		echo "</div>"
+		echo "	<p>Here you will find a bunch of things that I am too lazy to type out right now.</p>";
+		echo "</div>";
 	}
 }
 ?>
