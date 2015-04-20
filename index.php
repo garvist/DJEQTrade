@@ -1,11 +1,21 @@
 <?php
 //determine the name of the Controller to use
-$controller_name = ( isset($_GET["c"]) ? $_GET["c"] : "homepage" );
+$controller_name = '';
+if( isset($_GET["c"]) )
+	$controller_name = $_GET["c"];
+else if( isset($_POST["c"]) )
+	$controller_name = $_POST["c"];
+else
+	$controller_name = "homepage";
 
 //create the Controller object
 $controller = '';
 switch( $controller_name )
 {
+	case "log in":
+		require_once 'Controller/logIn.php';
+		$controller = new LogInController();
+		break;
 	case "homepage":
 		require_once 'Controller/homepage.php';
 		$controller = new HomepageController();
@@ -22,15 +32,23 @@ switch( $controller_name )
 		require_once 'Controller/createAd.php';
 		$controller = new CreateAdController();
 		break;
+<<<<<<< HEAD
 	case "browse ads":
 		require_once 'Controller/browseAds.php';
 		$controller = new BrowseAdsController();
+=======
+	case "messages":
+		require_once 'Controller/messages.php';
+		$controller = new MessagesController();
+>>>>>>> 639f70f02ffe5315e5c4b257f115bb9d620f5294
 		break;
 	default: //by default, use the homepage controller
 		require_once 'Controller/homepage.php';
 		$controller = new HomepageController();
 		break;
 }
+
+$controller->executeBefore();
 ?>
 <!DOCTYPE html>
 <html>
