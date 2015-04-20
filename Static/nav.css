@@ -21,6 +21,10 @@
 	text-decoration: none;
 }
 
+.header ul.nav a:visited {
+	color: #000000;
+}
+
 .header ul.nav li:hover {
 	background-color: white;
 }
