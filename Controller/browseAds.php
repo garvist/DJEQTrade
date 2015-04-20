@@ -4,7 +4,7 @@ require_once 'Controller/Controller.php'; //defines Controller class
 require_once 'View/navigation.php'; //defines NavigationView
 require_once 'View/postlist.php';
 
-class FriendsController extends Controller
+class BrowseAdsController extends Controller
 {
 	private $nav_view;
 	private $postlist_view;
