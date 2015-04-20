@@ -2,7 +2,8 @@
 
 require_once 'Controller/Controller.php'; //defines Controller class
 require_once 'View/navigation.php'; //defines NavigationView
-require_once 'View/myAds.php'; //defines PostListView
+require_once 'View/myAds.php'; //defines MyAdsView
+require_once 'View/postlist.php'; //defines PostListView
 
 class HomepageController extends Controller
 {
