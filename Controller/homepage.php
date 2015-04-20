@@ -35,7 +35,7 @@ class HomepageController extends Controller
 	public function outputBody()
 	{
 		$this->nav_view->outputHTML();
-		$this->postlist_view->outputHTML();
+		//$this->postlist_view->outputHTML();
 	}
 }
 ?>
