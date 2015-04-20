@@ -72,3 +72,11 @@
 	width: 100%;
 	font-size: 1.25em;
 }
+
+.page-description h3 {
+	margin: 5px;
+}
+
+.page-description p {
+	margin: 5px;
+}
