@@ -32,15 +32,12 @@ switch( $controller_name )
 		require_once 'Controller/createAd.php';
 		$controller = new CreateAdController();
 		break;
-<<<<<<< HEAD
 	case "browse ads":
 		require_once 'Controller/browseAds.php';
 		$controller = new BrowseAdsController();
-=======
 	case "messages":
 		require_once 'Controller/messages.php';
 		$controller = new MessagesController();
->>>>>>> 639f70f02ffe5315e5c4b257f115bb9d620f5294
 		break;
 	default: //by default, use the homepage controller
 		require_once 'Controller/homepage.php';
