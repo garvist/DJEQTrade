@@ -20,6 +20,7 @@ class LogInView extends View
 		echo "	<div class=\"logIn\">";
 		echo "		<h1 class=\"logIn-title\">Log In</h1>";
 		echo "  </div>";
+		echo "	<button type="button">Log In</button>";
 		echo "	<body><p>Log in on thie Page.</p></body>";
 		echo "</div>";
 	}
