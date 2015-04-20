@@ -2,24 +2,24 @@
 
 require_once 'Controller/Controller.php'; //defines Controller class
 require_once 'View/navigation.php'; //defines NavigationView
-require_once 'View/postlist.php';
+require_once 'View/myAds.php';
 
-class BrowseAdsController extends Controller
+class MyProfileController extends Controller
 {
 	private $nav_view;
-	private $postlist_view;
+	private $myAdsList_view;
 	
 	//the constructor for this controller class
 	function __construct()
 	{
 		$this->nav_view = new NavigationView();
-		$this->postlist_view = new PostListView();
+		$this->myAdsList_view = new MyAdsListView();
 	}
 	
 	/** Returns an array containing all of the views that this controller uses */
 	protected function getViews()
 	{
-		return [ $this->nav_view, $this->postlist_view ];
+		return [ $this->nav_view, $this->myAdsList_view ];
 	}
 	
 	/** Outputs all HTML that needs to go in the <head> of the page */
@@ -35,7 +35,7 @@ class BrowseAdsController extends Controller
 	public function outputBody()
 	{
 		$this->nav_view->outputHTML();
-		$this->postlist_view->outputHTML();
+		$this->myAdsList_view->outputHTML();
 	}
 }
 ?>
