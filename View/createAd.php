@@ -17,9 +17,9 @@ class CreateAdView extends View
 		//$searchterm = ( isset($_GET['s']) ? $_GET['s'] : '' );
 		
 		echo "<div class=\"page\">";
-		echo "	<div class=\"createAd\">";
-		echo "		<h1 class=\"createAd-title\">Create Ad</h1>";
-		echo "  </div>";
+		echo "<div class =\"page-title\">";
+		echo "	<h1>Create an Ad</h1>";
+		echo "</div>";
 		echo "	<body><p>This page creates an ad. Insert a form here that connects to the database.</p></body>";
 		echo "</div>";
 	}

@@ -37,6 +37,7 @@ class NavigationView extends View
 		echo "		<li><a href=\"/?c=messages\">Messages</a></li>";
 		echo "		<li>Logout</li>";
 		echo "	</ul>";
+		/*
 		echo "<div class=\"page-description\">";
 		echo "	<h3>My Profile (homepage):</h3>";
 		echo "	<p>On my profile, you see the ads that you have posted. The search bar searches all ads on the database, including your own. It takes you to the search results page. In the search bar, the prewritten text says \"search for equipment\".<br></p>";
@@ -51,6 +52,7 @@ class NavigationView extends View
 		echo "	<h3>Logout:</h3>";
 		echo "	<p>This logs you out and brings you to the login screen. The login screen will become the new index.php eventually.</p>";
 		echo " </div>";
+		*/
 		echo "	<form>";
 		echo "		<input type=\"text\" placeholder=\"search\" name=\"search\" />";
 		echo "	</form>";

@@ -17,9 +17,9 @@ class MessagesView extends View
 		//$searchterm = ( isset($_GET['s']) ? $_GET['s'] : '' );
 		
 		echo "<div class=\"page\">";
-		echo "	<div class=\"messages\">";
-		echo "		<h1 class=\"messages-title\">Messages</h1>";
-		echo "  </div>";
+		echo "<div class =\"page-title\">";
+		echo "	<h1>Your Messages</h1>";
+		echo "</div>";
 		echo "	<body><p>This page holds your messages.</p></body>";
 		echo "</div>";
 	}

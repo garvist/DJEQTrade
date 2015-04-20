@@ -22,7 +22,7 @@ class FriendsListView extends View
 		echo "		<p class=\"description\">Run sql code to generate list of friends. Print them out here. Each friend is a link. Click on the link to take them to their profile. Change the search bar so it searches through your friends list.</p>";
 		echo "		<ul class=\"friends-list\">";
 		echo "			<!-- list of friends -->";
-		echo "			<li><a href=\"/?c=post an ad\">Adam Sandler (currently has a link to \"post an ad\")</a></li>"; //link to a general friends page, yet to be created.
+		echo "			<li><a href=\"/?c=post an ad\">Adam Sandler (currently ink to \"post an ad\")</a></li>"; //link to a general friends page, yet to be created.
 		echo "			<li>Brad pitt</li>";
 		echo "			<li>Emma Watson</li>";
 		echo "			<li>Emil Gilles</li>";
