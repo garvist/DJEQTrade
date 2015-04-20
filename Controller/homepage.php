@@ -34,12 +34,11 @@ class HomepageController extends Controller
 	/** Outputs all HTML that needs to go in the <body> of the page */
 	public function outputBody()
 	{
-		$this->nav_view->outputHTML();
-		//$this->postlist_view->outputHTML();
 		echo "<div class=\"welcome\">";
 		echo "	<h1>Welcome to DJ Equipment Trade!</h1>";
 		//echo "	<p>Here you will find a bunch of things that I am too lazy to type out right now.</p>";
 		echo "</div>";
+		$this->nav_view->outputHTML();
 		$this->myads_view->outputHTML();
 	}
 }

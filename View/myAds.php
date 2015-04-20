@@ -13,10 +13,8 @@ class MyAdsListView extends View
 	/** Outputs this view's HTML */
 	public function outputHTML()
 	{
-		echo "<div class=\"myAds\">";
 		echo "	<h1>My Ads</h1>";
 		echo " 	<p>Here you will find a list of your ads generated from the sql database.</p>";
-		echo "</div>";
 		echo "<div class=\"page\">";
 		echo "	<div class=\"ad\">";
 		echo "		<h1 class=\"ad-title\">My Amazing Speakers</h1>";
