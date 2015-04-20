@@ -28,6 +28,10 @@ switch( $controller_name )
 		require_once 'Controller/friends.php';
 		$controller = new FriendsController();
 		break;
+	case "my ads":
+		require_once 'Controller/myAds.php';
+		$controller = new MyAdsController();
+		break;
 	case "post an ad":
 		require_once 'Controller/createAd.php';
 		$controller = new CreateAdController();
