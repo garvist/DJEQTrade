@@ -40,7 +40,7 @@ class NavigationView extends View
 		echo "	</ul>";
 		echo "<div class=\"page-description\">";
 		echo "	<h3>My Profile (homepage):</h3>";
-		echo "	<p>On my profile, you see the ads that you have posted. The search bar searches all ads on the database, including your own. It takes you to the search results page. In the search bar, the prewritten text says \"search for equipment\"<br>.</p>";
+		echo "	<p>On my profile, you see the ads that you have posted. The search bar searches all ads on the database, including your own. It takes you to the search results page. In the search bar, the prewritten text says \"search for equipment\".<br></p>";
 		echo "	<h3>Post an ad:</h3>";
 		echo "	<p>This page takes you to a general form where you can post an ad to the database. There is no search bar.</p>";
 		echo "	<h3>Browse ads</h3>";
