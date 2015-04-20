@@ -13,7 +13,7 @@ class HomepageController extends Controller
 	function __construct()
 	{
 		$this->nav_view = new NavigationView();
-		$this->myads_view = new MyAdsView();
+		$this->myads_view = new MyAdsListView();
 	}
 	
 	/** Returns an array containing all of the views that this controller uses */
