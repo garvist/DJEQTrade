@@ -15,9 +15,11 @@
 }
 
 .friends-list li {
-	border-left: solid 5px blue;
+	border-left: solid 10px blue;
+	border-radius: 2px;
 	padding-top: 5px;
 	padding-bottom: 5px;
+	padding-left: 10px;
 }
 
 
