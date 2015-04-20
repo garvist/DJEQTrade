@@ -9,6 +9,7 @@ class HomepageController extends Controller
 {
 	private $nav_view;
 	private $myads_view;
+	private $postlist_view;
 	
 	//the constructor for this controller class
 	function __construct()
