@@ -20,9 +20,9 @@ class LogInView extends View
 		echo "	<div class=\"logIn\">";
 		echo "		<h1 class=\"logIn-title\">Log In</h1>";
 		echo "  </div>";
-		echo "	<form name=\"E-Mail\" id=\"E-Mail\">
-		Visible Description:
-		<input type=\"text\" name=\"E-Mail\" id=\"E-Mail\" size=\"20\" maxlength=\"15\">"
+		echo "	<form name=\"E-Mail\" id=\"E-Mail\">"
+		echo "Visible Description:"
+		echo "<input type=\"text\" name=\"E-Mail\" id=\"E-Mail\" size=\"20\" maxlength=\"15\">"
 		echo "	<button type=\"button\">Log In</button>";
 		echo "	<body><p>Log in on thie Page.</p></body>";
 		echo "</div>";
