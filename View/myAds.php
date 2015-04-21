@@ -23,6 +23,29 @@ class MyAdsListView extends View
 	public function outputHTML()
 	{
 		echo "	<h1>My Ads</h1>";
+		
+		foreach( $this->db->getAllPostsForUser( $this->db->getLoggedInId() ) as $post )
+		{
+			//convert the tags from an array to a string
+			$tags = "";
+			foreach( $post['tags'] as $t )
+				$tags = $tags . $t . ", ";
+			
+			echo "	<div class=\"ad\">";
+			echo "	<h1 class=\"ad-title\">{$post['title']}</h1>";
+			echo "	<div class=\"ad-meta\">";
+			echo "		<span>Tags: {$tags}</span>";
+			echo "	</div>";
+			echo "	";
+			echo "	<p class=\"ad-description\">";
+			echo "	{$post['message']}";
+			echo "	</p>";
+			echo "	";
+			echo "	<img src=\"{$post['image_url']}\" width=\"150\" />";
+			echo "	<span class=\"ad-byline\">Posted by {$post['first_name']} {$post['last_name']}</span>";
+			echo "	</div>";
+		}
+		/*
 		echo " 	<p>Here you will find a list of your ads generated from the sql database.</p>";
 		echo "<div class=\"page\">";
 		echo "	<div class=\"ad\">";
@@ -58,6 +81,7 @@ class MyAdsListView extends View
 		echo "		<span class=\"ad-byline\">Posted by DJ Jimbo on Apr 2 @ 4:37pm</span>";
 		echo "	</div>";
 		echo "</div>";
+		*/
 	}
 }
 
