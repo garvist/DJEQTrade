@@ -265,7 +265,7 @@ class DJEXDB
 	 *	On failure, returns this associative array: ["success" => false]
 	 *  On success, returns this associative array: ["success" => true, "post_id" => post_id ]
 	 */
-	public function createPost($title, $message, $tags)
+	public function createPost($title, $image_url, $message, $tags)
 	{
 		//return false if we aren't logged in
 		if( !$this->isLoggedIn() )
@@ -273,7 +273,7 @@ class DJEXDB
 		
 		//create the post
 		$stmt = $this->con->prepare("INSERT INTO Posts (title, image_url, message, from_customer_id) VALUES (?, ?, ?, ?)");
-		$stmt->bind_param("sssi", $title, "http://lyndahaviland.com/wp-content/uploads/2009/07/post-it-note.jpg", $message, $this->getLoggedInId());
+		$stmt->bind_param("sssi", $title, $image_url, $message, $this->getLoggedInId());
 		$stmt->execute();
 		
 		$post_id = $this->con->insert_id();
