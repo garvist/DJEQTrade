@@ -2,10 +2,12 @@
 
 require_once 'Controller/Controller.php'; //defines Controller class
 require_once 'View/logIn.php';
+require_once 'View/createAccount.php';
 
 class LogInController extends Controller
 {
 	private $logIn_view;
+	private $createAccount_view;
 	
 	//the constructor for this controller class
 	function __construct()
@@ -13,12 +15,13 @@ class LogInController extends Controller
 		parent::__construct(); //call our parent constructor -- this will create the database connection that we're going to use
 		
 		$this->logIn_view = new LogInView($this->db);
+		$this->createAccount_view = new CreateUserAccountView($this->db);
 	}
 	
 	/** Returns an array containing all of the views that this controller uses */
 	protected function getViews()
 	{
-		return [ $this->logIn_view ];
+		return [ $this->logIn_view, $this->createAccount_view];
 	}
 	
 	public function executeBefore()
@@ -58,6 +61,8 @@ class LogInController extends Controller
 	public function outputBody()
 	{
 		$this->logIn_view->outputHTML();
+		echo "<br><br><br>";
+		$this->createAccount_view->outputHTML();
 	}
 }
 ?>

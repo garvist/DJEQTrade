@@ -2,7 +2,7 @@
 
 require_once 'View/View.php'; //defines the View class
 
-class CreateAdView extends View
+class CreateUserAccountView extends View
 {
 	/** Parent constructor for all views.
 	 * Parameters:
@@ -27,17 +27,18 @@ class CreateAdView extends View
 		
 		echo "<div class=\"page\">";
 		echo "	<div class =\"page-title\">";
-		echo "		<h1>Create an Advertisement</h1>";
+		echo "		<h1>Create an Account</h1>";
 		echo "	</div>";
-		echo "	<body><p>Create your advertisement here. Form connects to the database.</p></body>";
+		echo "	<body><p>Create your account here. Form connects to the database.</p></body>";
 		echo "	<div class=\"form\">";
-		echo "		<form action=\"/\" method='post' id=\"createAdForm\">";
+		echo "		<form action=\"/\" method='post' id=\"createUserForm\">";
 		echo "			<input type='text' name='c' value='post an ad' style='display: none' />";
-		echo "			Title:<br><input type=\"text\" name=\"postTitle\"><br>";
-		echo "			tags (for search): <br><input type=\"text\" name=\"postTags\"><br>";
-		echo "			Image url:<br><input type\"text\" name=\"postImage\"><br>";
-		echo "			Description:<br>";
-		echo "			<textarea rows=\"6\" cols=\"50\" name=\"postDescription\" form=\"createAdForm\">Enter text here...</textarea><br>";
+		echo "			First Name:<br><input type=\"text\" name=\"firstName\"><br>";
+		echo "			Last Name: <br><input type=\"text\" name=\"lastName\"><br>";
+		echo "			Email:<br>";
+		echo "			<textarea rows=\"1\" cols=\"50\" name=\"userEmail\" form=\"createUserForm\"></textarea><br>";
+		echo "			Password:<br>";
+		echo "			<textarea rows=\"1\" cols=\"50\" name=\"userPassword\" form=\"createUserForm\"></textarea><br>";
 		echo "			<input type=\"submit\" value=\"Submit your ad\">";
 		echo "			<p>If you click \"Submit\", the form-data will be sent to a page called \"action_page.php\". This is what W3 told me to do. -Karl</p>";
 		echo "		</form>";
