@@ -27,10 +27,10 @@ class LogInController extends Controller
 	public function executeBefore()
 	{
 		//is this user trying to log in?
-		if( isset($_POST['email']) ) //yes
+		if( isset($_POST['userEmail']) ) //yes
 		{
-			$email = $_POST['email'];
-			$pass  = $_POST['password'];
+			$email = $_POST['userEmail'];
+			$pass  = $_POST['userPassword'];
 			
 			//are we already logged in?
 			if( $this->db->isLoggedIn() )
