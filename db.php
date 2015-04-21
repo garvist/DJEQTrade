@@ -56,7 +56,7 @@ class DJEXDB
 		}
 		
 		//create the views
-		for( $view as $v )
+		foreach( $view as $v )
 			mysqli_query($this->con, $v);
 		
 		//check login state
