@@ -22,11 +22,11 @@
 }
 
 .friends-list p {
-	width: 50%;
+	width: 60%;
 	padding: 15px;
 	padding-bottom: 30px;
-	font-size: 15px;
-	font-style: italic;
+	padding-right:40px;
+	font-size: 18px;
 	border-top-style: solid;
 	border-top-width: 10px;
 	border-top-color: blue;
