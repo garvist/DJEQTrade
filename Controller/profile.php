@@ -5,7 +5,7 @@ require_once 'View/navigation.php'; //defines NavigationView
 require_once 'View/aboutMe.php';
 require_once 'View/myAds.php';
 
-class MyProfileController extends Controller
+class ProfileController extends Controller
 {
 	private $nav_view;
 	private $aboutMe_view;
