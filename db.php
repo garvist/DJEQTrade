@@ -44,7 +44,7 @@ class DJEXDB
 		];
 	
 		//create the schema
-		for( $schema as $tablename => $query )
+		foreach( $schema as $tablename => $query )
 		{
 			if( !$this->db_table_exists($tablename) )
 			{
@@ -77,6 +77,12 @@ class DJEXDB
 	private function error($error_msg)
 	{
 		die("DB Error: " .$error_msg);
+	}
+	
+	/** Returns the database connection */
+	public function getConnection()
+	{
+		return $con;
 	}
 	
 	//login
@@ -182,7 +188,7 @@ class DJEXDB
 		return $this->loggedInId;
 	}
 	
-	//query methods
+	//query helper methods
 	public function createCustomer($first_name, $last_name, $email, $administrator, $password)
 	{
 		//insert the customer into the customers table
