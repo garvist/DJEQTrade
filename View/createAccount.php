@@ -2,7 +2,7 @@
 
 require_once 'View/View.php'; //defines the View class
 
-class CreateUserAccountView extends View
+class CreateAccountView extends View
 {
 	/** Parent constructor for all views.
 	 * Parameters:

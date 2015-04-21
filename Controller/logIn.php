@@ -15,7 +15,7 @@ class LogInController extends Controller
 		parent::__construct(); //call our parent constructor -- this will create the database connection that we're going to use
 		
 		$this->logIn_view = new LogInView($this->db);
-		$this->createAccount_view = new CreateUserAccountView($this->db);
+		$this->createAccount_view = new CreateAccountView($this->db);
 	}
 	
 	/** Returns an array containing all of the views that this controller uses */
