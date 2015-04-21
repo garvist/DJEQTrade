@@ -48,13 +48,14 @@ class NavigationView extends View
 			echo "		<li><a href=\"/?c=friends\">Friends</a></li>";
 			echo "		<li><a href=\"/?c=messages\">Messages</a></li>";
 			echo "		<li><a href=\"/?c=log out\">Logout</a></li>";
+			echo "</ul>";
 		}
 		else
 		{
 			echo "		<li class=\"login\"><a href=\"/?c=log in\">Login / Create Account</a></li>";
+			echo "</ul>";
+			echo "		<p>This is a description of the website.</p>";
 		}
-		
-		echo "	</ul>";
 		/*
 		echo "<div class=\"page-description\">";
 		echo "	<h3>My Profile (homepage):</h3>";
