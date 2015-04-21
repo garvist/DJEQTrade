@@ -238,7 +238,40 @@ class DJEXDB
 			$posts[] = $post;
 		}
 		
+		$stmt->close();
+		
 		return $posts;
+	}
+	
+	/** Creates a post.
+	 *	On failure, returns this associative array: ["success" => false]
+	 *  On success, returns this associative array: ["success" => true, "post_id" => post_id ]
+	 */
+	public function createPost($title, $message, $tags)
+	{
+		//return false if we aren't logged in
+		if( !$this->isLoggedIn() )
+			return ["success" => false];
+		
+		//create the post
+		$stmt = $this->con->prepare("INSERT INTO Posts (title, image_url, message, from_customer_id) VALUES (?, ?, ?, ?)");
+		$stmt->bind_param("sssi", $title, "http://lyndahaviland.com/wp-content/uploads/2009/07/post-it-note.jpg", $message, $this->getLoggedInId());
+		$stmt->execute();
+		
+		$post_id = $this->con->insert_id();
+		
+		$stmt->close();
+		
+		//add the tags to the post
+		foreach( $tags as $t )
+		{
+			$stmt = $this->con->prepare("INSERT INTO Equipment_Tags (post_id, tag) VALUES (?, ?)");
+			$stmt->bind_param("is", $post_id, $t);
+			$stmt->execute();
+			$stmt->close();
+		}
+		
+		return ["success" => true, "post_id" => $post_id];
 	}
 }
 
