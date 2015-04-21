@@ -32,7 +32,7 @@ class PostListView extends View
 			//convert the tags from an array to a string
 			$tags = "";
 			foreach( $post['tags'] as $t )
-				$tags = $tags . $t . ", "
+				$tags = $tags . $t . ", ";
 			
 			echo "	<div class=\"ad\">";
 			echo "	<h1 class=\"ad-title\">{$post['title']}</h1>";
