@@ -20,7 +20,7 @@ class LogOutController extends Controller
 	
 	public function executeBefore()
 	{
-		$this->logout(); //log the user out
+		$this->db->logout(); //log the user out
 		
 		header("Location: /"); //redirect to the home page
 	}
