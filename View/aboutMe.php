@@ -23,15 +23,11 @@ class AboutMeView extends View
 	public function outputHTML()
 	{
 		echo "<div class=\"aboutPage\">";
-		echo "	<h1 class=\"title\">About Me</h1>";
+		echo "	<h1 class=\"title\">About [firstName] [lastName]</h1>";
 		echo "	<div class=\"contents\">";
-		echo "		<h3>First Name: </h3>";
-		echo "		<p>draw info from db</p>";
-		echo "		<h3>Last Name: </h3>";
-		echo "		<p>draw info from db</p>";
 		echo "		<h3>Email:</h3>";
 		echo "		<p>draw infro from db</p>";
-		echo "		<h3>My Rating: </h3>";
+		echo "		<h3>User Rating: </h3>";
 		echo "		<p>draw info from db</p>";
 		echo "		<h3>Number of Friends: </h3>";
 		echo "		<p>draw info from db</p>";

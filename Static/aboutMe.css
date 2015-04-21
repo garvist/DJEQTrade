@@ -1,17 +1,10 @@
 .aboutPage {
 	width: 50%;
-	margin-left: 15%;
+	margin-left: 10%;
+	border: 3px blue;
+	border-radius: 10px;
 	
 }
-
-.aboutPage .contents {
-	border: 3px blue;
-}
-
-.aboutPage .contents h3{
-	margin: 10px;
-}
-
-.aboutPage .contents p {
-	margin: 10px;
+.aboutPage h1{
+	margin: 15px;
 }
