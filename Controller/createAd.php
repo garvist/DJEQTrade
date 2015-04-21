@@ -65,7 +65,7 @@ class CreateAdController extends Controller
 	public function outputBody()
 	{
 		echo "<div class=\"welcome\">"; //this can go in nav.php 
-		echo "	<h1>Create an advertisment</h1>";
+		echo "	<h1>Create an advertisement</h1>";
 		//echo "	<p>Here you will find a bunch of things that I am too lazy to type out right now.</p>";
 		echo "</div>";
 		$this->nav_view->outputHTML();
