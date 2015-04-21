@@ -1,6 +1,7 @@
 <?php
 
 require_once 'Controller/Controller.php'; //defines Controller class
+require_once 'View/navigation.php';
 require_once 'View/sendMessage.php';
 
 class SendMessageController extends Controller
