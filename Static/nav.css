@@ -22,8 +22,8 @@
 	text-decoration: none;
 }
 
-.header ul.nav a.login {
-	width: 20%;
+.header ul.nav li.login {
+	width: 25%;
 }
 
 .header ul.nav a:visited {
