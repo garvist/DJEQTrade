@@ -21,6 +21,17 @@
 	padding-left: 10px;
 }
 
+.friends-list p {
+	width: 70%;
+	padding: 15px;
+	font-size: 18px;
+	border-top-style: solid;
+	border-top-width: 5px;
+	border-top-color: blue;
+	border-left-style: solid;
+	border-left-width: 5px;
+	border-left-color: blue;
+}
 
 .friends-list a {
 	text-decoration: none;
