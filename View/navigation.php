@@ -51,7 +51,7 @@ class NavigationView extends View
 		}
 		else
 		{
-			echo "		<li><a href=\"/?c=log in\">Login / Create Account</a></li>";
+			echo "		<li class=\"login\"><a href=\"/?c=log in\">Login / Create Account</a></li>";
 		}
 		
 		echo "	</ul>";
