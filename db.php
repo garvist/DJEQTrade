@@ -452,6 +452,35 @@ class DJEXDB
 		$stmt->execute();
 		$stmt->close();
 	}
+	
+	//search functions
+	public function search($searchterms)
+	{
+		//search the tables and merge results into one table
+		$results = array_merge( [], search_customers($searchterms), search_posts($searchterms) );
+		
+		//sort results by rank
+		uksort($results, [$this, "sortresults"]); //the second parameter is kind of like a function pointer for $this->compareResults()
+		
+		//return results
+		return $results;
+	}
+	
+	private function search_customers($searchterms)
+	{
+		return [];
+	}
+	
+	private function search_posts($searchterms)
+	{
+		return [];
+	}
+	
+	/* Returns -1, 0, or 1 if the first argument is less than, equal to, or greater than the second */
+	private function compareResults($res1, $res2)
+	{
+		return $res1['rank'] - $res2['rank'];
+	}
 }
 
 ?>
