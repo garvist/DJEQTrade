@@ -1,8 +1,8 @@
 <?php
-$DB_HOST = "localhost";
-$DB_USER = "djex_test";
-$DB_PASS = "123456";
-$DB_NAME = "djex";
+define("DB_HOST", "localhost");
+define("DB_USER", "djex_test");
+define("DB_PASS", "123456");
+define("DB_NAME", "djex");
 
 class DJEXDB
 {
@@ -14,7 +14,7 @@ class DJEXDB
 	public function __construct()
 	{
 		//create a connection to the database
-		$this->con = mysqli_connect( $DB_HOST, $DB_USER, $DB_PASS, $DB_NAME );
+		$this->con = mysqli_connect( DB_HOST, DB_USER, DB_PASS, DB_NAME );
 		if( $this->con->connect_errno )
 			die("Failed to connect to server"); //stop the script with this error message
 		
