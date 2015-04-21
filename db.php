@@ -457,7 +457,7 @@ class DJEXDB
 	public function search($searchterms)
 	{
 		//search the tables and merge results into one table
-		$results = array_merge( [], search_customers($searchterms), search_posts($searchterms) );
+		$results = array_merge( [], $this->search_customers($searchterms), $this->search_posts($searchterms) );
 		
 		//sort results by rank
 		uksort($results, [$this, "sortresults"]); //the second parameter is kind of like a function pointer for $this->compareResults()
