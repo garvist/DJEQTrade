@@ -7,6 +7,13 @@
 	border-radius: 10px;
 	
 }
+.aboutPage h1 {
+	margin: 15px;
+	border-style: solid;
+	border-bottom-width: 2px;
+	border-bottom-color: blue;
+	
+}
 
 .aboutPage .contents {
 	margin-left: 5%;
