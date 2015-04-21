@@ -24,6 +24,34 @@ class CreateAdController extends Controller
 		return [ $this->nav_view, $this->createAd_view ];
 	}
 	
+	public function executeBefore()
+	{
+		//is the user submitting an ad?
+		if( isset($_POST['postTitle']) ) //yep
+		{
+			$post_title = $_POST['postTitle'];
+			$post_tags = $_POST['postTags'];
+			$post_image = $_POST['postImage'];
+			$post_desc = $_POST['postDescription'];
+			
+			//parse the post tags into an array
+			$post_tags_array = explode( ",", $post_tags );
+			foreach( $post_tags_array as &$t )
+				$t = trim($t);
+			
+			$result = $this->db->createPost($post_title, $post_image, $post_desc, $post_tags_array);
+			
+			if( $result['success'] )
+			{
+				header("Location: /"); //redirect the user back to the homepage
+			}
+			else
+			{
+				die("Couldn't add post"); //TODO idk what to do here
+			}
+		}
+	}
+	
 	/** Outputs all HTML that needs to go in the <head> of the page */
 	public function outputHead()
 	{
