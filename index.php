@@ -16,6 +16,10 @@ switch( $controller_name )
 		require_once 'Controller/logIn.php';
 		$controller = new LogInController();
 		break;
+	case "log out":
+		require_once 'Controller/logOut.php';
+		$controller = new LogOutController();
+		break;
 	case "homepage":
 		require_once 'Controller/homepage.php';
 		$controller = new HomepageController();

@@ -181,6 +181,26 @@ class DJEXDB
 		}
 	}
 	
+	/** Attempts to log the user out */
+	public function logout()
+	{
+		//does the user have a cookie?
+		if( !isset($_COOKIE['login']) )
+			return;
+		
+		//get the user's cookie
+		$cookie = $_COOKIE['login'];
+		
+		//delete the cookie from the database table
+		$stmt = $this->con->prepare("DELETE FROM Log_in_State WHERE cookie = ?");
+		$stmt->bind_param("s", $cookie);
+		$stmt->execute();
+		
+		//remove the cookie from the user's browser
+		//this won't work unless this method is called in a controller's executeBefore()
+		setcookie("login", "", time() - 1); //set the cookie's expiration date to a past time so that the cookie expires
+	}
+	
 	/* Returns true if this user is logged in */
 	public function isLoggedIn()
 	{

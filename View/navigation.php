@@ -46,7 +46,7 @@ class NavigationView extends View
 		echo "		<li><a href=\"/?c=messages\">Messages</a></li>";
 		
 		if( $this->db->isLoggedIn() )
-			echo "		<li>Logout</li>";
+			echo "		<li><a href=\"/?c=log out\">Logout</a></li>";
 		else
 			echo "		<li><a href=\"/?c=log in\">Login</a></li>";
 		
