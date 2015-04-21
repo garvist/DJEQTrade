@@ -367,7 +367,7 @@ class DJEXDB
 		$stmt->close();
 		
 		//retrieve the names for all of these friends
-		for( $friends as &$friend )
+		foreach( $friends as &$friend )
 		{
 			$stmt = $this->con->prepare("SELECT first_name, last_name FROM customers WHERE customer_id = ?");
 			$stmt->bind_param("i", $friend['customer_id']);
