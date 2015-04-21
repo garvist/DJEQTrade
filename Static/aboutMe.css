@@ -9,6 +9,12 @@
 }
 .aboutPage h1{
 	margin: 15px;
+	border-bottom-color: blue;
+	border-bottom-width: 2px;
+}
+
+.aboutPage .contents {
+	margin-left: 5%;
 }
 
 .aboutPage .contents h3{
@@ -16,5 +22,5 @@
 }
 
 .aboutPage .contents p {
-	margin: 10px;
+	margin: 5px;
 }
