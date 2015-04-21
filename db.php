@@ -472,7 +472,10 @@ class DJEXDB
 		
 		//search the customers table
 		$stmt = $this->con->prepare("SELECT first_name, last_name, customer_id, email FROM customers WHERE (first_name LIKE ?) OR (last_name LIKE ?) OR (email LIKE ?)");
-		$stmt->bind_param("sss", "%" .$searchterms. "%", "%" .$searchterms. "%", "%" .$searchterms. "%");
+		
+		$search_terms_fuzzy_search = "%" .$searchterms. "%";
+		
+		$stmt->bind_param("sss", $search_terms_fuzzy_search, $search_terms_fuzzy_search, $search_terms_fuzzy_search);
 		$stmt->execute();
 		$stmt->bind_result($first_name, $last_name, $customer_id, $email);
 		
@@ -497,7 +500,10 @@ class DJEXDB
 		FROM Posts, customers
 		WHERE (Posts.from_customer_id = customers.customer_id) AND ( (title LIKE ?) OR (message LIKE ?) OR (first_name LIKE ?) OR (last_name LIKE ? ) )
 		");
-		$stmt->bind_param("ssss", "%" .$searchterms. "%", "%" .$searchterms. "%", "%" .$searchterms. "%", "%" .$searchterms. "%");
+		
+		$search_terms_fuzzy_search = "%" .$searchterms. "%";
+		
+		$stmt->bind_param("ssss", $search_terms_fuzzy_search, $search_terms_fuzzy_search, $search_terms_fuzzy_search, $search_terms_fuzzy_search);
 		$stmt->execute();
 		$stmt->bind_result($post_id, $title, $message, $from_customer_id, $from_first_name, $from_last_name);
 
