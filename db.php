@@ -460,7 +460,7 @@ class DJEXDB
 		$results = array_merge( [], $this->search_customers($searchterms), $this->search_posts($searchterms) );
 		
 		//sort results by rank
-		uksort($results, [$this, "sortresults"]); //the second parameter is kind of like a function pointer for $this->compareResults()
+		uksort($results, [$this, "compareResults"]); //the second parameter is kind of like a function pointer for $this->compareResults()
 		
 		//return results
 		return $results;
@@ -495,7 +495,7 @@ class DJEXDB
 		//search the posts table
 		$stmt = $this->con->prepare("SELECT post_id, title, message, from_customer_id, customers.first_name, customers.last_name
 		FROM Posts, customers
-		WHERE (Posts.from_customer_id = customers.customer_id) AND ( (title LIKE '%?%') OR (message LIKE '%?%') OR (first_name LIKE '%?%') OR (last_name LIKE '%?%' ) )
+		WHERE (Posts.from_customer_id = customers.customer_id) AND ( (title LIKE '% ? %') OR (message LIKE '% ? %') OR (first_name LIKE '% ? %') OR (last_name LIKE '% ? %' ) )
 		");
 		$stmt->bind_param("ssss", $searchterms, $searchterms, $searchterms, $searchterms);
 		$stmt->execute();
