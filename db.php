@@ -401,7 +401,7 @@ class DJEXDB
 			$msg = [ "message" => $message, "date_sent" => $date_sent, "date_opened" => $date_opened,
 				"id_from" => $ID_from, "id_to" => $ID_to,
 				"first_name_from" => $first_name_from, "last_name_from" => $last_name_from,
-				"last_name_from" => $last_name_from, "last_name_to" => $last_name_to ];
+				"first_name_to" => $first_name_to, "last_name_to" => $last_name_to ];
 			
 			if( $customer_id == $ID_from )
 				$msg['type'] = "sent";
