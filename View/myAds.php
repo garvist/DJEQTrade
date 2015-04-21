@@ -22,9 +22,15 @@ class MyAdsListView extends View
 	/** Outputs this view's HTML */
 	public function outputHTML()
 	{
+		//what customer ID should we display posts for?
+		$customer_id = $this->db->getLoggedInId();
+		if( isset($_GET['id']) )
+			$customer_id = $_GET['id'];
+		
+		//display ads
 		echo "	<h1>My Ads</h1>";
 		
-		foreach( $this->db->getAllPostsForUser( $this->db->getLoggedInId() ) as $post )
+		foreach( $this->db->getAllPostsForUser( $customer_id ) as $post )
 		{
 			//convert the tags from an array to a string
 			$tags = "";
