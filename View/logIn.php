@@ -41,23 +41,6 @@ class LogInView extends View
 		echo "		</form>";
 		echo "	</div>";
 		echo "</div>";
-
-
-
-
-
-		echo "<div class=\"page\">";
-		echo "	<div class=\"logIn\">";
-		echo "		<h1 class=\"logIn-title\">Log In</h1>";
-		echo "  </div>";
-		echo "Visible Description:";
-		echo "<form method=\"post\" action='/'>";
-		echo "	<input type='text' name='c' value='log in' style='display: none' />";
-		echo "	<input type=\"text\" name=\"email\" size=\"20\">";
-		echo "	<input type=\"password\" name=\"password\" />";
-		echo "	<input type=\"submit\" value=\"Log In\" />";
-		echo "</form>";
-		echo "</div>";
 	}
 }
 
