@@ -160,7 +160,7 @@ class DJEXDB
 				$stmt->close();
 				
 				//set the cookie on the user's browser
-				setcookie("login", $cookie, time() + 60*60*24); //the cookie will expire in 24 hours
+				setcookie("login", $cookie);
 				
 				//set local login variables
 				$this->loggedIn = true;
