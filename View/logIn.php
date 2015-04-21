@@ -26,6 +26,10 @@ class LogInView extends View
 		//$searchterm = ( isset($_GET['s']) ? $_GET['s'] : '' );
 		
 		echo "<div class=\"page\">";
+		echo "<div class=\"welcome\"";
+		echo "	<h1>Welcome to DJ Equipment Trade!</h1>";
+		echo " 	<p>Here you will find a description of whatever this website is about.</p>";
+		echo "</div>";
 		echo "	<div class =\"page-title\">";
 		echo "		<h1>Login</h1>";
 		echo "	</div>";
