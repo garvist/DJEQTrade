@@ -24,7 +24,7 @@ class PostListView extends View
 	{
 		echo "<div class=\"page\">";
 		echo "<div class =\"page-title\">";
-		echo "	<h1>Posts by others</h1>";
+		echo "	<h1>All Advertisements</h1>";
 		echo "</div>";
 		
 		foreach( $this->db->getAllPosts() as $post )

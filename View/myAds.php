@@ -28,7 +28,7 @@ class MyAdsListView extends View
 			$customer_id = $_GET['id'];
 		
 		//display ads
-		echo "	<h1>My Ads</h1>";
+		echo "	<h1>My Advertisements</h1>";
 		
 		foreach( $this->db->getAllPostsForUser( $customer_id ) as $post )
 		{

@@ -29,7 +29,7 @@ class CreateAdView extends View
 		echo "	<div class =\"page-title\">";
 		echo "		<h1>Create an Advertisement</h1>";
 		echo "	</div>";
-		echo "	<body><p>Create your advertisement here. Form connects to the database.</p></body>";
+		echo "	<body><p>Create your advertisement.</p></body>";
 		echo "	<div class=\"form\">";
 		echo "		<form action=\"/\" method='post' id=\"createAdForm\">";
 		echo "			<input type='text' name='c' value='post an ad' style='display: none' />";
@@ -39,7 +39,6 @@ class CreateAdView extends View
 		echo "			Description:<br>";
 		echo "			<textarea rows=\"6\" cols=\"50\" name=\"postDescription\" form=\"createAdForm\">Enter text here...</textarea><br>";
 		echo "			<input type=\"submit\" value=\"Submit advertisement\">";
-		echo "			<p>If you click \"Submit\", the form-data will be sent to a page called \"action_page.php\". This is what W3 told me to do. -Karl</p>";
 		echo "		</form>";
 		echo "	</div>";
 		echo "</div>";
