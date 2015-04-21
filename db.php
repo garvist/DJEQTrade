@@ -348,38 +348,23 @@ class DJEXDB
 	/** Returns an array containing all of the user's friends */
 	public function getFriendsForUser($customer_id)
 	{
-		$stmt = $this->con->prepare("SELECT first_name, last_name FROM customers WHERE customer_id IN (SELECT friend_id FROM Friends WHERE Friends.customer_id = ?)");
+		$stmt = $this->con->prepare("SELECT customer_id, first_name, last_name FROM customers WHERE customer_id IN (SELECT friend_id FROM Friends WHERE Friends.customer_id = ?)");
 		$stmt->bind_param("i", $customer_id);
 		$stmt->execute();
-		$stmt->bind_result($friend_id);
+		$stmt->bind_result($friend_id, $first_name, $last_name);
 		
 		$friends = [];
 		
 		while( $stmt->fetch() )
 		{
 			//create an associative array for this friend
-			$friend = [ "customer_id" => $friend_id ];
+			$friend = [ "customer_id" => $friend_id, "first_name" => $first_name, "last_name" => $last_name ];
 			
 			//add this friend onto the end of our array
 			$friends[] = $friend;
 		}
 		
 		$stmt->close();
-		
-		//retrieve the names for all of these friends
-		foreach( $friends as &$friend )
-		{
-			$stmt = $this->con->prepare("SELECT first_name, last_name FROM customers WHERE customer_id = ?");
-			$stmt->bind_param("i", $friend['customer_id']);
-			$stmt->exceute();
-			$stmt->bind_result($first_name, $last_name);
-			$stmt->fetch();
-			
-			$friend['first_name'] = $first_name;
-			$friend['last_name'] = $last_name;
-			
-			$stmt->close();
-		}
 	}
 	
 	/** Creates a post.
