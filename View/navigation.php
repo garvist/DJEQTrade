@@ -44,7 +44,7 @@ class NavigationView extends View
 		{
 			echo "		<!-- nav options -->";
 			echo "		<li><a href=\"/?c=post an ad\">Post an ad</a></li>";
-			echo "		<li><a href=\"/?c=my profile\">My Profile</a></li>";
+			echo "		<li><a href=\"/?c=profile\">My Profile</a></li>";
 			echo "		<li><a href=\"/?c=friends\">Friends</a></li>";
 			echo "		<li><a href=\"/?c=messages\">Messages</a></li>";
 			echo "		<li><a href=\"/?c=log out\">Logout</a></li>";
