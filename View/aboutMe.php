@@ -28,6 +28,8 @@ class AboutMeView extends View
 		echo "		<h3>First Name: </h3>";
 		echo "		<p>draw info from db</p>";
 		echo "		<h3>Last Name: </h3>";
+		echo "		<h3>Email:</h3>";
+		echo "		<p>draw infro from db</p>";
 		echo "		<p>draw info from db</p>";
 		echo "		<h3>My Rating: </h3>";
 		echo "		<p>draw info from db</p>";
