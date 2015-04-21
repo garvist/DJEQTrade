@@ -125,7 +125,7 @@ class DJEXDB
 	public function login($email, $password)
 	{
 		//get the customer id
-		$stmt = $this->con->prepare("SELECT customer_id FROM customers WHERE email == ?");
+		$stmt = $this->con->prepare("SELECT customer_id FROM customers WHERE email = ?");
 		if( $stmt == false )
 			$this->error("Could not create prepare statement");
 		
