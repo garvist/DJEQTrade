@@ -365,6 +365,8 @@ class DJEXDB
 		}
 		
 		$stmt->close();
+		
+		return $friends;
 	}
 	
 	/** Creates a post.
