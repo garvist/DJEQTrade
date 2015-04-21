@@ -100,17 +100,17 @@ class DJEXDB
 			
 			if( $stmt->fetch() )
 			{
-				$loggedIn = true;
-				$loggedInId = $customer_id;
+				$this->loggedIn = true;
+				$this->loggedInId = $customer_id;
 			}
 			else
 			{
-				$loggedIn = false;
+				$this->loggedIn = false;
 			}
 		}
 		else
 		{
-			$loggedIn = false;
+			$this->loggedIn = false;
 		}
 	}
 	
@@ -160,7 +160,7 @@ class DJEXDB
 				$stmt->close();
 				
 				//set the cookie on the user's browser
-				if( !setcookie("login", $cookie, time() + (60*60*24)) ) //set the cookie for 24 hours
+				if( !setcookie("login", $cookie, time() + (60*60*24), "/") ) //set the cookie for 24 hours
 					$this->error("Couldn't create cookie");
 				
 				//set local login variables
@@ -228,7 +228,7 @@ class DJEXDB
 	/** Returns an array of all posts */
 	public function getAllPosts()
 	{
-		$stmt = $this->con->prepare("SELECT post_id,title,image_url,message,customers.first_name,customers.last_name From Posts, customers WHERE Posts.from_customer_id = customers.customer_id");
+		$stmt = $this->con->prepare("SELECT post_id,title,image_url,message,customers.first_name,customers.last_name From Posts, customers WHERE Posts.from_customer_id = customers.customer_id ORDER BY post_id DESC");
 		$stmt->execute();
 		$stmt->bind_result($post_id, $title, $image_url, $message, $customer_fname, $customer_lname);
 		
@@ -281,7 +281,7 @@ class DJEXDB
 		$stmt->bind_param("sssi", $title, $image_url, $message, $this->getLoggedInId());
 		$stmt->execute();
 		
-		$post_id = $this->con->insert_id();
+		$post_id = $this->con->insert_id;
 		
 		$stmt->close();
 		
