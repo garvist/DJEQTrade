@@ -160,7 +160,7 @@ class DJEXDB
 				$stmt->close();
 				
 				//set the cookie on the user's browser
-				if( !setcookie("login", $cookie, time() + (60*60*24)) ) //set the cookie for 24 hours
+				if( !setcookie("login", $cookie, time() + (60*60*24), "/") ) //set the cookie for 24 hours
 					$this->error("Couldn't create cookie");
 				
 				//set local login variables
