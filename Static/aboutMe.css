@@ -7,7 +7,7 @@
 	border-radius: 10px;
 	
 }
-.aboutPage h1{
+.aboutPage .title h1{
 	margin: 15px;
 	border-bottom-color: blue;
 	border-bottom-width: 2px;
@@ -19,6 +19,7 @@
 
 .aboutPage .contents h3{
 	margin: 10px;
+	margin-bottom: 5px;
 }
 
 .aboutPage .contents p {
