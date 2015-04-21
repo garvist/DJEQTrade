@@ -34,7 +34,10 @@ class FriendsListView extends View
 		foreach( $this->db->getFriendsForUser( $this->db->getLoggedInId() ) as $friend )
 		{
 			$profileUrl = '/?c=profile&id=' .$friend['customer_id'];
-			echo "			<li><a href=\"{$profileUrl}\">{$friend['first_name']} {$friend['last_name']}</a></li>";
+			echo "			<li>";
+			echo "<a href=\"{$profileUrl}\">{$friend['first_name']} {$friend['last_name']}</a>";
+			echo " (<a href=\"/?c=send message&id={$friend['customer_id']}\">Send a message</a>)";
+			echo "</li>";
 		}
 		
 		/*
