@@ -8,7 +8,7 @@
 }
 
 .header ul.nav li {
-	width: 13%;
+	width: 30px;
 	list-style-type: none;
 	display: inline-block;
 	border-right: solid 1px black;
