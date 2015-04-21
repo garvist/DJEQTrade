@@ -231,7 +231,7 @@ class DJEXDB
 		
 		$stmt->close();
 		
-		$customer_id = mysqli_insert_id();
+		$customer_id = $this->con->insert_id;
 		
 		//hash the customers password
 		$hashedpass = $password; //TODO later we'll actually hash and salt and stretch this
