@@ -44,7 +44,23 @@ class SearchResultsView extends View
 			echo "	<ul>";
 			
 			foreach( $results as $res )
-				echo "	<li>" .http_build_query($res). "</li>"; //TODO this is just temporary
+			{
+				echo "	<li>";
+				switch( $res['type'] )
+				{
+					case "customer":
+						$profileUrl = "/?c=profile&id=" .$res['customer_id'];
+						echo "User: <a href='{$profileUrl}'>{$res['first_name']} {$res['last_name']}</a>";
+						break;
+					case "post":
+						echo "Post: {$res['title']}";
+						break;
+					default:
+						echo http_build_query($res);
+						break;
+				}
+				echo "</li>";
+			}
 			
 			echo "	</ul>";
 			echo "  </div>";
