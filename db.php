@@ -373,7 +373,7 @@ class DJEXDB
 	public function getCustomerById($customer_id)
 	{
 		$stmt = $this->con->prepare("SELECT first_name, last_name, email FROM customers WHERE customer_id = ?");
-		$stmt->bind_param($customer_id);
+		$stmt->bind_param("i", $customer_id);
 		$stmt->execute();
 		$stmt->bind_result($first_name, $last_name, $email);
 		$stmt->fetch();
