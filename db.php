@@ -93,6 +93,8 @@ class DJEXDB
 		{
 			$loginCookie = $_COOKIE["login"];
 			
+			echo "user has a login cookie: " .$loginCookie;
+			
 			$stmt = $this->con->prepare("SELECT customer_id FROM Log_in_State WHERE cookie = ?");
 			$stmt->bind_param("s", $loginCookie);
 			$stmt->execute();
