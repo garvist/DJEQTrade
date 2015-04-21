@@ -240,6 +240,24 @@ class DJEXDB
 		
 		$stmt->close();
 		
+		//retrieve tags for each post
+		for( $posts as &$post )
+		{
+			$tags = [];
+			
+			$stmt = $this->con->prepare("SELECT tag FROM Equipment_Tags WHERE post_id = ?");
+			$stmt->bind_param("i", $post['post_id']);
+			$stmt->execute();
+			$stmt->bind_result($tag);
+			
+			while( $stmt->fetch() ) //loop through all tags for this post
+				$tags[] = $tag; //push this tag onto the array
+			
+			$post['tags'] = $tags;
+			
+			$stmt->close();
+		}
+		
 		return $posts;
 	}
 	
