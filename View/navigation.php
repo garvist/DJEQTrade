@@ -73,7 +73,7 @@ class NavigationView extends View
 		echo " </div>";
 		*/
 		echo "	<form>";
-		echo "		<input type=\"text\" placeholder=\"search\" name=\"search\" />";
+		echo "		<input type=\"text\" placeholder=\"Search for an Advertisement\" name=\"search\" />";
 		echo "	</form>";
 		echo "	<script>\n";
 		echo "		$('form').submit( function(event) {\n";
