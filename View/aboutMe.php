@@ -16,7 +16,7 @@ class AboutMeView extends View
 	/** Returns an array of CSS files that this view needs */
 	public function requiredCSS()
 	{
-		return ["/Static/main.css, /Static/aboutMe.css"]; //return an array containing the string "/Static/main.css" and "/Static/postlist.css"
+		return ["/Static/main.css","/Static/aboutMe.css"]; //return an array containing the string "/Static/main.css" and "/Static/postlist.css"
 	}
 	
 	/** Outputs this view's HTML */
