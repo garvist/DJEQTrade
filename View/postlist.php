@@ -26,6 +26,26 @@ class PostListView extends View
 		echo "<div class =\"page-title\">";
 		echo "	<h1>Posts by others</h1>";
 		echo "</div>";
+		
+		foreach( $this->db->getAllPosts() as $post )
+		{
+			echo "	<div class=\"ad\">";
+			echo "	<h1 class=\"ad-title\">{$post['title']}</h1>";
+			echo "	<div class=\"ad-meta\">";
+			echo "		<span>Categories: unknown</span>";
+			echo "		<span>Tags: unknown</span>";
+			echo "	</div>";
+			echo "	";
+			echo "	<p class=\"ad-description\">";
+			echo "	{$post['message']}";
+			echo "	</p>";
+			echo "	";
+			echo "	<p>Image URL: {$post['image_url']}</p>";
+			echo "	<p>From Customer Id: {$post['from_customer_id']}</p>";
+			echo "	</div>";
+		}
+		
+		/*
 		echo "	<div class=\"ad\">";
 		echo "		<h1 class=\"ad-title\">Jimbo's Amazing Speakers</h1>";
 		echo "		<div class=\"ad-meta\">";
@@ -58,6 +78,7 @@ class PostListView extends View
 		echo "		";
 		echo "		<span class=\"ad-byline\">Posted by DJ Jimbo on Apr 2 @ 4:37pm</span>";
 		echo "	</div>";
+		*/
 		echo "</div>";
 	}
 }

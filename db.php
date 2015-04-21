@@ -219,6 +219,27 @@ class DJEXDB
 		
 		return $customer_id;
 	}
+	
+	/** Returns an array of all posts */
+	public function getAllPosts()
+	{
+		$stmt = $this->con->prepare("SELECT post_id,title,image_url,message,from_customer_id From Posts");
+		$stmt->execute();
+		$stmt->bind_result($post_id, $title, $image_url, $message, $from_customer_id);
+		
+		$posts = [];
+		
+		while( $stmt->fetch() )
+		{
+			//create an associative array for this post
+			$post = [ "post_id" => $post_id, "title" => $title, "image_url" => $image_url, "message" => $message, "from_customer_id" => $from_customer_id ];
+			
+			//add this post onto the end of our array
+			$posts[] = $post;
+		}
+		
+		return $posts;
+	}
 }
 
 ?>
