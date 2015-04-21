@@ -37,7 +37,6 @@ class PostListView extends View
 			echo "	<div class=\"ad\">";
 			echo "	<h1 class=\"ad-title\">{$post['title']}</h1>";
 			echo "	<div class=\"ad-meta\">";
-			echo "		<span>Categories: unknown</span>";
 			echo "		<span>Tags: {$tags}</span>";
 			echo "	</div>";
 			echo "	";
