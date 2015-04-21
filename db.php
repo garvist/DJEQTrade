@@ -220,6 +220,19 @@ class DJEXDB
 	 */
 	public function createCustomer($first_name, $last_name, $email, $password, $administrator)
 	{
+		//make sure that a user with this email doesn't exist yet
+		$stmt = $this->con->prepare("SELECT * FROM customers WHERE email = ?");
+		$stmt->bind_param("s", $email);
+		$stmt->execute();
+		
+		if( $stmt->num_rows > 0 ) //a customer with this ID already exists
+		{
+			$stmt->close();
+			return ["success" => false];
+		}
+		
+		$stmt->close();
+		
 		//insert the customer into the customers table
 		$stmt = $this->con->prepare("INSERT INTO customers (first_name, last_name, email, administrator) VALUES (?, ?, ?, ?)"); //returns false on error
 		if( $stmt == false )
