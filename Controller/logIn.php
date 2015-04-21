@@ -61,7 +61,6 @@ class LogInController extends Controller
 	public function outputBody()
 	{
 		$this->logIn_view->outputHTML();
-		echo "<br><br><br>";
 		$this->createAccount_view->outputHTML();
 	}
 }
