@@ -21,6 +21,30 @@ class LogInController extends Controller
 		return [ $this->logIn_view ];
 	}
 	
+	public function executeBefore()
+	{
+		//is this user trying to log in?
+		if( isset($_POST['email']) ) //yes
+		{
+			$email = $_POST['email'];
+			$pass  = $_POST['password'];
+			
+			//are we already logged in?
+			if( $this->db->isLoggedIn() )
+				die("You are already logged in"); //TODO handle this more gracefully
+			
+			//attempt to log in
+			if( $this->db->login($email, $pass) )
+			{
+				header("Location: /"); //redirect to the homepage
+			}
+			else
+			{
+				die("Login failed"); //TODO handle this more gracefully
+			}
+		}
+	}
+	
 	/** Outputs all HTML that needs to go in the <head> of the page */
 	public function outputHead()
 	{

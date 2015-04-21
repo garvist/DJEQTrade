@@ -125,7 +125,10 @@ class DJEXDB
 	public function login($email, $password)
 	{
 		//get the customer id
-		$stmt = $this->con->prepare("SELECT customer_id FROM customers WHERE email == ?");
+		$stmt = $this->con->prepare("SELECT customer_id FROM customers WHERE email = ?");
+		if( $stmt == false )
+			$this->error("Could not create prepare statement");
+		
 		$stmt->bind_param("s", $email);
 		$stmt->execute();
 		$stmt->bind_result($customer_id);
@@ -147,7 +150,7 @@ class DJEXDB
 				$stmt->close();
 				
 				//generate a cookie for this user
-				$cookie = generateLoginCookie($customer_id);
+				$cookie = $this->generateLoginCookie($customer_id);
 				
 				//insert the cookie into the log_in_state table
 				$stmt = $this->con->prepare("INSERT INTO Log_in_State (customer_id, date_issued, cookie) VALUES (?, NOW(), ?)");
@@ -265,7 +268,7 @@ class DJEXDB
 	 *	On failure, returns this associative array: ["success" => false]
 	 *  On success, returns this associative array: ["success" => true, "post_id" => post_id ]
 	 */
-	public function createPost($title, $message, $tags)
+	public function createPost($title, $image_url, $message, $tags)
 	{
 		//return false if we aren't logged in
 		if( !$this->isLoggedIn() )
@@ -273,7 +276,7 @@ class DJEXDB
 		
 		//create the post
 		$stmt = $this->con->prepare("INSERT INTO Posts (title, image_url, message, from_customer_id) VALUES (?, ?, ?, ?)");
-		$stmt->bind_param("sssi", $title, "http://lyndahaviland.com/wp-content/uploads/2009/07/post-it-note.jpg", $message, $this->getLoggedInId());
+		$stmt->bind_param("sssi", $title, $image_url, $message, $this->getLoggedInId());
 		$stmt->execute();
 		
 		$post_id = $this->con->insert_id();
