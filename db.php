@@ -116,7 +116,7 @@ class DJEXDB
 	
 	private function generateLoginCookie($customer_id)
 	{
-		return $customer_id . mcrypt_create_iv( 128 );
+		return $customer_id . openssl_random_pseudo_bytes( 128, true );
 	}
 	
 	/* Attempts to log the user in.
