@@ -33,7 +33,8 @@ class FriendsListView extends View
 		
 		foreach( $this->db->getFriendsForUser( $this->db->getLoggedInId() ) as $friend )
 		{
-			echo "			<li>{$friend['first_name']} {$friend['last_name']}</li>";
+			$profileUrl = '/c=profile&id=' +$friend['customer_id'];
+			echo "			<li><a href=\"{$profileUrl}\">{$friend['first_name']} {$friend['last_name']}</a></li>";
 		}
 		
 		/*
