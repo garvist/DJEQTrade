@@ -22,10 +22,17 @@ class AboutMeView extends View
 	/** Outputs this view's HTML */
 	public function outputHTML()
 	{
+		//what customer ID should we display information for?
 		$customer_id = $this->db->getLoggedInId();
+		if( isset($_GET['id']) )
+			$customer_id = $_GET['id'];
+		
+		//get info
 		$customer = $this->db->getCustomerById( $customer_id );
 		$friendCount = count( $this->db->getFriendsForUser( $customer_id ) );
 		$postCount = count( $this->db->getAllPostsForUser( $customer_id ) );
+		
+		//display profile
 		echo "<div class=\"aboutPage\">";
 		echo "	<h1 class=\"title\">About {$customer['first_name']} {$customer['last_name']}</h1>";
 		echo "	<div class=\"contents\">";
