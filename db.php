@@ -93,8 +93,6 @@ class DJEXDB
 		{
 			$loginCookie = $_COOKIE["login"];
 			
-			echo "user has a login cookie: " .$loginCookie;
-			
 			$stmt = $this->con->prepare("SELECT customer_id FROM Log_in_State WHERE cookie = ?");
 			$stmt->bind_param("s", $loginCookie);
 			$stmt->execute();
@@ -102,17 +100,17 @@ class DJEXDB
 			
 			if( $stmt->fetch() )
 			{
-				$loggedIn = true;
-				$loggedInId = $customer_id;
+				$this->loggedIn = true;
+				$this->loggedInId = $customer_id;
 			}
 			else
 			{
-				$loggedIn = false;
+				$this->loggedIn = false;
 			}
 		}
 		else
 		{
-			$loggedIn = false;
+			$this->loggedIn = false;
 		}
 	}
 	
