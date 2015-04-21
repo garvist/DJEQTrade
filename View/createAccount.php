@@ -32,7 +32,7 @@ class CreateUserAccountView extends View
 		echo "	<body><p>Create your account here. Form connects to the database.</p></body>";
 		echo "	<div class=\"form\">";
 		echo "		<form action=\"/\" method='post' id=\"createUserForm\">";
-		echo "			<input type='text' name='c' value='post an ad' style='display: none' />";
+		echo "			<input type='text' name='c' value='create account' style='display: none' />";
 		echo "			First Name:<br><input type=\"text\" name=\"firstName\"><br>";
 		echo "			Last Name: <br><input type=\"text\" name=\"lastName\"><br>";
 		echo "			Email:<br><input type=\"text\" name=\"userEmail\"><br>";

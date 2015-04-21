@@ -214,16 +214,20 @@ class DJEXDB
 	}
 	
 	//query helper methods
-	public function createCustomer($first_name, $last_name, $email, $administrator, $password)
+	/** Creates a customer
+	 *	On failure, returns this associative array: ["success" => false]
+	 *  On success, returns this associative array: ["success" => true, "customer_id" => customer_id ]
+	 */
+	public function createCustomer($first_name, $last_name, $email, $password, $administrator)
 	{
 		//insert the customer into the customers table
 		$stmt = $this->con->prepare("INSERT INTO customers (first_name, last_name, email, administrator) VALUES (?, ?, ?, ?)"); //returns false on error
 		if( $stmt == false )
-			$this->error("Could not create prepared statement");
+			return [ "success" => false ];
 		
 		$stmt->bind_param("sssi", $first_name, $last_name, $email, $administrator);
 		if( !$stmt->execute() ) //returns true on success, false on failure
-			$this->error("Could not execute statement");
+			return [ "success" => false ];
 		
 		$stmt->close();
 		
@@ -235,14 +239,14 @@ class DJEXDB
 		//insert the password into the passwords table
 		$stmt = $this->con->prepare("INSERT INTO passwords (customer_id, hash_pass) VALUES (?, ?)");
 		if( $stmt == false )
-			$this->error("Could not create prepared statement");
+			return [ "success" => false ];
 		
 		$stmt->bind_param("is", $customer_id, $hashedpass);
 		
 		if( !$stmt->execute() )
-			$this->error("Could not execute statement");
+			return [ "success" => false ];
 		
-		return $customer_id;
+		return ["success" => true, "customer_id" => $customer_id];
 	}
 	
 	/** Returns an array of all posts */

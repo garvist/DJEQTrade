@@ -21,6 +21,36 @@ class CreateAccountController extends Controller
 		return [ $this->createAccount_view ];
 	}
 	
+	public function executeBefore()
+	{
+		//is the user trying to create an account?
+		if( isset($_POST['firstName']) )
+		{
+			$first_name = $_POST['firstName'];
+			$last_name = $_POST['lastName'];
+			$email = $_POST['userEmail'];
+			$pass = $_POST['userPassword'];
+			
+			$result = $this->db->createCustomer($first_name, $last_name, $email, $pass, false);
+			if( $result['success'] )
+			{
+				//attempt to log in
+				if( $this->db->login($email, $pass) )
+				{
+					header("Location: /"); //redirect to the homepage
+				}
+				else
+				{
+					die("Login failed"); //TODO handle this more gracefully
+				}
+			}
+			else
+			{
+				die("Failed to create the account"); //TODO handle this more gracefully
+			}
+		}
+	}
+	
 	/** Outputs all HTML that needs to go in the <head> of the page */
 	public function outputHead()
 	{
