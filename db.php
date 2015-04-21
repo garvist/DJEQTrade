@@ -447,7 +447,7 @@ class DJEXDB
 	
 	public function sendMessage($from_id, $to_id, $message)
 	{
-		$stmt = $this->con->prepare("INSERT INTO Messages (message, ID_to, ID_from, date_sent, date_opened) VALUES (?, ?, ?, now(), ‘1995-03-04’)");
+		$stmt = $this->con->prepare("INSERT INTO Messages (message, ID_to, ID_from, date_sent, date_opened) VALUES (?, ?, ?, NOW(), ‘1995-03-04’)");
 		$stmt->bind_param("sii", $message, $to_id, $from_id);
 		$stmt->execute();
 		$stmt->close();
