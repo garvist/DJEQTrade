@@ -154,7 +154,7 @@ class DJEXDB
 				$cookie = $this->generateLoginCookie($customer_id);
 				
 				//insert the cookie into the log_in_state table
-				$stmt = $this->con->prepare("INSERT INTO Log_in_State (customer_id, date_issued, cookie) VALUES (?, NOW(), ?)");
+				$stmt = $this->con->prepare("INSERT INTO Log_in_State (customer_id, date_issued, last_interaction, cookie) VALUES (?, NOW(), NOW(), ?)");
 				$stmt->bind_param("is", $customer_id, $cookie);
 				$stmt->execute();
 				$stmt->close();
