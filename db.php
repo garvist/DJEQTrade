@@ -160,7 +160,8 @@ class DJEXDB
 				$stmt->close();
 				
 				//set the cookie on the user's browser
-				setcookie("login", $cookie);
+				if( !setcookie("login", $cookie) )
+					$this->error("Couldn't create cookie");
 				
 				//set local login variables
 				$this->loggedIn = true;
