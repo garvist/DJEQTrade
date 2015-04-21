@@ -126,6 +126,9 @@ class DJEXDB
 	{
 		//get the customer id
 		$stmt = $this->con->prepare("SELECT customer_id FROM customers WHERE email == ?");
+		if( $stmt == false )
+			$this->error("Could not create prepare statement");
+		
 		$stmt->bind_param("s", $email);
 		$stmt->execute();
 		$stmt->bind_result($customer_id);
