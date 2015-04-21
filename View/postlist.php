@@ -4,6 +4,15 @@ require_once 'View/View.php'; //defines the View class
 
 class PostListView extends View
 {
+	/** Parent constructor for all views.
+	 * Parameters:
+	 * 	$db -> the connection to the database
+	 */
+	public function __construct($db)
+	{
+		parent::__construct($db);
+	}
+	
 	/** Returns an array of CSS files that this view needs */
 	public function requiredCSS()
 	{

@@ -10,7 +10,9 @@ class LogInController extends Controller
 	//the constructor for this controller class
 	function __construct()
 	{
-		$this->logIn_view = new LogInView();
+		parent::__construct(); //call our parent constructor -- this will create the database connection that we're going to use
+		
+		$this->logIn_view = new LogInView($this->db);
 	}
 	
 	/** Returns an array containing all of the views that this controller uses */
