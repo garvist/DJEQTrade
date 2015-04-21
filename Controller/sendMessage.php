@@ -30,7 +30,7 @@ class SendMessageController extends Controller
 		if( isset($_POST['message']) )
 		{
 			//is the user logged in?
-			if( $this->db->getLoggedInId() )
+			if( !$this->db->getLoggedInId() )
 				die("Users that aren't logged in can't send messages"); //TODO handle this more gracefully
 		
 			$to_id = $_POST['to_id'];
