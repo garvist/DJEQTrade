@@ -462,6 +462,9 @@ class DJEXDB
 		//sort results by rank
 		uksort($results, [$this, "compareResults"]); //the second parameter is kind of like a function pointer for $this->compareResults()
 		
+		//reverse the results array so that the results are ordered from highest rank to lowest
+		$results = array_reverse($results);
+		
 		//return results
 		return $results;
 	}
