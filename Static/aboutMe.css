@@ -1,5 +1,6 @@
 .aboutPage {
-	width: 50%;
+	width: 60%;
+	padding: 10px;
 	margin-left: 10%;
 	border-style: solid;
 	border-color: blue;
@@ -9,7 +10,8 @@
 }
 .aboutPage h1 {
 	margin: 15px;
-	border-style: solid;
+	width: 75%;
+	border-bottom-style: solid;
 	border-bottom-width: 2px;
 	border-bottom-color: blue;
 	
@@ -26,4 +28,5 @@
 
 .aboutPage .contents p {
 	margin: 5px;
+	margin-left: 15px;
 }
