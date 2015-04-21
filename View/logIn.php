@@ -26,6 +26,27 @@ class LogInView extends View
 		//$searchterm = ( isset($_GET['s']) ? $_GET['s'] : '' );
 		
 		echo "<div class=\"page\">";
+		echo "	<div class =\"page-title\">";
+		echo "		<h1>Login</h1>";
+		echo "	</div>";
+		echo "	<div class=\"form\">";
+		echo "		<form action=\"/\" method='post' id=\"login\">";
+		echo "			<input type='text' name='c' value='post an ad' style='display: none' />";
+		echo "			Email:<br>";
+		echo "			<textarea rows=\"1\" cols=\"50\" name=\"userEmail\" form=\"login\"></textarea><br>";
+		echo "			Password:<br>";
+		echo "			<textarea rows=\"1\" cols=\"50\" name=\"userPassword\" form=\"login\"></textarea><br>";
+		echo "			<input type=\"submit\" value=\"Login\">";
+		echo "			<p>If you click \"Submit\", the form-data will be sent to a page called \"action_page.php\". This is what W3 told me to do. -Karl</p>";
+		echo "		</form>";
+		echo "	</div>";
+		echo "</div>";
+
+
+
+
+
+		echo "<div class=\"page\">";
 		echo "	<div class=\"logIn\">";
 		echo "		<h1 class=\"logIn-title\">Log In</h1>";
 		echo "  </div>";

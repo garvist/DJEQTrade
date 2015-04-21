@@ -39,7 +39,7 @@ class CreateUserAccountView extends View
 		echo "			<textarea rows=\"1\" cols=\"50\" name=\"userEmail\" form=\"createUserForm\"></textarea><br>";
 		echo "			Password:<br>";
 		echo "			<textarea rows=\"1\" cols=\"50\" name=\"userPassword\" form=\"createUserForm\"></textarea><br>";
-		echo "			<input type=\"submit\" value=\"Submit your ad\">";
+		echo "			<input type=\"submit\" value=\"Create Account\">";
 		echo "			<p>If you click \"Submit\", the form-data will be sent to a page called \"action_page.php\". This is what W3 told me to do. -Karl</p>";
 		echo "		</form>";
 		echo "	</div>";

@@ -38,7 +38,7 @@ class CreateAdView extends View
 		echo "			Image url:<br><input type\"text\" name=\"postImage\"><br>";
 		echo "			Description:<br>";
 		echo "			<textarea rows=\"6\" cols=\"50\" name=\"postDescription\" form=\"createAdForm\">Enter text here...</textarea><br>";
-		echo "			<input type=\"submit\" value=\"Submit your ad\">";
+		echo "			<input type=\"submit\" value=\"Submit advertisement\">";
 		echo "			<p>If you click \"Submit\", the form-data will be sent to a page called \"action_page.php\". This is what W3 told me to do. -Karl</p>";
 		echo "		</form>";
 		echo "	</div>";
