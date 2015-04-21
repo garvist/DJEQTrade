@@ -22,21 +22,21 @@ class AboutMeView extends View
 	/** Outputs this view's HTML */
 	public function outputHTML()
 	{
-		echo "<h1>About Me</h1>";
-		echo "<h3>First Name: </h3>";
-		echo "<p>draw info from db</p>";
-		echo "<h3>Last Name: </h3>";
-		echo "<p>draw info from db</p>";
-		echo "<h3>Image: </h3>";
-		echo "<p>draw info from db</p>";
-		echo "<h3>Location: </h3>";
-		echo "<p>draw info from db</p>";
-		echo "<h3>My Rating: </h3>";
-		echo "<p>draw info from db</p>";
-		echo "<h3>Number of Friends: </h3>";
-		echo "<p>draw info from db</p>";
-		echo "<h3>Number of Posts: </h3>";
-		echo "<p>draw info from db</p>";
+		echo "<div class=\"aboutPage\">";
+		echo "	<h1 class=\"title\">About Me</h1>";
+		echo "	<div class=\"contents\">";
+		echo "		<h3>First Name: </h3>";
+		echo "		<p>draw info from db</p>";
+		echo "		<h3>Last Name: </h3>";
+		echo "		<p>draw info from db</p>";
+		echo "		<h3>My Rating: </h3>";
+		echo "		<p>draw info from db</p>";
+		echo "		<h3>Number of Friends: </h3>";
+		echo "		<p>draw info from db</p>";
+		echo "		<h3>Number of Posts: </h3>";
+		echo "		<p>draw info from db</p>";
+		echo "	</div>";
+		echo "</div>";
 	}
 }
 

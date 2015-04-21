@@ -1,0 +1,17 @@
+.aboutPage {
+	width: 50%;
+	padding-left: 15%;
+	
+}
+
+.aboutPage .contents {
+	border: 3px blue;
+}
+
+.aboutPage .contents h3{
+	margin: 10px;
+}
+
+.aboutPage .contents p {
+	margin: 10px;
+}
