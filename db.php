@@ -281,7 +281,7 @@ class DJEXDB
 		$stmt->bind_param("sssi", $title, $image_url, $message, $this->getLoggedInId());
 		$stmt->execute();
 		
-		$post_id = $this->con->insert_id();
+		$post_id = $this->con->insert_id;
 		
 		$stmt->close();
 		
