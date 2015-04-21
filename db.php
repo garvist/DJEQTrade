@@ -452,6 +452,81 @@ class DJEXDB
 		$stmt->execute();
 		$stmt->close();
 	}
+	
+	//search functions
+	public function search($searchterms)
+	{
+		//search the tables and merge results into one table
+		$results = array_merge( [], $this->search_customers($searchterms), $this->search_posts($searchterms) );
+		
+		//sort results by rank
+		uksort($results, [$this, "compareResults"]); //the second parameter is kind of like a function pointer for $this->compareResults()
+		
+		//return results
+		return $results;
+	}
+	
+	private function search_customers($searchterms)
+	{
+		$results = [];
+		
+		//search the customers table
+		$stmt = $this->con->prepare("SELECT first_name, last_name, customer_id, email FROM customers WHERE (first_name LIKE ?) OR (last_name LIKE ?) OR (email LIKE ?)");
+		
+		$search_terms_fuzzy_search = "%" .$searchterms. "%";
+		
+		$stmt->bind_param("sss", $search_terms_fuzzy_search, $search_terms_fuzzy_search, $search_terms_fuzzy_search);
+		$stmt->execute();
+		$stmt->bind_result($first_name, $last_name, $customer_id, $email);
+		
+		while( $stmt->fetch() )
+		{
+			$result = [ "type" => "customer", "customer_id" => $customer_id, "first_name" => $first_name, "last_name" => $last_name, "email" => $email ];
+			$result['rank'] = mt_rand(); //TODO figure out an actual way of assigning ranks
+			$results[] = $result;
+		}
+		
+		$stmt->close();
+		
+		return $results;
+	}
+	
+	private function search_posts($searchterms)
+	{
+		$results = [];
+		
+		//search the posts table
+		$stmt = $this->con->prepare("SELECT post_id, title, message, from_customer_id, customers.first_name, customers.last_name
+		FROM Posts, customers
+		WHERE (Posts.from_customer_id = customers.customer_id) AND ( (title LIKE ?) OR (message LIKE ?) OR (first_name LIKE ?) OR (last_name LIKE ? ) )
+		");
+		
+		$search_terms_fuzzy_search = "%" .$searchterms. "%";
+		
+		$stmt->bind_param("ssss", $search_terms_fuzzy_search, $search_terms_fuzzy_search, $search_terms_fuzzy_search, $search_terms_fuzzy_search);
+		$stmt->execute();
+		$stmt->bind_result($post_id, $title, $message, $from_customer_id, $from_first_name, $from_last_name);
+
+		while( $stmt->fetch() )
+		{
+			$result = [ "type" => "post",
+				"post_id" => $post_id,
+				"title" => $title, "message" => $message,
+				"from_customer_id" => $from_customer_id, "first_name_from" => $from_last_name, "last_name_from" => $from_last_name ];
+			$result['rank'] = mt_rand(); //TODO figure out an actual way of assigning ranks
+			$results[] = $result;
+		}
+
+		$stmt->close();
+		
+		return $results;
+	}
+	
+	/* Returns -1, 0, or 1 if the first argument is less than, equal to, or greater than the second */
+	private function compareResults($res1, $res2)
+	{
+		return $res1['rank'] - $res2['rank'];
+	}
 }
 
 ?>

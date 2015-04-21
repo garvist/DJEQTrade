@@ -24,11 +24,32 @@ class SearchResultsView extends View
 	{
 		$searchterm = ( isset($_GET['s']) ? $_GET['s'] : '' );
 		
-		echo "<div class=\"page\">";
-		echo "	<div class=\"ad\">";
-		echo "		<h1 class=\"ad-title\">No search results found for '" .$searchterm. "' Try again later.. you obviously failed.</h1>";
-		echo "  </div>";
-		echo "</div>";
+		//get the search results
+		$results = $this->db->search( $searchterm );
+		
+		//display results
+		if( count($results) == 0 )
+		{
+			echo "<div class=\"page\">";
+			echo "	<div class=\"ad\">";
+			echo "		<h1 class=\"ad-title\">No search results found for '" .$searchterm. "'</h1>";
+			echo "  </div>";
+			echo "</div>";
+		}
+		else
+		{
+			echo "<div class=\"page\">";
+			echo "	<div class=\"ad\">";
+			echo "		<h1 class=\"ad-title\">search results for '" .$searchterm. "':</h1>";
+			echo "	<ul>";
+			
+			foreach( $results as $res )
+				echo "	<li>" .http_build_query($res). "</li>"; //TODO this is just temporary
+			
+			echo "	</ul>";
+			echo "  </div>";
+			echo "</div>";
+		}
 	}
 }
 
