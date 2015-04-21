@@ -32,7 +32,7 @@ class LogInView extends View
 		echo "Visible Description:";
 		echo "<form method=\"post\" action='/'>";
 		echo "	<input type='text' name='c' value='log in' style='display: none' />";
-		echo "	<input type=\"text\" name=\"email\" size=\"20\" maxlength=\"15\">";
+		echo "	<input type=\"text\" name=\"email\" size=\"20\">";
 		echo "	<input type=\"password\" name=\"password\" />";
 		echo "	<input type=\"submit\" value=\"Log In\" />";
 		echo "</form>";
