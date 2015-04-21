@@ -241,7 +241,7 @@ class DJEXDB
 		$stmt->close();
 		
 		//retrieve tags for each post
-		for( $posts as &$post )
+		foreach( $posts as &$post )
 		{
 			$tags = [];
 			
