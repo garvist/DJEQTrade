@@ -52,7 +52,11 @@ switch( $controller_name )
 		require_once 'Controller/messages.php';
 		$controller = new MessagesController();
 		break;
-		
+	case "send message":
+		require_once 'Controller/sendMessage.php';
+		$controller = new SendMessageController();
+		break;
+	
 	default: //by default, use the homepage controller
 		require_once 'Controller/homepage.php';
 		$controller = new HomepageController();
