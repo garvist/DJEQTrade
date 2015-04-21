@@ -378,7 +378,7 @@ class DJEXDB
 		$stmt->bind_result($first_name, $last_name, $email);
 		$stmt->fetch();
 		
-		return [ "first_name" => $first_name, "last_name" => $last_name, "email" => $email ];
+		return [ "first_name" => $first_name, "last_name" => $last_name, "email" => $email, "customer_id" => $customer_id ];
 	}
 	
 	/** Returns an array of all messages sent to or from the given user */
