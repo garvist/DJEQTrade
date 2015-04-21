@@ -44,7 +44,12 @@ class NavigationView extends View
 		echo "		<li><a href=\"/?c=my profile\">My Profile</a></li>";
 		echo "		<li><a href=\"/?c=friends\">Friends</a></li>";
 		echo "		<li><a href=\"/?c=messages\">Messages</a></li>";
-		echo "		<li>Logout</li>";
+		
+		if( $this->db->isLoggedIn() )
+			echo "		<li>Logout</li>";
+		else
+			echo "		<li><a href=\"/?c=log in\">Login</a></li>";
+		
 		echo "	</ul>";
 		/*
 		echo "<div class=\"page-description\">";
