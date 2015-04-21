@@ -29,7 +29,35 @@ class MessagesView extends View
 		echo "<div class =\"page-title\">";
 		echo "	<h1>Your Messages</h1>";
 		echo "</div>";
-		echo "	<body><p>This page holds your messages.</p></body>";
+		
+		foreach( $this->db->getMessagesForUser( $this->db->getLoggedInId() ) as $msg )
+		{
+			echo "	<div class=\"messages\">";
+			echo "	<h1 class=\"messages-title\">";
+			
+			switch( $msg['type'] )
+			{
+				case "sent":
+					$profileUrl = '/?c=profile&id=' .$msg['id_from'];
+					echo "To: <a href='{$profileUrl}'>{$msg['first_name_to']} {$msg['last_name_to']}</a>";
+					break;
+				case "recv":
+					$profileUrl = '/?c=profile&id=' .$msg['id_from'];
+					echo "From: <a href='{$profileUrl}'>{$msg['first_name_from']} {$msg['last_name_from']}</a>";
+					break;
+			}
+			
+			echo "	</h1>";
+			echo "	<div class=\"messages-meta\">";
+			echo "		<span>Message sent: {$msg['date_sent']}</span>";
+			echo "	</div>";
+			echo "	";
+			echo "	<p class=\"messages-description\">";
+			echo "	{$msg['message']}";
+			echo "	</p>";
+			echo "	</div>";
+		}
+		
 		echo "</div>";
 	}
 }

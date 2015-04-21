@@ -381,6 +381,39 @@ class DJEXDB
 		return [ "first_name" => $first_name, "last_name" => $last_name, "email" => $email ];
 	}
 	
+	/** Returns an array of all messages sent to or from the given user */
+	public function getMessagesForUser($customer_id)
+	{
+		$stmt = $this->con->prepare("SELECT message, date_sent, date_opened, ID_from, ID_to, F.first_name AS first_name_from, F.last_name AS last_name_from, T.first_name AS first_name_to, T.last_name AS last_name_to
+		FROM Messages, customers AS F, customers AS T
+		WHERE (ID_to = ? OR ID_from = ?) AND (F.customer_id = ID_from) AND (T.customer_id = ID_to)
+		GROUP BY date_opened
+		ORDER BY date_sent DESC
+		");
+		$stmt->bind_param("ii", $customer_id, $customer_id);
+		$stmt->execute();
+		$stmt->bind_result($message, $date_sent, $date_opened, $ID_from, $ID_to, $first_name_from, $last_name_from, $first_name_to, $last_name_to);
+		
+		$messages = [];
+		
+		while( $stmt->fetch() )
+		{
+			$msg = [ "message" => $message, "date_sent" => $date_sent, "date_opened" => $date_opened,
+				"id_from" => $ID_from, "id_to" => $ID_to,
+				"first_name_from" => $first_name_from, "last_name_from" => $last_name_from,
+				"last_name_from" => $last_name_from, "last_name_to" => $last_name_to ];
+			
+			if( $customer_id == $ID_from )
+				$msg['type'] = "sent";
+			else
+				$msg['type'] = "recv";
+			
+			$messages[] = $msg;
+		}
+		
+		return $messages;
+	}
+	
 	/** Creates a post.
 	 *	On failure, returns this associative array: ["success" => false]
 	 *  On success, returns this associative array: ["success" => true, "post_id" => post_id ]
