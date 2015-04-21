@@ -117,7 +117,7 @@ class DJEXDB
 	private function generateLoginCookie($customer_id)
 	{
 		$use_crypto_strong = true;
-		return $customer_id . openssl_random_pseudo_bytes( 128, $use_crypto_strong );
+		return $customer_id . bin2hex(openssl_random_pseudo_bytes( 128, $use_crypto_strong ));
 	}
 	
 	/* Attempts to log the user in.
@@ -154,13 +154,14 @@ class DJEXDB
 				$cookie = $this->generateLoginCookie($customer_id);
 				
 				//insert the cookie into the log_in_state table
-				$stmt = $this->con->prepare("INSERT INTO Log_in_State (customer_id, date_issued, cookie) VALUES (?, NOW(), ?)");
+				$stmt = $this->con->prepare("INSERT INTO Log_in_State (customer_id, date_issued, last_interaction, cookie) VALUES (?, NOW(), NOW(), ?)");
 				$stmt->bind_param("is", $customer_id, $cookie);
 				$stmt->execute();
 				$stmt->close();
 				
 				//set the cookie on the user's browser
-				setcookie("login", $cookie, time() + 60*60*24); //the cookie will expire in 24 hours
+				if( !setcookie("login", $cookie, time() + (60*60*24)) ) //set the cookie for 24 hours
+					$this->error("Couldn't create cookie");
 				
 				//set local login variables
 				$this->loggedIn = true;
