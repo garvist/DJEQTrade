@@ -39,16 +39,20 @@ class NavigationView extends View
 		echo "			</a>";
 		echo "		</li>";
 		echo "";
-		echo "		<!-- nav options -->";
-		echo "		<li><a href=\"/?c=post an ad\">Post an ad</a></li>";
-		echo "		<li><a href=\"/?c=my profile\">My Profile</a></li>";
-		echo "		<li><a href=\"/?c=friends\">Friends</a></li>";
-		echo "		<li><a href=\"/?c=messages\">Messages</a></li>";
 		
 		if( $this->db->isLoggedIn() )
+		{
+			echo "		<!-- nav options -->";
+			echo "		<li><a href=\"/?c=post an ad\">Post an ad</a></li>";
+			echo "		<li><a href=\"/?c=my profile\">My Profile</a></li>";
+			echo "		<li><a href=\"/?c=friends\">Friends</a></li>";
+			echo "		<li><a href=\"/?c=messages\">Messages</a></li>";
 			echo "		<li><a href=\"/?c=log out\">Logout</a></li>";
+		}
 		else
+		{
 			echo "		<li><a href=\"/?c=log in\">Login</a></li>";
+		}
 		
 		echo "	</ul>";
 		/*
