@@ -369,6 +369,18 @@ class DJEXDB
 		return $friends;
 	}
 	
+	/** Returns an associative array containing the name and email of the customer with the given id */
+	public function getCustomerById($customer_id)
+	{
+		$stmt = $this->con->prepare("SELECT first_name, last_name, email FROM customers WHERE customer_id = ?");
+		$stmt->bind_param($customer_id);
+		$stmt->execute();
+		$stmt->bind_result($first_name, $last_name, $email);
+		$stmt->fetch();
+		
+		return [ "first_name" => $first_name, "last_name" => $last_name, "email" => $email ];
+	}
+	
 	/** Creates a post.
 	 *	On failure, returns this associative array: ["success" => false]
 	 *  On success, returns this associative array: ["success" => true, "post_id" => post_id ]
