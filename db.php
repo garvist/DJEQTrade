@@ -345,6 +345,43 @@ class DJEXDB
 		return $posts;
 	}
 	
+	/** Returns an array containing all of the user's friends */
+	public function getFriendsForUser($customer_id)
+	{
+		$stmt = $this->con->prepare("SELECT first_name, last_name FROM customers WHERE customer_id IN (SELECT friend_id FROM Friends WHERE Friends.customer_id = ?)");
+		$stmt->bind_param("i", $customer_id);
+		$stmt->execute();
+		$stmt->bind_result($friend_id);
+		
+		$friends = [];
+		
+		while( $stmt->fetch() )
+		{
+			//create an associative array for this friend
+			$friend = [ "customer_id" => $friend_id ];
+			
+			//add this friend onto the end of our array
+			$friends[] = $friend;
+		}
+		
+		$stmt->close();
+		
+		//retrieve the names for all of these friends
+		for( $friends as &$friend )
+		{
+			$stmt = $this->con->prepare("SELECT first_name, last_name FROM customers WHERE customer_id = ?");
+			$stmt->bind_param("i", $friend['customer_id']);
+			$stmt->exceute();
+			$stmt->bind_result($first_name, $last_name);
+			$stmt->fetch();
+			
+			$friend['first_name'] = $first_name;
+			$friend['last_name'] = $last_name;
+			
+			$stmt->close();
+		}
+	}
+	
 	/** Creates a post.
 	 *	On failure, returns this associative array: ["success" => false]
 	 *  On success, returns this associative array: ["success" => true, "post_id" => post_id ]
