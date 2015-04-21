@@ -31,7 +31,6 @@ class FriendsListView extends View
 		echo "		<p class=\"description\">Run sql code to generate list of friends. Print them out here. Each friend is a link. Click on the link to take them to their profile. Change the search bar so it searches through your friends list.</p>";
 		echo "		<ul class=\"friends-list\">";
 		
-		public function getFriendsForUser($customer_id);
 		foreach( $this->db->getFriendsForUser( $this->db->getLoggedInId() ) as $friend )
 		{
 			echo "			<li>{$friend['first_name']} {$friend['last_name']}</li>";
