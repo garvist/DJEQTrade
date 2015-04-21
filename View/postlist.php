@@ -41,7 +41,7 @@ class PostListView extends View
 			echo "	</p>";
 			echo "	";
 			echo "	<p>Image URL: {$post['image_url']}</p>";
-			echo "	<p>From Customer Id: {$post['from_customer_id']}</p>";
+			echo "	<span class=\"ad-byline\">Posted by {$post['first_name']} {$post['last_name']}</span>";
 			echo "	</div>";
 		}
 		
