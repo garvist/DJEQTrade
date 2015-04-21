@@ -485,7 +485,7 @@ class DJEXDB
 		while( $stmt->fetch() )
 		{
 			$result = [ "type" => "customer", "customer_id" => $customer_id, "first_name" => $first_name, "last_name" => $last_name, "email" => $email ];
-			$result['rank'] = calculateRank($searchterms, [$first_name, $last_name, $email]);
+			$result['rank'] = $this->calculateRank($searchterms, [$first_name, $last_name, $email]);
 			$results[] = $result;
 		}
 		
@@ -516,7 +516,7 @@ class DJEXDB
 				"post_id" => $post_id,
 				"title" => $title, "message" => $message,
 				"from_customer_id" => $from_customer_id, "first_name_from" => $from_first_name, "last_name_from" => $from_last_name ];
-			$result['rank'] = calculateRank($searchterms, [$title, $message, $from_first_name, $from_last_name]);
+			$result['rank'] = $this->calculateRank($searchterms, [$title, $message, $from_first_name, $from_last_name]);
 			$results[] = $result;
 		}
 
