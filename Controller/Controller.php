@@ -9,7 +9,7 @@ abstract class Controller
 	
 	protected function __construct()
 	{
-		$db = new DJEXDB();
+		$this->db = new DJEXDB();
 	}
 	
 	/** Returns an array containing all of the views that this controller uses */
