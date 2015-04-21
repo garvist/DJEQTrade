@@ -1,8 +1,8 @@
 <?php
-$DB_HOST = "localhost";
-$DB_USER = "djex_test";
-$DB_PASS = "123456";
-$DB_NAME = "djex";
+define("DB_HOST", "localhost");
+define("DB_USER", "djex_test");
+define("DB_PASS", "123456");
+define("DB_NAME", "djex");
 
 class DJEXDB
 {
@@ -14,7 +14,7 @@ class DJEXDB
 	public function __construct()
 	{
 		//create a connection to the database
-		$this->con = mysqli_connect( $DB_HOST, $DB_USER, $DB_PASS, $DB_NAME );
+		$this->con = mysqli_connect( DB_HOST, DB_USER, DB_PASS, DB_NAME );
 		if( $this->con->connect_errno )
 			die("Failed to connect to server"); //stop the script with this error message
 		
@@ -44,7 +44,7 @@ class DJEXDB
 		];
 	
 		//create the schema
-		for( $schema as $tablename => $query )
+		foreach( $schema as $tablename => $query )
 		{
 			if( !$this->db_table_exists($tablename) )
 			{
@@ -56,7 +56,7 @@ class DJEXDB
 		}
 		
 		//create the views
-		for( $view as $v )
+		foreach( $view as $v )
 			mysqli_query($this->con, $v);
 		
 		//check login state
@@ -77,6 +77,12 @@ class DJEXDB
 	private function error($error_msg)
 	{
 		die("DB Error: " .$error_msg);
+	}
+	
+	/** Returns the database connection */
+	public function getConnection()
+	{
+		return $con;
 	}
 	
 	//login
@@ -182,7 +188,7 @@ class DJEXDB
 		return $this->loggedInId;
 	}
 	
-	//query methods
+	//query helper methods
 	public function createCustomer($first_name, $last_name, $email, $administrator, $password)
 	{
 		//insert the customer into the customers table
@@ -212,6 +218,27 @@ class DJEXDB
 			$this->error("Could not execute statement");
 		
 		return $customer_id;
+	}
+	
+	/** Returns an array of all posts */
+	public function getAllPosts()
+	{
+		$stmt = $this->con->prepare("SELECT post_id,title,image_url,message,customers.first_name,customers.last_name From Posts, customers WHERE Posts.from_customer_id = customers.customer_id");
+		$stmt->execute();
+		$stmt->bind_result($post_id, $title, $image_url, $message, $customer_fname, $customer_lname);
+		
+		$posts = [];
+		
+		while( $stmt->fetch() )
+		{
+			//create an associative array for this post
+			$post = [ "post_id" => $post_id, "title" => $title, "image_url" => $image_url, "message" => $message, "first_name" => $customer_fname, "last_name" => $customer_lname ];
+			
+			//add this post onto the end of our array
+			$posts[] = $post;
+		}
+		
+		return $posts;
 	}
 }
 

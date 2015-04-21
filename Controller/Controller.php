@@ -1,8 +1,17 @@
 <?php
 
+require_once 'db.php';
+
 //Functions as the superclass for all controllers
 abstract class Controller
 {
+	protected $db;
+	
+	protected function __construct()
+	{
+		$this->db = new DJEXDB();
+	}
+	
 	/** Returns an array containing all of the views that this controller uses */
 	abstract protected function getViews();
 	

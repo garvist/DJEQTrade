@@ -12,8 +12,10 @@ class FriendsController extends Controller
 	//the constructor for this controller class
 	function __construct()
 	{
-		$this->nav_view = new NavigationView();
-		$this->friendslist_view = new FriendsListView();
+		parent::__construct(); //call our parent constructor -- this will create the database connection that we're going to use
+		
+		$this->nav_view = new NavigationView($this->db);
+		$this->friendslist_view = new FriendsListView($this->db);
 	}
 	
 	/** Returns an array containing all of the views that this controller uses */

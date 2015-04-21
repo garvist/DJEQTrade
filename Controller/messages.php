@@ -12,8 +12,10 @@ class MessagesController extends Controller
 	//the constructor for this controller class
 	function __construct()
 	{
-		$this->nav_view = new NavigationView();
-		$this->messages_view = new MessagesView();
+		parent::__construct(); //call our parent constructor -- this will create the database connection that we're going to use
+		
+		$this->nav_view = new NavigationView($this->db);
+		$this->messages_view = new MessagesView($this->db);
 	}
 	
 	/** Returns an array containing all of the views that this controller uses */

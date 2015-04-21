@@ -4,6 +4,15 @@ require_once 'View/View.php'; //defines the View class
 
 class PostListView extends View
 {
+	/** Parent constructor for all views.
+	 * Parameters:
+	 * 	$db -> the connection to the database
+	 */
+	public function __construct($db)
+	{
+		parent::__construct($db);
+	}
+	
 	/** Returns an array of CSS files that this view needs */
 	public function requiredCSS()
 	{
@@ -17,6 +26,26 @@ class PostListView extends View
 		echo "<div class =\"page-title\">";
 		echo "	<h1>Posts by others</h1>";
 		echo "</div>";
+		
+		foreach( $this->db->getAllPosts() as $post )
+		{
+			echo "	<div class=\"ad\">";
+			echo "	<h1 class=\"ad-title\">{$post['title']}</h1>";
+			echo "	<div class=\"ad-meta\">";
+			echo "		<span>Categories: unknown</span>";
+			echo "		<span>Tags: unknown</span>";
+			echo "	</div>";
+			echo "	";
+			echo "	<p class=\"ad-description\">";
+			echo "	{$post['message']}";
+			echo "	</p>";
+			echo "	";
+			echo "	<p>Image URL: {$post['image_url']}</p>";
+			echo "	<span class=\"ad-byline\">Posted by {$post['first_name']} {$post['last_name']}</span>";
+			echo "	</div>";
+		}
+		
+		/*
 		echo "	<div class=\"ad\">";
 		echo "		<h1 class=\"ad-title\">Jimbo's Amazing Speakers</h1>";
 		echo "		<div class=\"ad-meta\">";
@@ -49,6 +78,7 @@ class PostListView extends View
 		echo "		";
 		echo "		<span class=\"ad-byline\">Posted by DJ Jimbo on Apr 2 @ 4:37pm</span>";
 		echo "	</div>";
+		*/
 		echo "</div>";
 	}
 }
