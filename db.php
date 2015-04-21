@@ -228,7 +228,7 @@ class DJEXDB
 	/** Returns an array of all posts */
 	public function getAllPosts()
 	{
-		$stmt = $this->con->prepare("SELECT post_id,title,image_url,message,customers.first_name,customers.last_name From Posts, customers WHERE Posts.from_customer_id = customers.customer_id");
+		$stmt = $this->con->prepare("SELECT post_id,title,image_url,message,customers.first_name,customers.last_name From Posts, customers WHERE Posts.from_customer_id = customers.customer_id ORDER BY post_id DESC");
 		$stmt->execute();
 		$stmt->bind_result($post_id, $title, $image_url, $message, $customer_fname, $customer_lname);
 		
