@@ -36,6 +36,10 @@ class MessagesController extends Controller
 	/** Outputs all HTML that needs to go in the <body> of the page */
 	public function outputBody()
 	{
+		echo "<div class=\"welcome\">"; //this can go in nav.php 
+		echo "	<h1>My Messages</h1>";
+		//echo "	<p>Here you will find a bunch of things that I am too lazy to type out right now.</p>";
+		echo "</div>";
 		$this->nav_view->outputHTML();
 		$this->messages_view->outputHTML();
 	}
