@@ -34,7 +34,7 @@ class AboutMeView extends View
 		
 		//display profile
 		echo "<div class=\"aboutPage\">";
-		echo "	<h1 class=\"title\">About {$customer['first_name']} {$customer['last_name']}</h1>";
+		echo "	<h1 class=\"title\">{$customer['first_name']} {$customer['last_name']}</h1>";
 		echo "	<div class=\"contents\">";
 		echo "		<h3>Email:</h3>";
 		echo "		<p>{$customer['email']}</p>";

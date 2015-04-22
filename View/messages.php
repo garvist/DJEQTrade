@@ -29,7 +29,7 @@ class MessagesView extends View
 		echo "<div class =\"page-title\">";
 		echo "	<h1>Your Messages</h1>";
 		echo "</div>";
-		
+		echo "<div class =\"message-list\"";
 		foreach( $this->db->getMessagesForUser( $this->db->getLoggedInId() ) as $msg )
 		{
 			echo "	<div class=\"messages\">";
@@ -57,7 +57,7 @@ class MessagesView extends View
 			echo "	</p>";
 			echo "	</div>";
 		}
-		
+		echo "</div>";
 		echo "</div>";
 	}
 }
