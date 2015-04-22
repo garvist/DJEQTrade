@@ -456,8 +456,11 @@ class DJEXDB
 	//search functions
 	public function search($searchterms)
 	{
+		//split the search terms by " "
+		$searchterms_array = explode(" ", $searchterms);
+		
 		//search the tables and merge results into one table
-		$results = array_merge( [], $this->search_customers($searchterms), $this->search_posts($searchterms) );
+		$results = array_merge( [], $this->search_customers($searchterms_array), $this->search_posts($searchterms_array) );
 		
 		//sort results by rank
 		uksort($results, [$this, "compareResults"]); //the second parameter is kind of like a function pointer for $this->compareResults()
@@ -469,92 +472,80 @@ class DJEXDB
 		return $results;
 	}
 	
+	/** Searches the 'customers' database table.
+	 * $searchterms -> an array of terms to search for
+	 */
 	private function search_customers($searchterms)
 	{
-		//this map will contain a mapping from "customer_id" -> "search result for that customer"
-		$results_map = [];
+		$results_set = new SubSearchResultsSet();
 		
-		//search the customers table
-		$stmt = $this->con->prepare("SELECT first_name, last_name, customer_id, email FROM customers WHERE (first_name LIKE ?) OR (last_name LIKE ?) OR (email LIKE ?)");
-		
-		$search_terms_fuzzy_search = "%" .$searchterms. "%";
-		
-		$stmt->bind_param("sss", $search_terms_fuzzy_search, $search_terms_fuzzy_search, $search_terms_fuzzy_search);
-		$stmt->execute();
-		$stmt->bind_result($first_name, $last_name, $customer_id, $email);
-		
-		while( $stmt->fetch() )
+		foreach( $searchterms as $term )
 		{
-			$result = [ "type" => "customer", "customer_id" => $customer_id, "first_name" => $first_name, "last_name" => $last_name, "email" => $email ];
-			$result['rank'] = $this->calculateRank($searchterms, [$first_name, $last_name, $email]);
+			//search the customers table
+			$stmt = $this->con->prepare("SELECT first_name, last_name, customer_id, email FROM customers WHERE (first_name LIKE ?) OR (last_name LIKE ?) OR (email LIKE ?)");
+		
+			$search_terms_fuzzy_search = "%" .$term. "%";
+		
+			$stmt->bind_param("sss", $search_terms_fuzzy_search, $search_terms_fuzzy_search, $search_terms_fuzzy_search);
+			$stmt->execute();
+			$stmt->bind_result($first_name, $last_name, $customer_id, $email);
+		
+			while( $stmt->fetch() )
+			{
+				$result = [ "type" => "customer", "customer_id" => $customer_id, "first_name" => $first_name, "last_name" => $last_name, "email" => $email ];
+				$result['rank'] = $this->calculateRank($term, [$first_name, $last_name, $email]);
 			
-			//does the results_map already have a result with this customer_id?
-			if( array_key_exists($customer_id, $results_map) ) //yes
-			{
-				//get the old result
-				$old_result = $results_map[$customer_id];
-				
-				//insert the result with the highest rank back into the results
-				if( $result['rank'] > $old_result['rank'] )
-					$results_map[$customer_id] = $result;
+				//add this result to our result set.
+				//If a result with the given customer_id already exists in the set, only the result with the higher rank will be kept
+				$results_set->addResult( $customer_id, $result );
 			}
-			else
-			{
-				$results_map[$customer_id] = $result;
-			}
+		
+			$stmt->close();
 		}
 		
-		$stmt->close();
-		
 		//return all array values
-		return array_values($results_map);
+		return $results_set->getResults();
 	}
 	
+	/** Searches the 'Posts' database table.
+	 * $searchterms -> an array of terms to search for
+	 */
 	private function search_posts($searchterms)
 	{
-		//this map will contain a mapping from "post_id" -> "search result for that post"
-		$results_map = [];
+		$results_set = new SubSearchResultsSet();
 		
-		//search the posts table
-		$stmt = $this->con->prepare("SELECT post_id, title, message, from_customer_id, customers.first_name, customers.last_name
-		FROM Posts, customers
-		WHERE (Posts.from_customer_id = customers.customer_id) AND ( (title LIKE ?) OR (message LIKE ?) OR (first_name LIKE ?) OR (last_name LIKE ?) )
-		");
-		
-		$search_terms_fuzzy_search = "%" .$searchterms. "%";
-		
-		$stmt->bind_param("ssss", $search_terms_fuzzy_search, $search_terms_fuzzy_search, $search_terms_fuzzy_search, $search_terms_fuzzy_search);
-		$stmt->execute();
-		$stmt->bind_result($post_id, $title, $message, $from_customer_id, $from_first_name, $from_last_name);
-
-		while( $stmt->fetch() )
+		foreach( $searchterms as $term )
 		{
-			$result = [ "type" => "post",
-				"post_id" => $post_id,
-				"title" => $title, "message" => $message,
-				"from_customer_id" => $from_customer_id, "first_name_from" => $from_first_name, "last_name_from" => $from_last_name ];
-			$result['rank'] = $this->calculateRank($searchterms, [$title, $message, $from_first_name, $from_last_name]);
-			
-			//does the results_map already have a result with this post_id?
-			if( array_key_exists($post_id, $results_map) ) //yes
-			{
-				//get the old result
-				$old_result = $results_map[$post_id];
-				
-				//insert the result with the highest rank back into the results
-				if( $result['rank'] > $old_result['rank'] )
-					$results_map[$post_id] = $result;
-			}
-			else
-			{
-				$results_map[$post_id] = $result;
-			}
-		}
+			//search the posts table
+			$stmt = $this->con->prepare("SELECT post_id, title, message, from_customer_id, customers.first_name, customers.last_name
+			FROM Posts, customers
+			WHERE (Posts.from_customer_id = customers.customer_id) AND ( (title LIKE ?) OR (message LIKE ?) OR (first_name LIKE ?) OR (last_name LIKE ?) )
+			");
+		
+			$search_terms_fuzzy_search = "%" .$term. "%";
+		
+			$stmt->bind_param("ssss", $search_terms_fuzzy_search, $search_terms_fuzzy_search, $search_terms_fuzzy_search, $search_terms_fuzzy_search);
+			$stmt->execute();
+			$stmt->bind_result($post_id, $title, $message, $from_customer_id, $from_first_name, $from_last_name);
 
-		$stmt->close();
+			while( $stmt->fetch() )
+			{
+				$result = [ "type" => "post",
+					"post_id" => $post_id,
+					"title" => $title, "message" => $message,
+					"from_customer_id" => $from_customer_id, "first_name_from" => $from_first_name, "last_name_from" => $from_last_name ];
+				$result['rank'] = $this->calculateRank($term, [$title, $message, $from_first_name, $from_last_name]);
+			
+				//add this result to our result set.
+				//If a result with the given post_id already exists in the set, only the result with the higher rank will be kept
+				$results_set->addResult( $post_id, $result );
+			}
+
+			$stmt->close();
+		}
 		
 		//return all array values
-		return array_values($results_map);
+		return $results_set->getResults();
 	}
 	
 	/** Calculates a rank.
@@ -571,19 +562,49 @@ class DJEXDB
 		return max($dist);
 	}
 	
-	/** Iterates through the given list of search results and returns a list with all duplicates removed.
-	 * $results     -> the results list
-	 * $primary_key -> the name of the key that uniquely identifies records in the results list
-	 */
-	private function removeDuplicatesFromResultsList($results, $primary_key)
-	{
-		
-	}
-	
 	/* Returns -1, 0, or 1 if the first argument is less than, equal to, or greater than the second */
 	private function compareResults($res1, $res2)
 	{
 		return $res1['rank'] - $res2['rank'];
+	}
+}
+
+/** Is used by DJEXDB to keep track of the best search results in a table. If you are trying to create instances of this object from outside this file, you're probably doing it wrong.
+ */
+class SubSearchResultsSet
+{
+	private $results_map;
+	
+	public function __construct()
+	{
+		$this->results_map = [];
+	}
+	
+	/** Adds a result to the set.
+	 * If a result with the given key already exists in the set, then the result with the highest rank will be kept.
+	 */
+	public function addResult($key, $result)
+	{
+		//does the results_map already have a result with this key?
+		if( array_key_exists($key, $this->results_map) ) //yes
+		{
+			//get the old result
+			$old_result = $this->results_map[$key];
+			
+			//insert the result with the highest rank back into the results
+			if( $result['rank'] > $old_result['rank'] )
+				$this->results_map[$key] = $result;
+		}
+		else
+		{
+			$this->results_map[$key] = $result;
+		}
+	}
+	
+	/** Returns all results in this set */
+	public function getResults()
+	{
+		return array_values($this->results_map);
 	}
 }
 
