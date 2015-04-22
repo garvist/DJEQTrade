@@ -326,23 +326,27 @@ class DJEXDB
 		
 		//retrieve tags for each post
 		foreach( $posts as &$post )
-		{
-			$tags = [];
-			
-			$stmt = $this->con->prepare("SELECT tag FROM Equipment_Tags WHERE post_id = ?");
-			$stmt->bind_param("i", $post['post_id']);
-			$stmt->execute();
-			$stmt->bind_result($tag);
-			
-			while( $stmt->fetch() ) //loop through all tags for this post
-				$tags[] = $tag; //push this tag onto the array
-			
-			$post['tags'] = $tags;
-			
-			$stmt->close();
-		}
+			$post['tags'] = $this->getAllTagsForPost($post['post_id']);
 		
 		return $posts;
+	}
+	
+	/** Returns an array of all tags for the given post */
+	public function getAllTagsForPost($post_id)
+	{
+		$tags = [];
+		
+		$stmt = $this->con->prepare("SELECT tag FROM Equipment_Tags WHERE post_id = ?");
+		$stmt->bind_param("i", $post_id);
+		$stmt->execute();
+		$stmt->bind_result($tag);
+		
+		while( $stmt->fetch() ) //loop through all tags for this post
+			$tags[] = $tag; //push this tag onto the array
+		
+		$stmt->close();
+		
+		return $tags;
 	}
 	
 	/** Returns an array containing all of the user's friends */
@@ -530,11 +534,14 @@ class DJEXDB
 
 			while( $stmt->fetch() )
 			{
+				//get all of this post's tags
+				$tags = $this->getAllTagsForPost($post_id);
+				
 				$result = [ "type" => "post",
-					"post_id" => $post_id,
+					"post_id" => $post_id, "tags" => $tags,
 					"title" => $title, "message" => $message,
 					"from_customer_id" => $from_customer_id, "first_name_from" => $from_first_name, "last_name_from" => $from_last_name ];
-				$result['rank'] = $this->calculateRank($term, [$title, $message, $from_first_name, $from_last_name]);
+				$result['rank'] = $this->calculateRank($term, array_merge([$title, $message, $from_first_name, $from_last_name], $tags));
 			
 				//add this result to our result set.
 				//If a result with the given post_id already exists in the set, only the result with the higher rank will be kept
