@@ -39,8 +39,17 @@ class ProfileController extends Controller
 	/** Outputs all HTML that needs to go in the <body> of the page */
 	public function outputBody()
 	{
+		//what customer ID should we display information for?
+		$customer_id = $this->db->getLoggedInId();
+		if( isset($_GET['id']) )
+			$customer_id = $_GET['id'];
+		
+		//get info
+		$customer = $this->db->getCustomerById( $customer_id );
+
+
 		echo "<div class=\"welcome\">"; //this can go in nav.php 
-		echo "	<h1>My Profile</h1>";
+		echo "	<h1>My Profile - {$customer['first_name']} {$customer['last_name']}</h1>";
 		//echo "	<p>Here you will find a bunch of things that I am too lazy to type out right now.</p>";
 		echo "</div>";
 		$this->nav_view->outputHTML();

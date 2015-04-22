@@ -29,14 +29,6 @@ class NavigationView extends View
 	public function outputHTML()
 	{
 
-		//what customer ID should we display information for?
-		$customer_id = $this->db->getLoggedInId();
-		if( isset($_GET['id']) )
-			$customer_id = $_GET['id'];
-		
-		//get info
-		$customer = $this->db->getCustomerById( $customer_id );
-
 
 
 		echo "<div class=\"header\">";
@@ -55,7 +47,7 @@ class NavigationView extends View
 		{
 			echo "		<!-- nav options -->";
 			echo "		<li><a href=\"/?c=create ad\">Create Ad</a></li>";
-			echo "		<li><a href=\"/?c=profile\">My Profile - {$customer['first_name']} {$customer['last_name']}</a></li>";
+			echo "		<li><a href=\"/?c=profile\">My Profile</a></li>";
 			echo "		<li><a href=\"/?c=friends\">Friends</a></li>";
 			echo "		<li><a href=\"/?c=messages\">Messages</a></li>";
 			echo "		<li><a href=\"/?c=log out\">Logout</a></li>";
