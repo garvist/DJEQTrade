@@ -560,6 +560,11 @@ class SubSearchResultsSet
 {
 	private $results_map;
 	
+	public function __construct()
+	{
+		$this->results_map = [];
+	}
+	
 	/** Adds a result to the set.
 	 * If a result with the given key already exists in the set, then the result with the highest rank will be kept.
 	 */
