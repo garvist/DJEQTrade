@@ -5,6 +5,13 @@
 .header ul.nav {
 	padding-left: 0;
 	font-size: 25px;
+	border-left-style: solid;
+	border-bottom-style: solid;
+	border-left-width: 2px;
+	border-bottom-width: 2px;
+	border-left-color: blue;
+	border-bottom-color: blue;
+
 }
 
 .header ul.nav li {
