@@ -40,7 +40,7 @@ switch( $controller_name )
 		require_once 'Controller/myAds.php';
 		$controller = new MyAdsController();
 		break;
-	case "post an ad":
+	case "create ad":
 		require_once 'Controller/createAd.php';
 		$controller = new CreateAdController();
 		break;

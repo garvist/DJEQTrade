@@ -43,7 +43,7 @@ class NavigationView extends View
 		if( $this->db->isLoggedIn() )
 		{
 			echo "		<!-- nav options -->";
-			echo "		<li><a href=\"/?c=post an ad\">Post an ad</a></li>";
+			echo "		<li><a href=\"/?c=create ad\">Create Ad</a></li>";
 			echo "		<li><a href=\"/?c=profile\">My Profile</a></li>";
 			echo "		<li><a href=\"/?c=friends\">Friends</a></li>";
 			echo "		<li><a href=\"/?c=messages\">Messages</a></li>";
