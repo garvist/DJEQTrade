@@ -16,7 +16,7 @@
 }
 
 .friends-list li {
-	border-left: solid 10px blue;
+	border-left: solid 5px #CC7A7A;
 	padding-top: 5px;
 	padding-bottom: 5px;
 	padding-left: 10px;
@@ -29,11 +29,12 @@
 	padding-right:40px;
 	font-size: 18px;
 	border-top-style: solid;
-	border-top-width: 10px;
-	border-top-color: blue;
+	border-top-width: 5px;
+	border-top-color: #6B8FB2;
 	border-left-style: solid;
-	border-left-width: 10px;
-	border-left-color: blue;
+	border-left-width: 5px;
+	border-left-color: #6B8FB2;
+	border-top-left-radius: 10px;
 }
 
 .friends-list a {
