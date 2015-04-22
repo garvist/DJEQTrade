@@ -27,6 +27,8 @@
 
 .ad:hover {
 	background-color: #E0E0FF;
+	border-width: 3px;
+
 }
 
 .ad .ad-title {
