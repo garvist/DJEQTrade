@@ -26,7 +26,7 @@ class PostListView extends View
 		echo "<div class =\"page-title\">";
 		echo "	<h1>All Advertisements</h1>";
 		echo "</div>";
-		
+		echo "<div class=\"post-list\">";
 		foreach( $this->db->getAllPosts() as $post )
 		{
 			//convert the tags from an array to a string
@@ -83,6 +83,7 @@ class PostListView extends View
 		echo "		<span class=\"ad-byline\">Posted by DJ Jimbo on Apr 2 @ 4:37pm</span>";
 		echo "	</div>";
 		*/
+		echo "</div>";
 		echo "</div>";
 	}
 }

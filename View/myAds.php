@@ -28,8 +28,9 @@ class MyAdsListView extends View
 			$customer_id = $_GET['id'];
 		
 		//display ads
+		echo "<div class=\"page\">";
 		echo "	<h1>My Advertisements</h1>";
-		
+		echo "<div class=\"post-list\">";
 		foreach( $this->db->getAllPostsForUser( $customer_id ) as $post )
 		{
 			//convert the tags from an array to a string
@@ -88,6 +89,8 @@ class MyAdsListView extends View
 		echo "	</div>";
 		echo "</div>";
 		*/
+		echo "</div>";
+		echo "</div>";
 	}
 }
 
