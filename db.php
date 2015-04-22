@@ -7,6 +7,7 @@ define("DB_NAME", "djex");
 class DJEXDB
 {
 	private $con; //the database connection
+	private $con2; //the second connection. don't retrieve this directly -- use getSecondConnection()
 	
 	private $loggedIn; //are we logged in?
 	private $loggedInId; //the ID of the customer that is logged
@@ -72,6 +73,9 @@ class DJEXDB
 	public function __destruct()
 	{
 		mysqli_close( $this->con );
+		
+		if( isset($this->con2) )
+			mysqli_close( $this->con2 );
 	}
 	
 	private function error($error_msg)
@@ -79,10 +83,17 @@ class DJEXDB
 		die("DB Error: " .$error_msg);
 	}
 	
-	/** Returns the database connection */
-	public function getConnection()
+	/** Returns the second database connection */
+	private function getSecondConnection()
 	{
-		return $con;
+		if( !isset($this->con2) )
+		{
+			$this->con2 = mysqli_connect( DB_HOST, DB_USER, DB_PASS, DB_NAME );
+			if( $this->con2->connect_errno )
+				die("Failed to connect to server"); //stop the script with this error message
+		}
+		
+		return $this->con2;
 	}
 	
 	//login
@@ -336,7 +347,7 @@ class DJEXDB
 	{
 		$tags = [];
 		
-		$stmt = $this->con->prepare("SELECT tag FROM Equipment_Tags WHERE post_id = ?");
+		$stmt = $this->getSecondConnection()->prepare("SELECT tag FROM Equipment_Tags WHERE post_id = ?");
 		$stmt->bind_param("i", $post_id);
 		$stmt->execute();
 		$stmt->bind_result($tag);
