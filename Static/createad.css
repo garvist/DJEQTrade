@@ -10,8 +10,9 @@
 	font-size: 18px;
 	border-top-style: solid;
 	border-top-width: 10px;
-	border-top-color: blue;
+	border-top-color: #6B8FB2;
 	border-left-style: solid;
 	border-left-width: 10px;
-	border-left-color: blue;
+	border-left-color: #6B8FB2;
+	border-top-left-radius: 10px;
 }
