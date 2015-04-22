@@ -1,9 +1,9 @@
 .aboutPage {
-	width: 60%;
+	width: 40%;
 	padding: 10px;
 	margin-left: 5%;
 	border-style: solid;
-	border-color: #6B8FB2;
+	border-color: #CC7A7A;
 	border-width: 5px;
 	border-radius: 10px;
 	
@@ -13,7 +13,7 @@
 	width: 40%;
 	border-bottom-style: solid;
 	border-bottom-width: 2px;
-	border-bottom-color: #6B8FB2;	
+	border-bottom-color: #CC7A7A;	
 }
 
 .aboutPage .contents {
