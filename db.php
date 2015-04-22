@@ -488,8 +488,8 @@ class DJEXDB
 			$result['rank'] = $this->calculateRank($searchterms, [$first_name, $last_name, $email]);
 			
 			//add this result to our result set.
-			//If a result with the given post_id already exists in the set, only the result with the higher rank will be kept
-			$results_set->addResult( $post_id, $result );
+			//If a result with the given customer_id already exists in the set, only the result with the higher rank will be kept
+			$results_set->addResult( $customer_id, $result );
 		}
 		
 		$stmt->close();
