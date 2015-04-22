@@ -26,7 +26,7 @@ class PostListView extends View
 		echo "<div class =\"page-title\">";
 		echo "	<h1>All Advertisements</h1>";
 		echo "</div>";
-		echo "<div class=\"post-list\"";
+		echo "<div class=\"post-list\">";
 		foreach( $this->db->getAllPosts() as $post )
 		{
 			//convert the tags from an array to a string
