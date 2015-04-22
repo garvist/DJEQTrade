@@ -11,8 +11,9 @@
 	border-bottom-style: solid;
 	border-left-width: 5px;
 	border-bottom-width: 5px;
-	border-left-color: red;
-	border-bottom-color: red;
+	border-left-color: #CC7A7A;
+	border-bottom-color: #CC7A7A;
+	border-bottom-left-radius:10px;
 
 }
 
