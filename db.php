@@ -589,7 +589,7 @@ class SubSearchResultsSet
 	/** Returns all results in this set */
 	public function getResults()
 	{
-		return array_values($results_map);
+		return array_values($this->results_map);
 	}
 }
 
