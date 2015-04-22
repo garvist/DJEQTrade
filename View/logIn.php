@@ -28,6 +28,7 @@ class LogInView extends View
 		echo "<div class=\"page\">";
 		echo "<div class=\"welcome\">";
 		echo "	<h1>Welcome to DJ Equipment Trade!</h1>";
+		echo "	<p>About the website</p>";
 		echo "</div>";
 		echo "	<div class =\"page-title\">";
 		echo "		<h1>Login</h1>";
