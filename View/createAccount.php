@@ -30,7 +30,6 @@ class CreateAccountView extends View
 		echo "		<h1>Create an Account</h1>";
 		echo "	</div>";
 		echo "	<p>With a free account at DJ Equipment Trade, you can post an advertisement, create a profile, add friends, and message your friends.</p>";
-		echo "	<body><p>Create your account here.</p></body>";
 		echo "	<div class=\"form\">";
 		echo "		<form action=\"/\" method='post' id=\"createUserForm\">";
 		echo "			<input type='text' name='c' value='create account' style='display: none' />";
