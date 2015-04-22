@@ -471,7 +471,8 @@ class DJEXDB
 	
 	private function search_customers($searchterms)
 	{
-		$results = [];
+		//this map will contain a mapping from "customer_id" -> "search result for that customer"
+		$results_map = [];
 		
 		//search the customers table
 		$stmt = $this->con->prepare("SELECT first_name, last_name, customer_id, email FROM customers WHERE (first_name LIKE ?) OR (last_name LIKE ?) OR (email LIKE ?)");
@@ -486,17 +487,33 @@ class DJEXDB
 		{
 			$result = [ "type" => "customer", "customer_id" => $customer_id, "first_name" => $first_name, "last_name" => $last_name, "email" => $email ];
 			$result['rank'] = $this->calculateRank($searchterms, [$first_name, $last_name, $email]);
-			$results[] = $result;
+			
+			//does the results_map already have a result with this customer_id?
+			if( array_key_exists($customer_id, $results_map) ) //yes
+			{
+				//get the old result
+				$old_result = $results_map[$customer_id];
+				
+				//insert the result with the highest rank back into the results
+				if( $result['rank'] > $old_result['rank'] )
+					$results_map[$customer_id] = $result;
+			}
+			else
+			{
+				$results_map[$customer_id] = $result;
+			}
 		}
 		
 		$stmt->close();
 		
-		return $results;
+		//return all array values
+		return array_values($results_map);
 	}
 	
 	private function search_posts($searchterms)
 	{
-		$results = [];
+		//this map will contain a mapping from "post_id" -> "search result for that post"
+		$results_map = [];
 		
 		//search the posts table
 		$stmt = $this->con->prepare("SELECT post_id, title, message, from_customer_id, customers.first_name, customers.last_name
@@ -517,12 +534,27 @@ class DJEXDB
 				"title" => $title, "message" => $message,
 				"from_customer_id" => $from_customer_id, "first_name_from" => $from_first_name, "last_name_from" => $from_last_name ];
 			$result['rank'] = $this->calculateRank($searchterms, [$title, $message, $from_first_name, $from_last_name]);
-			$results[] = $result;
+			
+			//does the results_map already have a result with this post_id?
+			if( array_key_exists($post_id, $results_map) ) //yes
+			{
+				//get the old result
+				$old_result = $results_map[$post_id];
+				
+				//insert the result with the highest rank back into the results
+				if( $result['rank'] > $old_result['rank'] )
+					$results_map[$post_id] = $result;
+			}
+			else
+			{
+				$results_map[$post_id] = $result;
+			}
 		}
 
 		$stmt->close();
 		
-		return $results;
+		//return all array values
+		return array_values($results_map);
 	}
 	
 	/** Calculates a rank.
@@ -537,6 +569,15 @@ class DJEXDB
 			$dist[] = levenshtein($searchterms, $text);
 		
 		return max($dist);
+	}
+	
+	/** Iterates through the given list of search results and returns a list with all duplicates removed.
+	 * $results     -> the results list
+	 * $primary_key -> the name of the key that uniquely identifies records in the results list
+	 */
+	private function removeDuplicatesFromResultsList($results, $primary_key)
+	{
+		
 	}
 	
 	/* Returns -1, 0, or 1 if the first argument is less than, equal to, or greater than the second */
