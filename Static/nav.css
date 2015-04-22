@@ -45,7 +45,7 @@
 }
 
 .header ul.nav li:first-child:hover {
-	background-color: inherit;
+	background-color: white;
 }
 
 .header ul.nav li:first-child {
