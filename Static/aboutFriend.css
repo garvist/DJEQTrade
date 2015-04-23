@@ -1,7 +1,7 @@
 .aboutPage {
 	margin-top:20px;
-	position: relative;
-	float: right;
+	position: absolute;
+	right: 20px;
 	width: 30%;
 	padding: 10px;
 	margin-left: 5%;
