@@ -48,8 +48,8 @@ class FriendsController extends Controller
 		echo "</div>";
 		$this->nav_view->outputHTML();
 		$this->aboutFriend_view->outputHTML();
-		$this->friendsAds_view->outputHTML();
 		$this->friendslist_view->outputHTML();
+		$this->friendsAds_view->outputHTML();
 		
 	}
 }

@@ -75,7 +75,7 @@ class FriendsAdsListView extends View
 		echo "	</div>";
 		echo "	";
 		echo "	<div class=\"ad\">";
-		echo "		<h1 class=\"ad-title\">[Name]'s Subwoofers</h1>";
+		echo "		<h1 class=\"ad-title\">[Name]'s big Subwoofers</h1>";
 		echo "		<div class=\"ad-meta\">";
 		echo "			<span class=\"ad-author\">Posted by DJ Jimbo</span>";
 		echo "			<span>Categories: speakers</span>";
