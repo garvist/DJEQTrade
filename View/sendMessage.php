@@ -34,7 +34,7 @@ class SendMessageView extends View
 			echo "<form action='/' method='post' id='send_message'>";
 			echo "<input type='text' name='c' value='send message' style='display: none' />";
 			echo "<input type='text' name='to_id' value=\"{$customer['customer_id']}\" style='display: none' />";
-			echo "To: <input type='text' value=\"{$customer['first_name']} {$customer['last_name']}\" />";
+			echo "To: <input type='text' value=\"{$customer['first_name']} {$customer['last_name']}\" readonly />";
 			echo "Message: <textarea name='message' form='send_message'></textarea>";
 			echo "<input type='submit' value='Send Message' />";
 			echo "</form>";
