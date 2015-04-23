@@ -31,7 +31,7 @@ class FriendsAdsListView extends View
 		//display ads
 		echo "<div class=\"friends-posts-page\">";
 		echo "	<h1>[Name]'s Advertisements</h1>"; //insert code for name
-		echo "<div class=\"post-list\">";
+		echo "<div class=\"friends-post-list\">";
 
 		/* >>>>>>>>>>>>>>IMPLEMENT THIS<<<<<<<<<<<<<<<<<<
 		foreach( $this->db->getAllPostsForUser( $customer_id ) as $post )
