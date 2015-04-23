@@ -5,9 +5,8 @@
 
 .friends-posts-page {
 	position: absolute;
-	top: 20%;
+	top: 200px;
 	right: 20%;
-	width: 40%;
 }
 
 .post-list{
