@@ -1,8 +1,19 @@
 <?php
+
+//for connecting to Warren's db
 define("DB_HOST", "localhost");
 define("DB_USER", "djex_test");
 define("DB_PASS", "123456");
 define("DB_NAME", "djex");
+
+
+/*
+//for connecting to Karl's db
+define("DB_HOST", "student.seas.gwu.edu");
+define("DB_USER", "karlpreisner");
+define("DB_PASS", "PRv0Q}fF");
+define("DB_NAME", "karlpreisner");
+*/
 
 class DJEXDB
 {
