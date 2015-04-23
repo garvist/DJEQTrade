@@ -24,7 +24,7 @@ class FriendsController extends Controller
 	/** Returns an array containing all of the views that this controller uses */
 	protected function getViews()
 	{
-		return [ $this->nav_view, $this->friendslist_view, $this->AboutFriendView ];
+		return [ $this->nav_view, $this->friendslist_view, $this->aboutFriend_view ];
 	}
 	
 	/** Outputs all HTML that needs to go in the <head> of the page */
