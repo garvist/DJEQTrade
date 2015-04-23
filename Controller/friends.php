@@ -45,7 +45,7 @@ class FriendsController extends Controller
 		echo "</div>";
 		$this->nav_view->outputHTML();
 		$this->friendslist_view->outputHTML();
-		$this->AboutFriendView->outputHTML();
+		$this->aboutFriend_view->outputHTML();
 	}
 }
 ?>
