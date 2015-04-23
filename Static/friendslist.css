@@ -1,11 +1,12 @@
 /*none of this code works with FriendsList.php. It needs a lot of updating*/
 .page {
+	width:35%;
 	margin-left: 5%;
 	margin-bottom: 1em;
 }
 
 .friends-list ul{
-	width: 40%;
+	width: 70%;
 	font-size: 20px;
 	font-style: bold;
 	font-family: Verdana, sans-serif;

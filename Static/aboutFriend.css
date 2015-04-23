@@ -1,0 +1,32 @@
+.aboutPage {
+	float: right;
+	width: 40%;
+	padding: 10px;
+	margin-left: 5%;
+	border-style: solid;
+	border-color: #CC7A7A;
+	border-width: 5px;
+	border-radius: 10px;
+	
+}
+.aboutPage h1 {
+	margin: 15px;
+	width: 40%;
+	border-bottom-style: solid;
+	border-bottom-width: 2px;
+	border-bottom-color: #CC7A7A;	
+}
+
+.aboutPage .contents {
+	margin-left: 5%;
+}
+
+.aboutPage .contents h3{
+	margin: 10px;
+	margin-bottom: 5px;
+}
+
+.aboutPage .contents p {
+	margin: 5px;
+	margin-left: 15px;
+}
