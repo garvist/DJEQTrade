@@ -2,7 +2,7 @@
 
 require_once 'View/View.php'; //defines the View class
 
-class FriendAdsListView extends View
+class FriendsAdsListView extends View
 {
 	/** Parent constructor for all views.
 	 * Parameters:
