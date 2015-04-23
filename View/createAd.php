@@ -31,7 +31,7 @@ class CreateAdView extends View
 		echo "	</div>";
 		echo "	<div class=\"form\">";
 		echo "		<form action=\"/\" method='post' id=\"createAdForm\">";
-		echo "			<input type='text' name='c' value='post an ad' style='display: none' />";
+		echo "			<input type='text' name='c' value='create ad' style='display: none' />";
 		echo "			Title:<br><input type=\"text\" name=\"postTitle\"><br>";
 		echo "			tags (for search): <br><input type=\"text\" name=\"postTags\"><br>";
 		echo "			Image url:<br><input type\"text\" name=\"postImage\"><br>";
