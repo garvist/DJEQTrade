@@ -38,8 +38,8 @@ class AboutMeView extends View
 		echo "	<div class=\"contents\">";
 		echo "		<h3>Email:</h3>";
 		echo "		<p>{$customer['email']}</p>";
-		echo "		<h3>User Rating: </h3>";
-		echo "		<p>draw info from db</p>";
+		//echo "		<h3>User Rating: </h3>";
+		//echo "		<p>draw info from db</p>";
 		echo "		<h3>Number of Friends: </h3>";
 		echo "		<p>{$friendCount}</p>";
 		echo "		<h3>Number of Posts: </h3>";
