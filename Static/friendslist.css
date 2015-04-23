@@ -1,13 +1,13 @@
 /*none of this code works with FriendsList.php. It needs a lot of updating*/
 .page {
-	width:35%;
+	width:40%;
 	margin-left: 5%;
 	margin-bottom: 1em;
 }
 
 .friends-list ul{
-	width: 70%;
-	font-size: 20px;
+	width: 50%;
+	font-size: 15px;
 	font-style: bold;
 	font-family: Verdana, sans-serif;
 	list-style-type: none;
@@ -48,4 +48,8 @@
 
 .friends-list li:hover {
 	background-color: white;
+	border-style: solid;
+	border-width: 1px;
+	border-color: black;
+	border-radius: 5px;
 }
