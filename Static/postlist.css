@@ -1,6 +1,7 @@
 .page {
 	margin-left: 5%;
 	margin-bottom: 1em;
+	width:40%;
 }
 
 .friends-posts-page {
@@ -10,7 +11,7 @@
 }
 
 .post-list{
-	width: 40%;
+
 	padding: 15px;
 	padding-bottom: 30px;
 	padding-right:40px;
