@@ -28,7 +28,7 @@ class FriendsListView extends View
 		echo "<div class=\"page\">";
 		echo "<h1>Friends List</h1>";
 		echo "	<div class=\"friends-list\">";
-		echo "		<p class=\"description\">Click on a friend to visit their profile. You can message your friends to ask more specific questions about the items they are advertising. You can also exchange contact information. If you both agree on a trade, you can rate the user based on your experience.</p>";
+		echo "		<p class=\"description\">Click on a friend to see their info.</p>";
 		echo "		<ul class=\"friends-list\">";
 		
 		// to be removed 
