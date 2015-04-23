@@ -42,13 +42,13 @@
 	border-radius: 15px;
 	padding: 15px;
 	margin-bottom: 20px;
-	background-color: #61CDF6;
+	background-color: #FFFFFF;
 	
 	transition: background-color 0.05s linear 0s;
 }
 
 .ad:hover {
-	background-color: #FFFFFF;
+	background-color: #61CDF6;
 	border-width: 3px;
 	padding: 13px;
 
