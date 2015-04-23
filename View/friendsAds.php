@@ -57,7 +57,7 @@ class FriendsAdsListView extends View
 		}
 		*/
 
-		//THIS CODE IS TO BE REMOVED ONCE ABOVE IS IMPLEMENTED
+		//example ads - THIS CODE IS TO BE REMOVED ONCE ABOVE IS IMPLEMENTED
 		echo "	<div class=\"ad\">";
 		echo "		<h1 class=\"ad-title\">[Name]'s Amazing Speakers</h1>";
 		echo "		<div class=\"ad-meta\">";
@@ -75,7 +75,7 @@ class FriendsAdsListView extends View
 		echo "	</div>";
 		echo "	";
 		echo "	<div class=\"ad\">";
-		echo "		<h1 class=\"ad-title\">My's Amazing, Wonderful, loud, big, noisy, adjectives Subwoofers</h1>";
+		echo "		<h1 class=\"ad-title\">[Name]'s Subwoofers</h1>";
 		echo "		<div class=\"ad-meta\">";
 		echo "			<span class=\"ad-author\">Posted by DJ Jimbo</span>";
 		echo "			<span>Categories: speakers</span>";
@@ -90,7 +90,7 @@ class FriendsAdsListView extends View
 		echo "		";
 		echo "		<span class=\"ad-byline\">Posted by DJ Jimbo on Apr 2 @ 4:37pm</span>";
 		echo "	</div>";
-		echo "</div>";
+		//echo "</div>";
 		//remove above 
 
 		echo "</div>";

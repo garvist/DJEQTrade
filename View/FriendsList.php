@@ -31,15 +31,6 @@ class FriendsListView extends View
 		echo "		<p class=\"description\">Click on a friend to visit their profile. You can message your friends to ask more specific questions about the items they are advertising. You can also exchange contact information. If you both agree on a trade, you can rate the user based on your experience.</p>";
 		echo "		<ul class=\"friends-list\">";
 		
-		foreach( $this->db->getFriendsForUser( $this->db->getLoggedInId() ) as $friend )
-		{
-			$profileUrl = '/?c=profile&id=' .$friend['customer_id'];
-			echo "			<li>";
-			echo "<a href=\"{$profileUrl}\">{$friend['first_name']} {$friend['last_name']}</a>";
-			echo " (<a href=\"/?c=send message&id={$friend['customer_id']}\">Send a message</a>)";
-			echo "</li>";
-		}
-		
 		// to be removed 
 		echo "			<!-- list of friends -->";
 		echo "			<li>Adam Sandler</li>";
@@ -53,6 +44,17 @@ class FriendsListView extends View
 		echo "			<li>Warren Smith</li>";
 		echo "			<li>Zachary Frankfort</li>";
 		//remove above
+		
+		foreach( $this->db->getFriendsForUser( $this->db->getLoggedInId() ) as $friend )
+		{
+			$profileUrl = '/?c=profile&id=' .$friend['customer_id'];
+			echo "			<li>";
+			echo "<a href=\"{$profileUrl}\">{$friend['first_name']} {$friend['last_name']}</a>";
+			echo " (<a href=\"/?c=send message&id={$friend['customer_id']}\">Send a message</a>)";
+			echo "</li>";
+		}
+		
+		
 
 
 		echo "		</ul>";
