@@ -24,6 +24,7 @@
 }
 
 .friends-list p {
+	margin:0px;
 	width: 90%;
 	padding: 15px;
 	padding-bottom: 30px;
