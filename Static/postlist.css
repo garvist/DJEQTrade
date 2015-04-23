@@ -10,10 +10,10 @@
 	padding-right:40px;
 	border-top-style: solid;
 	border-top-width: 5px;
-	border-top-color: #6B8FB2;
+	border-top-color: #616566;
 	border-left-style: solid;
 	border-left-width: 5px;
-	border-left-color: #6B8FB2;
+	border-left-color: #616566;
 	border-top-left-radius: 10px;
 }
 
@@ -30,10 +30,10 @@
 	padding-right:40px;
 	border-top-style: solid;
 	border-top-width: 5px;
-	border-top-color: #6B8FB2;
+	border-top-color: #616566;
 	border-left-style: solid;
 	border-left-width: 5px;
-	border-left-color: #6B8FB2;
+	border-left-color: #616566;
 	border-top-left-radius: 10px;
 }
 
@@ -42,13 +42,13 @@
 	border-radius: 15px;
 	padding: 15px;
 	margin-bottom: 20px;
-	background-color: white;
+	background-color: #61CDF6;
 	
 	transition: background-color 0.05s linear 0s;
 }
 
 .ad:hover {
-	background-color: #E0E0FF;
+	background-color: #FFFFFF;
 	border-width: 3px;
 	padding: 13px;
 
