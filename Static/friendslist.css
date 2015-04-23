@@ -19,7 +19,6 @@
 	border-left: solid 5px #CC7A7A;
 	padding-top: 5px;
 	padding-bottom: 5px;
-	padding-left: 10px;
 }
 
 .friends-list p {
@@ -48,7 +47,7 @@
 .friends-list li:hover {
 	background-color: white;
 	border-style: solid;
-	border-width: 1px;
+	border-width: 5px;
 	border-color: #CC7A7A;
 	border-radius: 5px;
 }
