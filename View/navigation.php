@@ -57,7 +57,6 @@ class NavigationView extends View
 		{
 			echo "		<li class=\"login\"><a href=\"/?c=log in\">Login / Create Account</a></li>";
 			echo "</ul>";
-			echo "		<p>This is a description of the website.</p>";
 		}
 		/*
 		echo "<div class=\"page-description\">";

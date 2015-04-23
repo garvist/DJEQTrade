@@ -32,6 +32,7 @@ class FriendsListView extends View
 		echo "		<ul class=\"friends-list\">";
 		
 		// to be removed 
+		/*
 		echo "			<!-- list of friends -->";
 		echo "			<li>Adam Sandler</li>";
 		echo "			<li>Brad pitt</li>";
@@ -43,6 +44,7 @@ class FriendsListView extends View
 		echo "			<li>Karl Preisner</li>";
 		echo "			<li>Warren Smith</li>";
 		echo "			<li>Zachary Frankfort</li>";
+		*/
 		//remove above
 		
 		foreach( $this->db->getFriendsForUser( $this->db->getLoggedInId() ) as $friend )
