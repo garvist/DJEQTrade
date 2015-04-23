@@ -3,11 +3,13 @@
 require_once 'Controller/Controller.php'; //defines Controller class
 require_once 'View/navigation.php'; //defines NavigationView
 require_once 'View/FriendsList.php';
+require_once 'View/aboutFriend.php';
 
 class FriendsController extends Controller
 {
 	private $nav_view;
 	private $friendslist_view;
+	private $aboutFriend_view;
 	
 	//the constructor for this controller class
 	function __construct()
@@ -16,12 +18,13 @@ class FriendsController extends Controller
 		
 		$this->nav_view = new NavigationView($this->db);
 		$this->friendslist_view = new FriendsListView($this->db);
+		$this->aboutFriend_view = new AboutFriendView($this->db);
 	}
 	
 	/** Returns an array containing all of the views that this controller uses */
 	protected function getViews()
 	{
-		return [ $this->nav_view, $this->friendslist_view ];
+		return [ $this->nav_view, $this->friendslist_view, $this->AboutFriendView ];
 	}
 	
 	/** Outputs all HTML that needs to go in the <head> of the page */
@@ -42,6 +45,7 @@ class FriendsController extends Controller
 		echo "</div>";
 		$this->nav_view->outputHTML();
 		$this->friendslist_view->outputHTML();
+		$this->AboutFriendView->outputHTML();
 	}
 }
 ?>
