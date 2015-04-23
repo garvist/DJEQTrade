@@ -10,6 +10,7 @@ class FriendsController extends Controller
 	private $nav_view;
 	private $friendslist_view;
 	private $aboutFriend_view;
+	private $friendsAds_view;
 	
 	//the constructor for this controller class
 	function __construct()
@@ -19,12 +20,13 @@ class FriendsController extends Controller
 		$this->nav_view = new NavigationView($this->db);
 		$this->friendslist_view = new FriendsListView($this->db);
 		$this->aboutFriend_view = new AboutFriendView($this->db);
+		$this->friendsAds_view = new FriendsAdsListView($this->db);
 	}
 	
 	/** Returns an array containing all of the views that this controller uses */
 	protected function getViews()
 	{
-		return [ $this->nav_view, $this->friendslist_view, $this->aboutFriend_view ];
+		return [ $this->nav_view, $this->friendslist_view, $this->aboutFriend_view, $this->friendsAds_view ];
 	}
 	
 	/** Outputs all HTML that needs to go in the <head> of the page */
@@ -45,6 +47,7 @@ class FriendsController extends Controller
 		echo "</div>";
 		$this->nav_view->outputHTML();
 		$this->aboutFriend_view->outputHTML();
+		$this->friendsAds_view->outputHTML();
 		$this->friendslist_view->outputHTML();
 		
 	}

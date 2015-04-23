@@ -40,9 +40,9 @@ class FriendsListView extends View
 			echo "</li>";
 		}
 		
-		/*
+		// to be removed 
 		echo "			<!-- list of friends -->";
-		echo "			<li><a href=\"/?c=post an ad\">Adam Sandler (currently ink to \"post an ad\")</a></li>"; //link to a general friends page, yet to be created.
+		echo "			<li>Adam Sandler</li>";
 		echo "			<li>Brad pitt</li>";
 		echo "			<li>Emma Watson</li>";
 		echo "			<li>Emil Gilles</li>";
@@ -52,7 +52,9 @@ class FriendsListView extends View
 		echo "			<li>Karl Preisner</li>";
 		echo "			<li>Warren Smith</li>";
 		echo "			<li>Zachary Frankfort</li>";
-		*/
+		//remove above
+
+
 		echo "		</ul>";
 		echo "  </div>";
 		echo "</div>";

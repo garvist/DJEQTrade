@@ -3,6 +3,13 @@
 	margin-bottom: 1em;
 }
 
+.friends-list-page {
+	margin-top:20px;
+	position: absolute;
+	right: 20%;
+	width: 30%;
+}
+
 .post-list{
 	width: 40%;
 	padding: 15px;
