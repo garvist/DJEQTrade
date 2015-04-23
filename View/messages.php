@@ -57,7 +57,7 @@ class MessagesView extends View
 			echo "	</p>";
 			echo "	</div>";
 		}
-		echo "</div>";
+		//echo "</div>";
 		echo "</div>";
 	}
 }
