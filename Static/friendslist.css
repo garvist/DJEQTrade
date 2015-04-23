@@ -13,6 +13,7 @@
 	list-style-type: none;
 	padding-right: 5px;
 	padding-left: 0px;
+	margin: 0px;
 
 }
 
@@ -32,10 +33,10 @@
 	font-size: 18px;
 	border-top-style: solid;
 	border-top-width: 5px;
-	border-top-color: #6B8FB2;
+	border-top-color: #CC7A7A;
 	border-left-style: solid;
 	border-left-width: 5px;
-	border-left-color: #6B8FB2;
+	border-left-color: #CC7A7A;
 	border-top-left-radius: 10px;
 }
 
