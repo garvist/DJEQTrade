@@ -29,7 +29,7 @@ class PostListView extends View
 		echo "<div class=\"post-list\">";
 		foreach( $this->db->getAllPosts() as $post )
 		{
-			$profileUrl = '/?c=profile&id=' .$post['from_customer_id'];
+			$profileUrl = '/?c=profile&id=' .$post['customer_id'];
 			//convert the tags from an array to a string
 			$tags = "";
 			if( count($post['tags']) > 0 )
