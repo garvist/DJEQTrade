@@ -38,7 +38,7 @@ class MessagesView extends View
 			switch( $msg['type'] )
 			{
 				case "sent":
-					$profileUrl = '/?c=profile&id=' .$msg['id_from'];
+					$profileUrl = '/?c=profile&id=' .$msg['id_to'];
 					echo "To: <a href='{$profileUrl}'>{$msg['first_name_to']} {$msg['last_name_to']}</a>";
 					break;
 				case "recv":
