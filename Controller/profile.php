@@ -49,7 +49,7 @@ class ProfileController extends Controller
 
 
 		echo "<div class=\"welcome\">"; //this can go in nav.php 
-		echo "	<h1>My Profile - {$customer['first_name']} {$customer['last_name']}</h1>";
+		echo "	<h1>Profile - {$customer['first_name']} {$customer['last_name']}</h1>";
 		//echo "	<p>Here you will find a bunch of things that I am too lazy to type out right now.</p>";
 		echo "</div>";
 		$this->nav_view->outputHTML();
