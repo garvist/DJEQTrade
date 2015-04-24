@@ -29,7 +29,7 @@ class MyAdsListView extends View
 		
 		//display ads
 		echo "<div class=\"page\">";
-		echo "	<h1>My Advertisements</h1>";
+		echo "	<h1>{$customer_id['first_name']}'s Advertisements</h1>";
 		echo "<div class=\"post-list\">";
 		foreach( $this->db->getAllPostsForUser( $customer_id ) as $post )
 		{
