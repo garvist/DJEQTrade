@@ -289,14 +289,14 @@ class DJEXDB
 	{
 		$stmt = $this->con->prepare("SELECT post_id,title,image_url,message,customers.first_name,customers.last_name From Posts, customers WHERE Posts.from_customer_id = customers.customer_id ORDER BY post_id DESC");
 		$stmt->execute();
-		$stmt->bind_result($post_id, $title, $image_url, $message, $customer_fname, $customer_lname);
+		$stmt->bind_result($post_id, $title, $image_url, $message, $customer_fname, $customer_lname, $customer_id);
 		
 		$posts = [];
 		
 		while( $stmt->fetch() )
 		{
 			//create an associative array for this post
-			$post = [ "post_id" => $post_id, "title" => $title, "image_url" => $image_url, "message" => $message, "first_name" => $customer_fname, "last_name" => $customer_lname ];
+			$post = [ "post_id" => $post_id, "title" => $title, "image_url" => $image_url, "message" => $message, "first_name" => $customer_fname, "last_name" => $customer_lname, "customer_id" => $customer_id ];
 			
 			//add this post onto the end of our array
 			$posts[] = $post;
