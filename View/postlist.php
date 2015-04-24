@@ -29,6 +29,7 @@ class PostListView extends View
 		echo "<div class=\"post-list\">";
 		foreach( $this->db->getAllPosts() as $post )
 		{
+			$profileUrl = '/?c=profile&id=' .$post['customer_id'];
 			//convert the tags from an array to a string
 			$tags = "";
 			if( count($post['tags']) > 0 )
@@ -50,7 +51,7 @@ class PostListView extends View
 			echo "	</p>";
 			echo "	";
 			echo "	<img src=\"{$post['image_url']}\" width=\"150\" />";
-			echo "	<span class=\"ad-byline\">Posted by {$post['first_name']} {$post['last_name']}</span>";
+			echo "	<span class=\"ad-byline\">Posted by <a href=\"{$profileUrl}\">{$post['first_name']} {$post['last_name']}</a></span>";
 			echo "	</div>";
 		}
 		
