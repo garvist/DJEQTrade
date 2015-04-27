@@ -51,7 +51,15 @@ class PostListView extends View
 			echo "	</p>";
 			echo "	";
 			echo "	<img src=\"{$post['image_url']}\" width=\"150\" />";
-			echo "	<span class=\"ad-byline\">Posted by <a href=\"{$profileUrl}\">{$post['first_name']} {$post['last_name']}</a></span>";
+
+			$this->db->checkLoginState();
+			if($this->loggedIn == true){
+
+				echo "	<span class=\"ad-byline\">Posted by <a href=\"{$profileUrl}\">{$post['first_name']} {$post['last_name']}</a></span>";
+			}
+			else {
+				echo "	<span class=\"ad-byline\">Posted by {$post['first_name']} {$post['last_name']}</span>";
+			}
 			echo "	</div>";
 		}
 		
