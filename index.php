@@ -64,6 +64,10 @@ switch( $controller_name )
 		require_once 'Controller/createAd.php';
 		$controller = new CreateAdController();
 		break;
+	case "remove ad":
+		require_once 'Controller/deleteAd.php';
+		$controller = new DeleteAdController();
+		break;
 	case "profile":
 		require_once 'Controller/profile.php';
 		$controller = new ProfileController();
