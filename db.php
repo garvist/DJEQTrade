@@ -516,17 +516,15 @@ class DJEXDB
 	 */
 	public function deletePost($post_id)
 	{
-
 		//return false if we aren't logged in
 		if( !$this->isLoggedIn() )
 			return ["success" => false];
-
-		//if post.from_customer_id matches loggedInID - you can remove the post
-		//-------IMPLEMENT-------
-
-		//if loggedInID is an administrator - you can remove the psot
-		//-------IMPLEMENT-------
-
+		
+		//make sure that the user is an administrator or owns the post
+		$customer = $this->getCustomerById( $this->getLoggedInId() );
+		$post = $this->getPostById($post_id);
+		if( !$customer['administrator'] && $post['customer_id'] != $this->getLoggedInId() )
+			return ["success" => false];
 
 		//remove the comments from the post
 		$stmt = $this->con->prepare("DELETE FROM Comments WHERE post_id = ?");
