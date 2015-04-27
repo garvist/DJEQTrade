@@ -44,6 +44,9 @@ class AboutMeView extends View
 		echo "		<p>{$friendCount}</p>";
 		echo "		<h3>Number of Posts: </h3>";
 		echo "		<p>{$postCount}</p>";
+		echo "		<h3>Relationship</h3>";
+		echo "		<p>Your Friend<br>Add friend button</p>";
+		echo "";
 		echo "	</div>";
 		echo "</div>";
 	}

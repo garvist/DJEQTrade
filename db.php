@@ -394,6 +394,8 @@ class DJEXDB
 		
 		return $friends;
 	}
+
+
 	
 	/** Returns an associative array containing the name and email of the customer with the given id */
 	public function getCustomerById($customer_id)
@@ -484,9 +486,10 @@ class DJEXDB
 			return ["success" => false];
 
 		//if post.from_customer_id matches loggedInID - you can remove the post
-		//--------------
+		//-------IMPLEMENT-------
+
 		//if loggedInID is an administrator - you can remove the psot
-		//--------------
+		//-------IMPLEMENT-------
 
 
 		//remove the comments from the post
