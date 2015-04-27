@@ -512,9 +512,9 @@ class DJEXDB
 			return ["success" => false];
 		
 		//make sure that the user is an administrator or owns the post
-		$customer = $this->db->getCustomerById( $this->db->getLoggedInId() );
-		$post = $this->db->getPostById($post_id);
-		if( !$customer['administrator'] && $post['customer_id'] != $this->db->getLoggedInId() )
+		$customer = $this->getCustomerById( $this->getLoggedInId() );
+		$post = $this->getPostById($post_id);
+		if( !$customer['administrator'] && $post['customer_id'] != $this->getLoggedInId() )
 			return ["success" => false];
 
 		//remove the comments from the post
