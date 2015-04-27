@@ -4,6 +4,7 @@
 
 //send/recieve messages not working
 //message list - view sent messages
+
 //aboutFriend - view if user is a friend or not
 //aboutFriend - add user as friend
 //rate user functionality
@@ -11,7 +12,6 @@
 //post comments
 //delete your own post
 //administrator privledges 
-//remove link to a user's profile if logged out
 
 
 

@@ -470,6 +470,44 @@ class DJEXDB
 		
 		return ["success" => true, "post_id" => $post_id];
 	}
+
+
+
+	/**delete a Post from the Database
+	 *
+	 */
+	public function deletePost($post_id)
+	{
+
+		//return false if we aren't logged in
+		if( !$this->isLoggedIn() )
+			return ["success" => false];
+
+		//if post.from_customer_id matches loggedInID - you can remove the post
+		//--------------
+		//if loggedInID is an administrator - you can remove the psot
+		//--------------
+
+
+		//remove the comments from the post
+		$stmt = $this->con->prepare("DELETE FROM Comments WHERE post_id = ?");
+		$stmt->bind_param("i", $post_id);
+		$stmt->execute();
+		$stmt->close();
+
+		$stmt->close();
+
+
+		//remove the post
+		$stmt = $this->con->prepare("DELETE FROM Posts WHERE post_id = ?");
+		$stmt->bind_param("i", $post_id);
+		$stmt->execute();
+		$stmt->close();
+
+		$stmt->close();
+	}
+
+
 	
 	public function sendMessage($from_id, $to_id, $message)
 	{
@@ -576,6 +614,8 @@ class DJEXDB
 		//return all array values
 		return $results_set->getResults();
 	}
+
+
 	
 	/** Calculates a rank.
 	 * $searchterms -> the search terms to look for
