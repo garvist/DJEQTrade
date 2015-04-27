@@ -432,7 +432,16 @@ class DJEXDB
 		return $friends;
 	}
 
-
+	/** Returns true if a customer is a friend of the current user */
+	public function isFriend($customer_id){
+		$friendArray = $this->getFriendsForUser($this->getLoggedInId());
+		foreach ($friendArray as $friend) {
+			if($friend == $customer_id){
+				return true;
+			}
+		}
+		return false;
+	}
 	
 	/** Returns an associative array containing the name and email of the customer with the given id */
 	public function getCustomerById($customer_id)
