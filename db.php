@@ -325,24 +325,57 @@ class DJEXDB
 		return $posts;
 	}
 	
-	/** Returns an array of all posts written by the given user */
-	public function getAllPostsForUser($customer_id)
+	/** Returns an array of all posts */
+	public function getAllPosts()
 	{
-		$stmt = $this->con->prepare("SELECT post_id,title,image_url,message,customers.first_name,customers.last_name From Posts, customers WHERE Posts.from_customer_id = customers.customer_id AND customers.customer_id = ? ORDER BY post_id DESC");
-		$stmt->bind_param("i", $customer_id);
+		$stmt = $this->con->prepare("SELECT post_id,title,image_url,message,customers.first_name,customers.last_name, customers.customer_id From Posts, customers WHERE Posts.from_customer_id = customers.customer_id ORDER BY post_id DESC");
 		$stmt->execute();
-		$stmt->bind_result($post_id, $title, $image_url, $message, $customer_fname, $customer_lname);
+		$stmt->bind_result($post_id, $title, $image_url, $message, $customer_fname, $customer_lname, $customer_id);
 		
 		$posts = [];
 		
 		while( $stmt->fetch() )
 		{
 			//create an associative array for this post
-			$post = [ "post_id" => $post_id, "title" => $title, "image_url" => $image_url, "message" => $message, "first_name" => $customer_fname, "last_name" => $customer_lname ];
+			$post = [ "post_id" => $post_id, "title" => $title, "image_url" => $image_url, "message" => $message, "first_name" => $customer_fname, "last_name" => $customer_lname, "customer_id" => $customer_id ];
 			
 			//add this post onto the end of our array
 			$posts[] = $post;
 		}
+		
+		$stmt->close();
+		
+		//retrieve tags for each post
+		foreach( $posts as &$post )
+		{
+			$tags = [];
+			
+			$stmt = $this->con->prepare("SELECT tag FROM Equipment_Tags WHERE post_id = ?");
+			$stmt->bind_param("i", $post['post_id']);
+			$stmt->execute();
+			$stmt->bind_result($tag);
+			
+			while( $stmt->fetch() ) //loop through all tags for this post
+				$tags[] = $tag; //push this tag onto the array
+			
+			$post['tags'] = $tags;
+			
+			$stmt->close();
+		}
+		
+		return $posts;
+	}
+	
+	/** Returns the post with the given ID */
+	public function getPostById($post_id)
+	{
+		$stmt = $this->con->prepare("SELECT post_id,title,image_url,message,customers.first_name,customers.last_name From Posts, customers WHERE Posts.from_customer_id = customers.customer_id AND Posts.post_id = ? ORDER BY post_id DESC");
+		$stmt->bind_param("i", $post_id);
+		$stmt->execute();
+		$stmt->bind_result($post_id, $title, $image_url, $message, $customer_fname, $customer_lname);
+		$stmt->fetch();
+		
+		$post = [ "post_id" => $post_id, "title" => $title, "image_url" => $image_url, "message" => $message, "first_name" => $customer_fname, "last_name" => $customer_lname ];
 		
 		$stmt->close();
 		
@@ -393,17 +426,6 @@ class DJEXDB
 		$stmt->close();
 		
 		return $friends;
-	}
-
-	/** Returns true if a customer is a friend of the current user */
-	public function isFriend($customer_id){
-		$friendArray = $this->getFriendsForUser($this->getLoggedInId());
-		foreach ($friendArray as $friend) {
-			if($friend == $customer_id){
-				return true;
-			}
-		}
-		return false;
 	}
 
 
@@ -508,15 +530,13 @@ class DJEXDB
 		$stmt->execute();
 		$stmt->close();
 
-		$stmt->close();
-
 		//remove the post
 		$stmt = $this->con->prepare("DELETE FROM Posts WHERE post_id = ?");
 		$stmt->bind_param("i", $post_id);
 		$stmt->execute();
 		$stmt->close();
-
-		$stmt->close();
+		
+		return ["success" => true ];
 	}
 	
 	public function sendMessage($from_id, $to_id, $message)

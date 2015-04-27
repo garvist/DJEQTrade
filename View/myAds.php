@@ -54,7 +54,13 @@ class MyAdsListView extends View
 			echo "	<span class=\"ad-byline\">Posted by {$post['first_name']} {$post['last_name']}</span>";
 			
 			if( $this->db->getCustomerById( $this->db->getLoggedInId() )['administrator'] || $customer_id == $this->db->getLoggedInId() ) //if this is the user's post, or they are an administrator, show the "Delete Post" button
-				echo "<button type=\"button\" onclick=\"alert('Make this function work properly')\">Delete Post!</button>";
+			{
+				echo "<form action='/' method='post'>";
+				echo "<input type=\"hidden\" name=\"c\" value=\"remove ad\">";
+				echo "<input type=\"hidden\" name=\"postId\" value=\"{$post['post_id']}\">";
+				echo "<input type=\"submit\" value=\"Delete Post!\">";
+				echo "</form>";
+			}
 			
 			echo "	</div>";
 		}
