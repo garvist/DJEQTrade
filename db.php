@@ -370,6 +370,15 @@ class DJEXDB
 		
 		return $tags;
 	}
+
+	/** Creates a friend */
+	Public function createFriend($customer_id, $friend_id){
+		$stmt = $this->con->prepare("INSERT INTO Friends (customer_id, friend_id) VALUES (?, ?)");
+		$stmt->bind_param("ii", $customer_id, $friend_id);
+		$stmt->execute();
+		$stmt->close();
+
+	}
 	
 	/** Returns an array containing all of the user's friends */
 	public function getFriendsForUser($customer_id)
