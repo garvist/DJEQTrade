@@ -45,7 +45,9 @@ class AboutMeView extends View
 		echo "		<h3>Number of Posts: </h3>";
 		echo "		<p>{$postCount}</p>";
 		echo "		<h3>Relationship</h3>";
-		echo "		<button type=\"button\" onclick=\"alert('Make this function work properly')\">Add Friend</button>";
+		if( $this->db->isloggedInId() != $customer ){
+			echo "		<button type=\"button\" onclick=\"alert('Make this function work properly')\">Add Friend</button>";
+		}
 		echo "		<p>Your Friend<br>Add friend button</p>";
 		echo "";
 		echo "	</div>";
