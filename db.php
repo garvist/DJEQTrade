@@ -400,13 +400,13 @@ class DJEXDB
 	/** Returns an associative array containing the name and email of the customer with the given id */
 	public function getCustomerById($customer_id)
 	{
-		$stmt = $this->con->prepare("SELECT first_name, last_name, email FROM customers WHERE customer_id = ?");
+		$stmt = $this->con->prepare("SELECT first_name, last_name, email, administrator FROM customers WHERE customer_id = ?");
 		$stmt->bind_param("i", $customer_id);
 		$stmt->execute();
-		$stmt->bind_result($first_name, $last_name, $email);
+		$stmt->bind_result($first_name, $last_name, $email, $administrator);
 		$stmt->fetch();
 		
-		return [ "first_name" => $first_name, "last_name" => $last_name, "email" => $email, "customer_id" => $customer_id ];
+		return [ "first_name" => $first_name, "last_name" => $last_name, "email" => $email, "customer_id" => $customer_id, "administrator" => $administrator ];
 	}
 	
 	/** Returns an array of all messages sent to or from the given user */

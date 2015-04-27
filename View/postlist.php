@@ -54,7 +54,9 @@ class PostListView extends View
 
 			if( $this->db->isloggedIn() ){
 				echo "	<span class=\"ad-byline\">Posted by <a href=\"{$profileUrl}\">{$post['first_name']} {$post['last_name']}</a></span>";
-				echo "<button type=\"button\" onclick=\"alert('Make this function work properly')\">Delete Post!</button>";
+				
+				if( $this->db->getCustomerById( $this->db->getLoggedInId() )['administrator'] || $post['customer_id'] == $this->db->getLoggedInId() ) //if this is the user's post, or they are an administrator, show the "Delete Post" button
+					echo "<button type=\"button\" onclick=\"alert('Make this function work properly')\">Delete Post!</button>";
 			}
 			else {
 				echo "	<span class=\"ad-byline\">Posted by {$post['first_name']} {$post['last_name']}</span>";
