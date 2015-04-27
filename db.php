@@ -375,26 +375,10 @@ class DJEXDB
 		$stmt->execute();
 		$stmt->bind_result($post_id, $title, $image_url, $message, $customer_id, $customer_fname, $customer_lname);
 		$stmt->fetch();
+		
 		$post = [ "post_id" => $post_id, "title" => $title, "image_url" => $image_url, "message" => $message, "first_name" => $customer_fname, "last_name" => $customer_lname, "customer_id" => $customer_id ];
 		
-		$posts = [];
-		
-		while( $stmt->fetch() )
-		{
-			//create an associative array for this post
-			
-			
-			//add this post onto the end of our array
-			$posts[] = $post;
-		}
-		
-		$stmt->close();
-		
-		//retrieve tags for each post
-		foreach( $posts as &$post )
-			$post['tags'] = $this->getAllTagsForPost($post['post_id']);
-		
-		return $posts;
+		return $post;
 	}
 	
 	/** Returns an array of all tags for the given post */
