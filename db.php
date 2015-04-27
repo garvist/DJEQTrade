@@ -352,6 +352,35 @@ class DJEXDB
 		
 		return $posts;
 	}
+
+
+	//getAllPostComments
+	/*returns all comments for a post
+	*/
+	public function getAllPostComments($post_id)
+	{
+		$stmt = $this->con->prepare("SELECT post_id,customer_id,date_written,comment_text,customers.first_name,customers.last_name 
+			From Comments, customers WHERE post_id = ? AND Comments.customer_id = customers.customer_id ORDER BY date_written DESC");
+		$stmt->bind_param("i", $post_id);
+		$stmt->execute();
+		$stmt->bind_result($post_id, $customer_id, $date_written, $comment_text, $customer_fname, $customer_lname);
+
+		$comments = [];
+		
+		while( $stmt->fetch() )
+		{
+			//create an associative array for this comment
+			$comment = [ "post_id" => $post_id, "customer_id" => $customer_id, "date_written" => $date_written, "comment_text" => $comment_text, "first_name" => $customer_fname, "last_name" => $customer_lname ];
+			
+			//add this comment onto the end of our array
+			$comments[] = $comment;
+		}
+		
+		$stmt->close();
+
+		return $comments;
+	}
+
 	
 	/** Returns an array of all tags for the given post */
 	public function getAllTagsForPost($post_id)
@@ -519,6 +548,8 @@ class DJEXDB
 		$stmt->close();
 	}
 	
+
+
 	public function sendMessage($from_id, $to_id, $message)
 	{
 		$stmt = $this->con->prepare("INSERT INTO Messages (message, ID_to, ID_from, date_sent, date_opened) VALUES (?, ?, ?, NOW(), '1995-03-04')");
