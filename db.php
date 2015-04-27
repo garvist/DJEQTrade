@@ -36,7 +36,7 @@ class DJEXDB
 			"passwords" => "CREATE TABLE passwords (customer_id INT, FOREIGN KEY (customer_id) REFERENCES customers(customer_id), hash_pass TEXT);",
 			"Posts" => "CREATE TABLE Posts (post_id INT PRIMARY KEY auto_increment, title TEXT, image_url TEXT, message TEXT, from_customer_id INT, FOREIGN KEY (from_customer_id) REFERENCES customers(customer_id));",
 			"Equipment_Tags" => "CREATE TABLE Equipment_Tags (post_id INT, FOREIGN KEY (post_id) REFERENCES Posts(post_id), tag TEXT);",
-			"Comments" => "CREATE TABLE Comments (post_id INT, customer_id INT, FOREIGN KEY (post_id) REFERENCES Posts(post_id), FOREIGN KEY (customer_id) REFERENCES customer(customer_id), date_written DATETIME, comment_text TEXT);",
+			"Comments" => "CREATE TABLE Comments (post_id INT, customer_id INT, FOREIGN KEY (post_id) REFERENCES Posts(post_id), FOREIGN KEY (customer_id) REFERENCES customers(customer_id), date_written DATETIME, comment_text TEXT);",
 			"Messages" => "CREATE TABLE Messages (message TEXT, ID_to INT, ID_from INT, FOREIGN KEY (ID_to) REFERENCES customers(customer_id), FOREIGN KEY (ID_from) REFERENCES customers(customer_id), date_sent DATETIME, date_opened DATETIME );",
 			"Friends" => "CREATE TABLE Friends (customer_id INT, friend_id INT, FOREIGN KEY (customer_id) REFERENCES customers(customer_id), FOREIGN KEY (friend_id) REFERENCES customers(customer_id) );",
 			"Log_in_State" => "CREATE TABLE Log_in_State (customer_id INT, FOREIGN KEY (customer_id) REFERENCES customers(customer_id), date_issued DATETIME, cookie TEXT, last_interaction DATETIME);",
@@ -518,7 +518,7 @@ class DJEXDB
 			return ["success" => false];
 
 		//remove the comments from the post
-		$stmt = $this->con->prepare("DELETE FROM comments WHERE post_id = ?");
+		$stmt = $this->con->prepare("DELETE FROM Comments WHERE post_id = ?");
 		$stmt->bind_param("i", $post_id);
 		$stmt->execute();
 		$stmt->close();
