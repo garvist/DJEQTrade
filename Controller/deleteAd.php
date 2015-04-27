@@ -30,7 +30,7 @@ class DeleteAdController extends Controller
 			//make sure that the user is an administrator or owns the post
 			$customer = $this->db->getCustomerById( $this->db->getLoggedInId() );
 			$post = $this->db->getPostById($post_id);
-			if( !$customer['administrator'] && $post['customer_id'] != $customer['customer_id'] )
+			if( !$customer['administrator'] && $post['customer_id'] != $this->db->getLoggedInId() )
 				die("You can only delete posts that you own");
 			
 			//delete the post
