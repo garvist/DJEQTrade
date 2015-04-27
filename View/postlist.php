@@ -69,7 +69,7 @@ class PostListView extends View
 			}
 
 			echo"<h3>Comments</h3>";
-				foreach( $this->db->getAllPostComments($post) as $comment){
+				foreach( $this->db->getAllPostComments($post['post_id']) as $comment){
 
 					echo "<div class=\"comment\">";
 					echo "	<h2>Author: {$comment['first_name']} {$comment['last_name']}</h2>";
