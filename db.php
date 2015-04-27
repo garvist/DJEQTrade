@@ -415,7 +415,6 @@ class DJEXDB
 		$stmt = $this->con->prepare("SELECT message, date_sent, date_opened, ID_from, ID_to, F.first_name AS first_name_from, F.last_name AS last_name_from, T.first_name AS first_name_to, T.last_name AS last_name_to
 		FROM Messages, customers AS F, customers AS T
 		WHERE (ID_to = ? OR ID_from = ?) AND (F.customer_id = ID_from) AND (T.customer_id = ID_to)
-		GROUP BY date_opened
 		ORDER BY date_sent DESC
 		");
 		$stmt->bind_param("ii", $customer_id, $customer_id);
@@ -500,7 +499,6 @@ class DJEXDB
 
 		$stmt->close();
 
-
 		//remove the post
 		$stmt = $this->con->prepare("DELETE FROM Posts WHERE post_id = ?");
 		$stmt->bind_param("i", $post_id);
@@ -509,8 +507,6 @@ class DJEXDB
 
 		$stmt->close();
 	}
-
-
 	
 	public function sendMessage($from_id, $to_id, $message)
 	{
