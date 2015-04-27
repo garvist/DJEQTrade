@@ -527,7 +527,7 @@ class DJEXDB
 			return ["success" => false];
 
 		//remove the comments from the post
-		$stmt = $this->con->prepare("DELETE FROM Comments WHERE post_id = ?");
+		$stmt = $this->con->prepare("DELETE FROM comments WHERE post_id = ?");
 		$stmt->bind_param("i", $post_id);
 		$stmt->execute();
 		$stmt->close();
