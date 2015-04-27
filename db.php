@@ -36,7 +36,7 @@ class DJEXDB
 			"passwords" => "CREATE TABLE passwords (customer_id INT, FOREIGN KEY (customer_id) REFERENCES customers(customer_id), hash_pass TEXT);",
 			"Posts" => "CREATE TABLE Posts (post_id INT PRIMARY KEY auto_increment, title TEXT, image_url TEXT, message TEXT, from_customer_id INT, FOREIGN KEY (from_customer_id) REFERENCES customers(customer_id));",
 			"Equipment_Tags" => "CREATE TABLE Equipment_Tags (post_id INT, FOREIGN KEY (post_id) REFERENCES Posts(post_id), tag TEXT);",
-			"Comments" => "CREATE TABLE Comments (post_id INT, customer_id INT, FOREIGN KEY (post_id) REFERENCES Posts(post_id), FOREIGN KEY (customer_id) REFERENCES customer(customer_id), date_written DATETIME, comment_text TEXT);",
+			"Comments" => "CREATE TABLE Comments (post_id INT, customer_id INT, FOREIGN KEY (post_id) REFERENCES Posts(post_id), FOREIGN KEY (customer_id) REFERENCES customers(customer_id), date_written DATETIME, comment_text TEXT);",
 			"Messages" => "CREATE TABLE Messages (message TEXT, ID_to INT, ID_from INT, FOREIGN KEY (ID_to) REFERENCES customers(customer_id), FOREIGN KEY (ID_from) REFERENCES customers(customer_id), date_sent DATETIME, date_opened DATETIME );",
 			"Friends" => "CREATE TABLE Friends (customer_id INT, friend_id INT, FOREIGN KEY (customer_id) REFERENCES customers(customer_id), FOREIGN KEY (friend_id) REFERENCES customers(customer_id) );",
 			"Log_in_State" => "CREATE TABLE Log_in_State (customer_id INT, FOREIGN KEY (customer_id) REFERENCES customers(customer_id), date_issued DATETIME, cookie TEXT, last_interaction DATETIME);",
@@ -348,7 +348,21 @@ class DJEXDB
 		
 		//retrieve tags for each post
 		foreach( $posts as &$post )
-			$post['tags'] = $this->getAllTagsForPost($post['post_id']);
+		{
+			$tags = [];
+			
+			$stmt = $this->con->prepare("SELECT tag FROM Equipment_Tags WHERE post_id = ?");
+			$stmt->bind_param("i", $post['post_id']);
+			$stmt->execute();
+			$stmt->bind_result($tag);
+			
+			while( $stmt->fetch() ) //loop through all tags for this post
+				$tags[] = $tag; //push this tag onto the array
+			
+			$post['tags'] = $tags;
+			
+			$stmt->close();
+		}
 		
 		return $posts;
 	}
@@ -382,6 +396,20 @@ class DJEXDB
 	}
 
 	
+	/** Returns the post with the given ID */
+	public function getPostById($post_id)
+	{
+		$stmt = $this->con->prepare("SELECT post_id,title,image_url,message,customers.customer_id,customers.first_name,customers.last_name From Posts, customers WHERE Posts.from_customer_id = customers.customer_id AND Posts.post_id = ? ORDER BY post_id DESC");
+		$stmt->bind_param("i", $post_id);
+		$stmt->execute();
+		$stmt->bind_result($post_id, $title, $image_url, $message, $customer_id, $customer_fname, $customer_lname);
+		$stmt->fetch();
+		
+		$post = [ "post_id" => $post_id, "title" => $title, "image_url" => $image_url, "message" => $message, "first_name" => $customer_fname, "last_name" => $customer_lname, "customer_id" => $customer_id ];
+		
+		return $post;
+	}
+	
 	/** Returns an array of all tags for the given post */
 	public function getAllTagsForPost($post_id)
 	{
@@ -398,6 +426,15 @@ class DJEXDB
 		$stmt->close();
 		
 		return $tags;
+	}
+
+	/** Creates a friend */
+	Public function createFriend($customer_id, $friend_id){
+		$stmt = $this->con->prepare("INSERT INTO Friends (customer_id, friend_id) VALUES (?, ?)");
+		$stmt->bind_param("ii", $customer_id, $friend_id);
+		$stmt->execute();
+		$stmt->close();
+
 	}
 	
 	/** Returns an array containing all of the user's friends */
@@ -434,8 +471,6 @@ class DJEXDB
 		}
 		return false;
 	}
-
-
 	
 	/** Returns an associative array containing the name and email of the customer with the given id */
 	public function getCustomerById($customer_id)
@@ -519,17 +554,15 @@ class DJEXDB
 	 */
 	public function deletePost($post_id)
 	{
-
 		//return false if we aren't logged in
 		if( !$this->isLoggedIn() )
 			return ["success" => false];
-
-		//if post.from_customer_id matches loggedInID - you can remove the post
-		//-------IMPLEMENT-------
-
-		//if loggedInID is an administrator - you can remove the psot
-		//-------IMPLEMENT-------
-
+		
+		//make sure that the user is an administrator or owns the post
+		$customer = $this->getCustomerById( $this->getLoggedInId() );
+		$post = $this->getPostById($post_id);
+		if( !$customer['administrator'] && $post['customer_id'] != $this->getLoggedInId() )
+			return ["success" => false];
 
 		//remove the comments from the post
 		$stmt = $this->con->prepare("DELETE FROM Comments WHERE post_id = ?");
@@ -537,15 +570,13 @@ class DJEXDB
 		$stmt->execute();
 		$stmt->close();
 
-		$stmt->close();
-
 		//remove the post
 		$stmt = $this->con->prepare("DELETE FROM Posts WHERE post_id = ?");
 		$stmt->bind_param("i", $post_id);
 		$stmt->execute();
 		$stmt->close();
-
-		$stmt->close();
+		
+		return ["success" => true ];
 	}
 	
 
