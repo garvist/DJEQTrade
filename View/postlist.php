@@ -52,9 +52,7 @@ class PostListView extends View
 			echo "	";
 			echo "	<img src=\"{$post['image_url']}\" width=\"150\" />";
 
-			$this->db->checkLoginState();
-			if($this->loggedIn == true){
-
+			if( $this->db->isloggedIn() ){
 				echo "	<span class=\"ad-byline\">Posted by <a href=\"{$profileUrl}\">{$post['first_name']} {$post['last_name']}</a></span>";
 			}
 			else {
