@@ -44,11 +44,14 @@ class AboutMeView extends View
 		echo "		<p>{$friendCount}</p>";
 		echo "		<h3>Number of Posts: </h3>";
 		echo "		<p>{$postCount}</p>";
-		echo "		<h3>Relationship</h3>";
 		if( $this->db->getLoggedInId() != $customer['customer_id'] ){
-			echo "		<button type=\"button\" onclick=\"alert('Make this function work properly')\">Add Friend</button>";
+			echo "		<h3>Relationship</h3>";
+			if($this->db->isFriend($customer['customer_id']) == false){
+				echo "		<button type=\"button\" onclick=\"alert('Make this function work properly')\">Add Friend</button>";	
+			}else{
+				echo "		<p>Your Friend<br>Add friend button</p>";
+			}
 		}
-		echo "		<p>Your Friend<br>Add friend button</p>";
 		echo "";
 		echo "	</div>";
 		echo "</div>";
