@@ -373,9 +373,9 @@ class DJEXDB
 	*/
 	public function getAllPostComments($post_id)
 	{
-		$stmt = $this->con->prepare("SELECT post_id,customer_id,date_written,comment_text,customers.first_name,customers.last_name 
+		$stmt = $this->con->prepare("SELECT post_id,customers.customer_id,date_written,comment_text,customers.first_name,customers.last_name 
 			From Comments, customers WHERE post_id = ? AND Comments.customer_id = customers.customer_id ORDER BY date_written DESC");
-		$stmt->bind_param("ii", $post_id, $customer_id );
+		$stmt->bind_param("i", $post_id );
 		$stmt->execute();
 		$stmt->bind_result($post_id, $customer_id, $date_written, $comment_text, $customer_fname, $customer_lname);
 
@@ -566,6 +566,12 @@ class DJEXDB
 
 		//remove the comments from the post
 		$stmt = $this->con->prepare("DELETE FROM Comments WHERE post_id = ?");
+		$stmt->bind_param("i", $post_id);
+		$stmt->execute();
+		$stmt->close();
+		
+		//remove the equipment tags from the post
+		$stmt = $this->con->prepare("DELETE FROM Equipment_Tags WHERE post_id = ?");
 		$stmt->bind_param("i", $post_id);
 		$stmt->execute();
 		$stmt->close();
