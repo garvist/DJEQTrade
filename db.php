@@ -569,6 +569,12 @@ class DJEXDB
 		$stmt->bind_param("i", $post_id);
 		$stmt->execute();
 		$stmt->close();
+		
+		//remove the equipment tags from the post
+		$stmt = $this->con->prepare("DELETE FROM Equipment_Tags WHERE post_id = ?");
+		$stmt->bind_param("i", $post_id);
+		$stmt->execute();
+		$stmt->close();
 
 		//remove the post
 		$stmt = $this->con->prepare("DELETE FROM Posts WHERE post_id = ?");

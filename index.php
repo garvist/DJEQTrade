@@ -2,20 +2,12 @@
 
 //website TODO list
 
-//send/recieve messages not working
-//message list - view sent messages
-
 //aboutFriend - view if user is a friend or not
 //aboutFriend - add user as friend
 //rate user functionality
 
 //user reviews
 //post comments
-
-//delete your own post
-//administrator privledges 
-//--^if statements in db.php for deletePost
-
 
 
 
