@@ -370,12 +370,12 @@ class DJEXDB
 	/** Returns the post with the given ID */
 	public function getPostById($post_id)
 	{
-		$stmt = $this->con->prepare("SELECT post_id,title,image_url,message,customers.first_name,customers.last_name From Posts, customers WHERE Posts.from_customer_id = customers.customer_id AND Posts.post_id = ? ORDER BY post_id DESC");
+		$stmt = $this->con->prepare("SELECT post_id,title,image_url,message,customers.customer_id,customers.first_name,customers.last_name From Posts, customers WHERE Posts.from_customer_id = customers.customer_id AND Posts.post_id = ? ORDER BY post_id DESC");
 		$stmt->bind_param("i", $post_id);
 		$stmt->execute();
-		$stmt->bind_result($post_id, $title, $image_url, $message, $customer_fname, $customer_lname);
+		$stmt->bind_result($post_id, $title, $image_url, $message, $customer_id, $customer_fname, $customer_lname);
 		$stmt->fetch();
-		$post = [ "post_id" => $post_id, "title" => $title, "image_url" => $image_url, "message" => $message, "first_name" => $customer_fname, "last_name" => $customer_lname ];
+		$post = [ "post_id" => $post_id, "title" => $title, "image_url" => $image_url, "message" => $message, "first_name" => $customer_fname, "last_name" => $customer_lname, "customer_id" => $customer_id ];
 		
 		$posts = [];
 		
