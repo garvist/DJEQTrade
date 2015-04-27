@@ -67,6 +67,16 @@ class PostListView extends View
 			else {
 				echo "	<span class=\"ad-byline\">Posted by {$post['first_name']} {$post['last_name']}</span>";
 			}
+
+			
+				foreach( $this->db->getAllPostComments($post) as $comment){
+
+					echo "<div class=\"comments\">";
+					echo "	<h2>Author: {$comment['first_name']} {$comment['last_name']}</h2>";
+					echo "	<p>Date Written: {$comment['date_written']}<br>{$comment['comment_text']}</p>";
+					echo "</div>";
+				}
+
 			echo "	</div>";
 		}
 		

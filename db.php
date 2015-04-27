@@ -36,7 +36,7 @@ class DJEXDB
 			"passwords" => "CREATE TABLE passwords (customer_id INT, FOREIGN KEY (customer_id) REFERENCES customers(customer_id), hash_pass TEXT);",
 			"Posts" => "CREATE TABLE Posts (post_id INT PRIMARY KEY auto_increment, title TEXT, image_url TEXT, message TEXT, from_customer_id INT, FOREIGN KEY (from_customer_id) REFERENCES customers(customer_id));",
 			"Equipment_Tags" => "CREATE TABLE Equipment_Tags (post_id INT, FOREIGN KEY (post_id) REFERENCES Posts(post_id), tag TEXT);",
-			"Comments" => "CREATE TABLE Comments (post_id INT, customer_id INT, FOREIGN KEY (post_id) REFERENCES Posts(post_id), FOREIGN KEY (customer_id) REFERENCES customer(customer_id), date_written DATETIME, comment_text TEXT);",
+			"Comments" => "CREATE TABLE Comments (post_id INT, customer_id INT, FOREIGN KEY (post_id) REFERENCES Posts(post_id), FOREIGN KEY (customer_id) REFERENCES customers(customer_id), date_written DATETIME, comment_text TEXT);",
 			"Messages" => "CREATE TABLE Messages (message TEXT, ID_to INT, ID_from INT, FOREIGN KEY (ID_to) REFERENCES customers(customer_id), FOREIGN KEY (ID_from) REFERENCES customers(customer_id), date_sent DATETIME, date_opened DATETIME );",
 			"Friends" => "CREATE TABLE Friends (customer_id INT, friend_id INT, FOREIGN KEY (customer_id) REFERENCES customers(customer_id), FOREIGN KEY (friend_id) REFERENCES customers(customer_id) );",
 			"Log_in_State" => "CREATE TABLE Log_in_State (customer_id INT, FOREIGN KEY (customer_id) REFERENCES customers(customer_id), date_issued DATETIME, cookie TEXT, last_interaction DATETIME);",
@@ -366,6 +366,35 @@ class DJEXDB
 		
 		return $posts;
 	}
+
+
+	//getAllPostComments
+	/*returns all comments for a post
+	*/
+	public function getAllPostComments($post_id)
+	{
+		$stmt = $this->con->prepare("SELECT post_id,customer_id,date_written,comment_text,customers.first_name,customers.last_name 
+			From Comments, customers WHERE post_id = ? AND Comments.customer_id = customers.customer_id ORDER BY date_written DESC");
+		$stmt->bind_param("ii", $post_id, $customer_id );
+		$stmt->execute();
+		$stmt->bind_result($post_id, $customer_id, $date_written, $comment_text, $customer_fname, $customer_lname);
+
+		$comments = [];
+		
+		while( $stmt->fetch() )
+		{
+			//create an associative array for this comment
+			$comment = [ "post_id" => $post_id, "customer_id" => $customer_id, "date_written" => $date_written, "comment_text" => $comment_text, "first_name" => $customer_fname, "last_name" => $customer_lname ];
+			
+			//add this comment onto the end of our array
+			$comments[] = $comment;
+		}
+		
+		$stmt->close();
+
+		return $comments;
+	}
+
 	
 	/** Returns the post with the given ID */
 	public function getPostById($post_id)
@@ -536,7 +565,7 @@ class DJEXDB
 			return ["success" => false];
 
 		//remove the comments from the post
-		$stmt = $this->con->prepare("DELETE FROM comments WHERE post_id = ?");
+		$stmt = $this->con->prepare("DELETE FROM Comments WHERE post_id = ?");
 		$stmt->bind_param("i", $post_id);
 		$stmt->execute();
 		$stmt->close();
@@ -550,6 +579,8 @@ class DJEXDB
 		return ["success" => true ];
 	}
 	
+
+
 	public function sendMessage($from_id, $to_id, $message)
 	{
 		$stmt = $this->con->prepare("INSERT INTO Messages (message, ID_to, ID_from, date_sent, date_opened) VALUES (?, ?, ?, NOW(), '1995-03-04')");
