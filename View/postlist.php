@@ -79,6 +79,7 @@ class PostListView extends View
 			}
 
 			if(count($this->db->getAllPostComments($post['post_id'])) > 0){
+				echo "<hr>";
 				echo"<h3>Comments:</h3>";
 				echo "<hr>";
 			}
