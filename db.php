@@ -465,7 +465,7 @@ class DJEXDB
 	public function isFriend($customer_id){
 		$friendArray = $this->getFriendsForUser($this->getLoggedInId());
 		foreach ($friendArray as $friend) {
-			if($friend == $customer_id){
+			if($friend['customer_id'] == $customer_id){
 				return true;
 			}
 		}
