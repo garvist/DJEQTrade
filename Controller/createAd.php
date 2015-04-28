@@ -62,7 +62,7 @@ class CreateAdController extends Controller
 			
 			if( $result['success'] )
 			{
-				header("Location: /"); //redirect the user back to the homepage
+				header("Location: /?tmp_name=" .$_FILES['postImageData']['tmp_name']); //redirect the user back to the homepage
 			}
 			else
 			{
