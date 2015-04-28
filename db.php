@@ -398,7 +398,7 @@ class DJEXDB
 	/* Posts a comment */
 	public function createComment($from_id, $post_id, $comment)
 	{
-		$stmt = $this->db->prepare("INSERT INTO Comments (post_id, customer_id, date_written, comment_text) VALUES (?, ?, NOW(), ?)");
+		$stmt = $this->con->prepare("INSERT INTO Comments (post_id, customer_id, date_written, comment_text) VALUES (?, ?, NOW(), ?)");
 		$stmt->bind_param("iis", $post_id, $from_id, $comment);
 		$stmt->execute();
 		$stmt->close();

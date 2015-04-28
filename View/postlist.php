@@ -73,7 +73,6 @@ class PostListView extends View
 					echo "	Write a Comment: <br><textarea name='message' form='comment'></textarea>";
 					echo "	<br><input type=\"submit\" value=\"Post Comment\">";
 					echo "</form>";
-					echo "<p>warren make this work!</p>";
 				}
 			}
 			else {
