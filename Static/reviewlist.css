@@ -1,11 +1,11 @@
 .review-page {
 	margin-left: 5%;
 	margin-bottom: 1em;
+	position: absolute;
+	left: 50%;
 }
 
 .review-list{
-	position: absolute;
-	left: 50%;
 	width: 40%;
 	padding: 15px;
 	padding-bottom: 30px;
