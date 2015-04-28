@@ -83,10 +83,10 @@ class AboutMeView extends View
 
 		//write review
 		if ( $customer_id != $this->db->getLoggedInId() ) {
-			echo "<form action=\"/\" method='post' id=\"review\">";
+			echo "<form action=\"/\" method='post'>";
 			echo "  <input type='hidden' name='c' value='create review' />";
 			echo "  <input type='hidden' name='target_id' value='{$customer_id}' />";
-			echo "	Write a Review for this User: <br><textarea name='message' form='comment'></textarea>";
+			echo "	Write a Review for this User: <br><textarea name='message'></textarea>";
 			echo "	<br>Rating (0-5):<br><input type=\"text\" name=\"rating\">";
 			echo "	<br><input type=\"submit\" value=\"Post Review\">";
 			echo "</form>";
