@@ -45,7 +45,7 @@ class AboutMeView extends View
 		echo "		<h3>Number of Posts: </h3>";
 		echo "		<p>{$postCount}</p>";
 		if( $this->db->getLoggedInId() != $customer['customer_id'] ){
-			echo "		<h3>Relationship</h3>";
+			echo "		<h3>Relationship:</h3>";
 			if($this->db->isFriend($customer['customer_id']) == false){
 		echo "	<form action=/ method=post>";
 		echo "		<input type = hidden name=c value=createFriend />";
