@@ -40,21 +40,32 @@ class MessagesView extends View
 				case "sent":
 					$profileUrl = '/?c=profile&id=' .$msg['id_to'];
 					echo "To: <a href='{$profileUrl}'>{$msg['first_name_to']} {$msg['last_name_to']}</a>";
+					echo "	</h1>";
+					echo "	<div class=\"messages-meta\">";
+					echo "		<span>Message sent: {$msg['date_sent']}</span>";
+					echo "	</div>";
+					echo "	";
+					echo "	<p class=\"messages-description\">";
+					echo "	{$msg['message']}";
+					echo "	</p>";
 					break;
 				case "recv":
 					$profileUrl = '/?c=profile&id=' .$msg['id_from'];
 					echo "From: <a href='{$profileUrl}'>{$msg['first_name_from']} {$msg['last_name_from']}</a>";
+					echo "	</h1>";
+					echo "	<div class=\"messages-meta\">";
+					echo "		<span>Message sent: {$msg['date_sent']}</span>";
+					echo "	</div>";
+					echo "	";
+					echo "	<p class=\"messages-description\">";
+					echo "	{$msg['message']}";
+					echo "	</p>";
+
+					echo " (<a href=\"/?c=send message&id={$msg['id_from']}\">Reply</a>)";
 					break;
 			}
 			
-			echo "	</h1>";
-			echo "	<div class=\"messages-meta\">";
-			echo "		<span>Message sent: {$msg['date_sent']}</span>";
-			echo "	</div>";
-			echo "	";
-			echo "	<p class=\"messages-description\">";
-			echo "	{$msg['message']}";
-			echo "	</p>";
+			
 			echo "	</div>";
 		}
 		echo "</div>";
