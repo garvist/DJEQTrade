@@ -48,7 +48,7 @@ switch( $controller_name )
 		require_once 'Controller/friends.php';
 		$controller = new FriendsController();
 		break;
-	case "createFriends":
+	case "createFriend":
 		require_once 'Controller/createFriends.php';
 		$controller = new CreateFriendsController();
 		break;
