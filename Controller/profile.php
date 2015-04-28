@@ -59,8 +59,8 @@ class ProfileController extends Controller
 		echo "</div>";
 		$this->nav_view->outputHTML();
 		$this->aboutMe_view->outputHTML();
-		$this->myAdsList_view->outputHTML();
 		$this->reviewsList_view->outputHTML();
+		$this->myAdsList_view->outputHTML();
 	}
 }
 ?>
