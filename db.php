@@ -394,6 +394,15 @@ class DJEXDB
 
 		return $comments;
 	}
+	
+	/* Posts a comment */
+	public function createComment($from_id, $post_id, $comment)
+	{
+		$stmt = $this->con->prepare("INSERT INTO Comments (post_id, customer_id, date_written, comment_text) VALUES (?, ?, NOW(), ?)");
+		$stmt->bind_param("iis", $post_id, $from_id, $comment);
+		$stmt->execute();
+		$stmt->close();
+	}
 
 	
 	/** Returns the post with the given ID */
