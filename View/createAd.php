@@ -30,12 +30,12 @@ class CreateAdView extends View
 		echo "		<h1>Create an Advertisement</h1>";
 		echo "	</div>";
 		echo "	<div class=\"form\">";
-		echo "		<form action=\"/\" method='post' id=\"createAdForm\">";
+		echo "		<form action=\"/\" method='post' id=\"createAdForm\" enctype='multipart/form-data'>";
 		echo "			<input type='text' name='c' value='create ad' style='display: none' />";
 		echo "			Title:<br><input type=\"text\" name=\"postTitle\"><br>";
 		echo "			tags (for search): <br><input type=\"text\" name=\"postTags\"><br>";
 		echo "			Image url:<br><input type\"text\" name=\"postImage\"><br>";
-		echo "			<input type='hidden' name='MAX_FILE_SIZE' value='30000' />";
+		echo "			<input type='hidden' name='MAX_FILE_SIZE' value='2097152' />";
 		echo "			Image: <br><input type='file' name='postImageData' />";
 		echo "			<br>Description:<br>";
 		echo "			<textarea rows=\"6\" cols=\"50\" name=\"postDescription\" form=\"createAdForm\">Enter text here...</textarea><br>";

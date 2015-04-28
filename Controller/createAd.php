@@ -26,16 +26,13 @@ class CreateAdController extends Controller
 	
 	public function executeBefore()
 	{
-		$maxUploadFileSize = 1024 * 30;
+		$maxUploadFileSize = 1024 * 1024 * 2;
 		
 		//is the user submitting an ad?
 		if( isset($_POST['postTitle']) ) //yep
 		{
 			if( $_FILES['postImageData']['size'] < 0 && $_FILES['postImageData']['size'] > $maxUploadFileSize )
 				die("The image you uploaded was too large");
-			
-			if( $_FILES['postImageData']['size'] == 0 )
-				die("You didn't upload an image");
 			
 			if( $_FILES['postImageData']['error'] > 0 )
 			{
@@ -44,9 +41,12 @@ class CreateAdController extends Controller
 					case UPLOAD_ERR_INI_SIZE:
 						die("File is too large");
 					default:
-						die("Error uploading image");
+						die("Error uploading image: error code = " .$_FILES['postImageData']['error']);
 				}
 			}
+			
+			if( $_FILES['postImageData']['size'] == 0 )
+				die("You didn't upload an image");
 			
 			$post_title = $_POST['postTitle'];
 			$post_tags = $_POST['postTags'];
@@ -62,7 +62,7 @@ class CreateAdController extends Controller
 			
 			if( $result['success'] )
 			{
-				header("Location: /"); //redirect the user back to the homepage
+				header("Location: /?tmp_name=" .$_FILES['postImageData']['tmp_name']); //redirect the user back to the homepage
 			}
 			else
 			{
