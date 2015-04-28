@@ -75,7 +75,7 @@ class PostListView extends View
 				foreach( $this->db->getAllPostComments($post['post_id']) as $comment){
 
 					echo "<div class=\"comment\">";
-					echo "<hr>"
+					echo "<hr>";
 					echo "	<h4>Author: {$comment['first_name']} {$comment['last_name']}</h4>";
 					echo "	<p>Date Written: {$comment['date_written']}<br>{$comment['comment_text']}</p>";
 					echo "</div>";
