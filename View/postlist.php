@@ -55,6 +55,7 @@ class PostListView extends View
 			if( $this->db->isloggedIn() ){
 				echo "	<span class=\"ad-byline\">Posted by <a href=\"{$profileUrl}\">{$post['first_name']} {$post['last_name']}</a></span>";
 				
+				//delete post - admin and user's own post
 				if( $this->db->getCustomerById( $this->db->getLoggedInId() )['administrator'] || $post['customer_id'] == $this->db->getLoggedInId() ) //if this is the user's post, or they are an administrator, show the "Delete Post" button
 				{
 					echo "<form action='/' method='post'>";
@@ -62,6 +63,15 @@ class PostListView extends View
 					echo "<input type=\"hidden\" name=\"postId\" value=\"{$post['post_id']}\">";
 					echo "<input type=\"submit\" value=\"Delete Post!\">";
 					echo "</form>";
+				}
+
+				//write comment
+				if ( $post['customer_id'] != $this->db->getLoggedInId() ) {
+					echo "<form action=\"/\" method='post' id=\"comment\">";
+					echo "	Comment: <textarea name='message' form='comment'></textarea>";
+					echo "	<input type=\"submit\" value=\"Post Comment\">";
+					echo "</form>";
+					echo "<p>warren make this work!</p>";
 				}
 			}
 			else {
