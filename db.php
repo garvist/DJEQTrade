@@ -553,7 +553,7 @@ class DJEXDB
 		$stmt = $this->con->prepare("INSERT INTO Posts (title, image_data, message, from_customer_id) VALUES (?, ?, ?, ?)");
 		$null = NULL;
 		$stmt->bind_param("sbsi", $title, $null, $message, $this->getLoggedInId());
-		$stmt->send_long_data(0, $image_file_data);
+		$stmt->send_long_data(1, $image_file_data);
 		$stmt->execute();
 		
 		$post_id = $this->con->insert_id;
