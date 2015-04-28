@@ -38,7 +38,7 @@ switch( $controller_name )
 		break;
 	case "create review":
 		require_once 'Controller/createReview.php';
-		$controller = new CreateCommentController();
+		$controller = new CreateReviewController();
 		break;
 	case "create account":
 		require_once 'Controller/createAccount.php';

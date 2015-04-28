@@ -4,7 +4,7 @@ require_once 'Controller/Controller.php'; //defines Controller class
 require_once 'View/navigation.php'; //defines NavigationView
 require_once 'View/createAd.php';
 
-class CreateCommentController extends Controller
+class CreateReviewController extends Controller
 {
 	//the constructor for this controller class
 	function __construct()
