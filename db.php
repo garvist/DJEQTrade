@@ -287,16 +287,16 @@ class DJEXDB
 	/** Returns an array of all posts */
 	public function getAllPosts()
 	{
-		$stmt = $this->con->prepare("SELECT post_id,title,image_url,message,customers.first_name,customers.last_name, customers.customer_id From Posts, customers WHERE Posts.from_customer_id = customers.customer_id ORDER BY post_id DESC");
+		$stmt = $this->con->prepare("SELECT post_id,title,image_data,message,customers.first_name,customers.last_name, customers.customer_id From Posts, customers WHERE Posts.from_customer_id = customers.customer_id ORDER BY post_id DESC");
 		$stmt->execute();
-		$stmt->bind_result($post_id, $title, $image_url, $message, $customer_fname, $customer_lname, $customer_id);
+		$stmt->bind_result($post_id, $title, $image_data, $message, $customer_fname, $customer_lname, $customer_id);
 		
 		$posts = [];
 		
 		while( $stmt->fetch() )
 		{
 			//create an associative array for this post
-			$post = [ "post_id" => $post_id, "title" => $title, "image_url" => $image_url, "message" => $message, "first_name" => $customer_fname, "last_name" => $customer_lname, "customer_id" => $customer_id ];
+			$post = [ "post_id" => $post_id, "title" => $title, "image_data" => $image_data, "message" => $message, "first_name" => $customer_fname, "last_name" => $customer_lname, "customer_id" => $customer_id ];
 			
 			//add this post onto the end of our array
 			$posts[] = $post;
