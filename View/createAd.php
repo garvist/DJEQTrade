@@ -34,7 +34,7 @@ class CreateAdView extends View
 		echo "			<input type='text' name='c' value='create ad' style='display: none' />";
 		echo "			Title:<br><input type=\"text\" name=\"postTitle\"><br>";
 		echo "			tags (for search): <br><input type=\"text\" name=\"postTags\"><br>";
-		echo "			Image url:<br><input type\"text\" name=\"postImage\"><br>";
+		//echo "			Image url:<br><input type\"text\" name=\"postImage\"><br>";
 		echo "			<input type='hidden' name='MAX_FILE_SIZE' value='2097152' />";
 		echo "			Image: <br><input type='file' name='postImageData' />";
 		echo "			<br>Description:<br>";
