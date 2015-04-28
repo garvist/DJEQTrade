@@ -35,7 +35,7 @@ class CreateCommentController extends Controller
 			
 			$this->db->createReview($this->db->getLoggedInId(), $target_id, $rating, $message);
 			
-			header("Location: /"); //redirect the user back to the homepage
+			header("Location: /?c=profile&id=" .$target_id); //redirect the user back to the profile page
 		}
 	}
 }
