@@ -49,7 +49,7 @@ class ProfileController extends Controller
 
 
 		echo "<div class=\"welcome\">"; //this can go in nav.php 
-		if( $customer['customer_id'] = $this->db->getLoggedInID()){
+		if( $customer['customer_id'] == $this->db->getLoggedInID()){
 			echo "	<h1>My Profile - {$customer['first_name']} {$customer['last_name']}</h1>";
 		}else{
 			echo "	<h1>User Profile - {$customer['first_name']} {$customer['last_name']}</h1>";
