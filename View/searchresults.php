@@ -16,7 +16,7 @@ class SearchResultsView extends View
 	/** Returns an array of CSS files that this view needs */
 	public function requiredCSS()
 	{
-		return ["/Static/main.css", "/Static/postlist.css"];
+		return ["/Static/main.css", "/Static/searchresultslist.css"];
 	}
 	
 	/** Outputs this view's HTML */
