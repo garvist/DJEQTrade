@@ -471,6 +471,17 @@ class DJEXDB
 		}
 		return false;
 	}
+
+	/*this is not implemented.. not necessary
+	//getMutualFriends
+	public function getMutualFriends($customer_id){
+		$friendArray = $this->db->getFriendsForUser( $this->db->getLoggedInId() );//my friends
+		foreach($friendArray as $friend_FriendArray->db->getFriendsForUser( $this->db->$customer_id)) { //friend's friends
+
+		} 
+
+	}
+	*/
 	
 	/** Returns an associative array containing the name and email of the customer with the given id */
 	public function getCustomerById($customer_id)

@@ -53,7 +53,16 @@ class AboutMeView extends View
 		echo "		<input type=\"submit\" value=\"add Friend\" />";	
 		echo "	</from>";
 			}else{
-		echo "	<p>Your Friend</p>";
+				echo "	<p>Your Friend</p>";
+				echo "<h3>Mutual Friends</h3>";
+				foreach( $this->db->getFriendsForUser( $this->db->$customer['customer_id'] ) as $friend )
+				{
+					$profileUrl = '/?c=profile&id=' .$friend['customer_id'];
+					echo "			<li>";
+					echo "<a href=\"{$profileUrl}\">{$friend['first_name']} {$friend['last_name']}</a>";
+					echo " (<a href=\"/?c=send message&id={$friend['customer_id']}\">Send a message</a>)";
+					echo "</li>";
+				}
 			}
 		}
 		echo "";
