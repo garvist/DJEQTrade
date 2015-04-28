@@ -49,7 +49,7 @@ class AboutMeView extends View
 			if($this->db->isFriend($customer['customer_id']) == false){
 		echo "	<form action=/ method=post>";
 		echo "		<input type = hidden name=c value=createFriend />";
-		echo "		<input type = hidden name=friendID value= {$customer['customer_id']} />";
+		echo "		<input type = hidden name=friend_id value= {$customer['customer_id']} />";
 		echo "		<input type=\"submit\" value=\"add Friend\" />";	
 		echo "	</from>";
 			}else{
