@@ -43,27 +43,27 @@
 	padding: 13px;
 }
 
-.ad .ad-title {
+.result .result-title {
 	margin-top: 0.25em;
 	margin-bottom: 0;
 }
 
-.ad .ad-meta span {
+.result .result-meta span {
 	font-size: 13px;
 	border-right: solid 1px black;
 	padding-right: 7px;
 	padding-left: 7px;
 }
 
-.ad .ad-meta span:last-child {
+.result .result-meta span:last-child {
 	border-right: none;
 }
 
-.ad p.ad-description {
+.result p.result-description {
 	vertical-align: top;
 }
 
-.ad .ad-byline {
+.result .result-byline {
 	display: block;
 	border-bottom: solid 2px black;
 	padding-top: 0.25em;
