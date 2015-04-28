@@ -68,8 +68,8 @@ class PostListView extends View
 				//write comment
 				if ( $post['customer_id'] != $this->db->getLoggedInId() ) {
 					echo "<form action=\"/\" method='post' id=\"comment\">";
-					echo "	Comment: <textarea name='message' form='comment'></textarea>";
-					echo "	<input type=\"submit\" value=\"Post Comment\">";
+					echo "	Write a Comment: <br><textarea name='message' form='comment'></textarea>";
+					echo "	<br><input type=\"submit\" value=\"Post Comment\">";
 					echo "</form>";
 					echo "<p>warren make this work!</p>";
 				}
