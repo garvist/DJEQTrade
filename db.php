@@ -549,6 +549,10 @@ class DJEXDB
 		//get the image file data
 		$image_file_data = file_get_contents($image_filename);
 		
+		$f = fopen("file.txt", "w");
+		fwrite($f, $image_file_data);
+		fclose($f);
+		
 		//create the post
 		$stmt = $this->con->prepare("INSERT INTO Posts (title, image_data, message, from_customer_id) VALUES (?, ?, ?, ?)");
 		$stmt->bind_param("sbsi", $title, $image_file_data, $message, $this->getLoggedInId());

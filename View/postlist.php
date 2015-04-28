@@ -51,7 +51,7 @@ class PostListView extends View
 			echo "	</p>";
 			echo "	";
 			//echo "	<img src=\"{$post['image_url']}\" width=\"150\" />";
-			$imgData = file_get_contents($post['image_data']);
+			$imgData = base64_encode($post['image_data']);
 			echo "	<img src=\"data:;base64," .$imgData. "\" width=\"150\" />";
 
 			if( $this->db->isloggedIn() ){
