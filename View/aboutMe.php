@@ -36,6 +36,9 @@ class AboutMeView extends View
 		echo "<div class=\"aboutPage\">";
 		echo "	<h1 class=\"title\">{$customer['first_name']} {$customer['last_name']}</h1>";
 		echo "	<div class=\"contents\">";
+			if ( $customer_id != $this->db->getLoggedInId() ) {
+		echo " (<a href=\"/?c=send message&id={$customer_id}\">Send a message</a>)";
+		}
 		echo "		<h3>Email:</h3>";
 		echo "		<p>{$customer['email']}</p>";
 		echo "		<h3>User Rating: </h3>";
