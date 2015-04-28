@@ -29,9 +29,11 @@ class CreateCommentController extends Controller
 			$post_id = $_POST['post_id'];
 			$message = $_POST['message'];
 			
-			$result = $this->db->createComment($this->db->getLoggedInId(), $post_id, $message);
+			header("X-Message: " .$message);
 			
-			header("Location: /"); //redirect the user back to the homepage
+			$this->db->createComment($this->db->getLoggedInId(), $post_id, $message);
+			
+			//header("Location: /"); //redirect the user back to the homepage
 		}
 	}
 }
