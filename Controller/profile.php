@@ -4,12 +4,14 @@ require_once 'Controller/Controller.php'; //defines Controller class
 require_once 'View/navigation.php'; //defines NavigationView
 require_once 'View/aboutMe.php';
 require_once 'View/myAds.php';
+require_once 'View/reviewlist.php';
 
 class ProfileController extends Controller
 {
 	private $nav_view;
 	private $aboutMe_view;
 	private $myAdsList_view;
+	private $reviewsList_view;
 	
 	//the constructor for this controller class
 	function __construct()
@@ -19,12 +21,13 @@ class ProfileController extends Controller
 		$this->nav_view = new NavigationView($this->db);
 		$this->aboutMe_view = new AboutMeView($this->db);
 		$this->myAdsList_view = new MyAdsListView($this->db);
+		$this->reviewsList_view = new ReviewListView($this->db);
 	}
 	
 	/** Returns an array containing all of the views that this controller uses */
 	protected function getViews()
 	{
-		return [ $this->nav_view, $this->myAdsList_view, $this->aboutMe_view];
+		return [ $this->nav_view, $this->myAdsList_view, $this->aboutMe_view, $this->reviewsList_view ];
 	}
 	
 	/** Outputs all HTML that needs to go in the <head> of the page */
@@ -47,9 +50,8 @@ class ProfileController extends Controller
 		//get info
 		$customer = $this->db->getCustomerById( $customer_id );
 
-
 		echo "<div class=\"welcome\">"; //this can go in nav.php 
-		if( $customer['customer_id'] == $this->db->getLoggedInID()){
+		if( $customer['customer_id'] = $this->db->getLoggedInID()){
 			echo "	<h1>My Profile - {$customer['first_name']} {$customer['last_name']}</h1>";
 		}else{
 			echo "	<h1>User Profile - {$customer['first_name']} {$customer['last_name']}</h1>";
@@ -58,6 +60,7 @@ class ProfileController extends Controller
 		$this->nav_view->outputHTML();
 		$this->aboutMe_view->outputHTML();
 		$this->myAdsList_view->outputHTML();
+		$this->reviewsList_view->outputHTML();
 	}
 }
 ?>
