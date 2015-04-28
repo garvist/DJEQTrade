@@ -92,6 +92,7 @@ class AboutMeView extends View
 			echo "	</p>";
 			echo "	";
 			echo "	<span class=\"review-byline\">Review written by {$review['author_first_name']} {$review['author_last_name']}</span>";
+			echo "  </div>";
 		}
 		
 		echo "</div>";
