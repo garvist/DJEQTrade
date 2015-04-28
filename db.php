@@ -40,7 +40,7 @@ class DJEXDB
 			"Messages" => "CREATE TABLE Messages (message TEXT, ID_to INT, ID_from INT, FOREIGN KEY (ID_to) REFERENCES customers(customer_id), FOREIGN KEY (ID_from) REFERENCES customers(customer_id), date_sent DATETIME, date_opened DATETIME );",
 			"Friends" => "CREATE TABLE Friends (customer_id INT, friend_id INT, FOREIGN KEY (customer_id) REFERENCES customers(customer_id), FOREIGN KEY (friend_id) REFERENCES customers(customer_id) );",
 			"Log_in_State" => "CREATE TABLE Log_in_State (customer_id INT, FOREIGN KEY (customer_id) REFERENCES customers(customer_id), date_issued DATETIME, cookie TEXT, last_interaction DATETIME);",
-			"Reviews" => "CREATE TABLE Reviews (author_customer_id INT, target_customer_id INT, FOREIGN KEY (author_customer_id) REFERENCES customers(customer_id), FOREIGN KEY (target_customer_id) REFERENCES customers(customer_id), review_text TEXT);"
+			"Reviews" => "CREATE TABLE Reviews (author_customer_id INT, target_customer_id INT, FOREIGN KEY (author_customer_id) REFERENCES customers(customer_id), FOREIGN KEY (target_customer_id) REFERENCES customers(customer_id), review_text TEXT, score INT);"
 		];
 	
 		$view = [
