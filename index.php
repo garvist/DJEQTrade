@@ -32,6 +32,10 @@ switch( $controller_name )
 		require_once 'Controller/logOut.php';
 		$controller = new LogOutController();
 		break;
+	case "add comment":
+		require_once 'Controller/createComment.php';
+		$controller = new CreateCommentController();
+		break;
 	case "create account":
 		require_once 'Controller/createAccount.php';
 		$controller = new CreateAccountController();
