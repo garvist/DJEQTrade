@@ -58,7 +58,7 @@ class AboutMeView extends View
 			}else{
 				echo "	<p>Your Friend</p>";
 				echo "<h3>Mutual Friends</h3>";
-				foreach( $this->db->getFriendsForUser( $this->db->$customer['customer_id'] ) as $friend )
+				foreach( $this->db->getFriendsForUser( $customer['customer_id'] ) as $friend )
 				{
 					$profileUrl = '/?c=profile&id=' .$friend['customer_id'];
 					echo "			<li>";
