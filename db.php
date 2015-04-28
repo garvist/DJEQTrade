@@ -557,7 +557,62 @@ class DJEXDB
 		
 		return ["success" => true, "post_id" => $post_id];
 	}
-
+	
+	/** Returns the reviews of the given user */
+	public function getReviewsForUser($customer_id)
+	{
+		//count the number of reviews this user has
+		$stmt = $this->con->prepare("
+			SELECT author_customer_id, A.first_name AS author_first_name, A.last_name AS author_last_name,
+				target_customer_id, T.first_name AS target_first_name, T.last_name AS target_last_name,
+				review_text, score
+			FROM Reviews, customers AS A, customers AS T
+			WHERE Reviews.target_customer_id = ? AND A.customer_id = author_customer_id AND T.customer_id = target_customer_id;
+			");
+		$stmt->bind_param("i", $customer_id);
+		$stmt->execute();
+		$stmt->bind_result($author_customer_id, $author_first_name, $author_last_name, $target_customer_id, $target_first_name, $target_last_name, $review_text, $score);
+		
+		$reviews = [];
+		while( $stmt->fetch() )
+		{
+			$review = [ "author_customer_id" => $author_customer_id, "author_first_name" => $author_first_name, "author_last_name" => $author_last_name,
+						"target_customer_id" => $target_customer_id, "target_first_name" => $target_first_name, "target_last_name" => $target_last_name,
+						"review_text" => $review_text, "score" => $score ];
+			
+			$reviews[] = $review;
+		}
+		
+		$stmt->close();
+		
+		return $reviews;
+	}
+	
+	
+	/** Returns the average of this user's reviews */
+	public function getUserRating($customer_id)
+	{
+		//count the number of reviews this user has
+		$stmt = $this->con->prepare("SELECT COUNT(score) FROM Reviews WHERE target_customer_id = ?");
+		$stmt->bind_param("i", $customer_id);
+		$stmt->execute();
+		$stmt->bind_result($review_count);
+		$stmt->fetch();
+		$stmt->close();
+		
+		//if the user has no reviews, their score is 0
+		if( $review_count == 0 )
+			return 0;
+		
+		$stmt = $this->con->prepare("SELECT AVG(score) FROM Reviews WHERE target_customer_id = ?");
+		$stmt->bind_param("i", $customer_id);
+		$stmt->execute();
+		$stmt->bind_result($average);
+		$stmt->fetch();
+		$stmt->close();
+		
+		return $average;
+	}
 
 
 	/**delete a Post from the Database
