@@ -61,6 +61,7 @@ class AboutMeView extends View
 			}else{
 				echo "	<p>Your Friend</p>";
 				echo "<h3>Their Friends</h3>";
+				echo "<ul>";
 				foreach( $this->db->getFriendsForUser( $customer['customer_id'] ) as $friend )
 				{
 					$profileUrl = '/?c=profile&id=' .$friend['customer_id'];
@@ -69,6 +70,7 @@ class AboutMeView extends View
 					//echo " (<a href=\"/?c=send message&id={$friend['customer_id']}\">Send a message</a>)";
 					echo "</li>";
 				}
+				echo "</ul>";
 			}
 		}
 		echo "";
