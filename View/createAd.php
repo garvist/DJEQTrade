@@ -37,7 +37,7 @@ class CreateAdView extends View
 		echo "			Image url:<br><input type\"text\" name=\"postImage\"><br>";
 		echo "			<input type='hidden' name='MAX_FILE_SIZE' value='30000' />";
 		echo "			Image: <br><input type='file' name='postImageData' />";
-		echo "			Description:<br>";
+		echo "			<br>Description:<br>";
 		echo "			<textarea rows=\"6\" cols=\"50\" name=\"postDescription\" form=\"createAdForm\">Enter text here...</textarea><br>";
 		echo "			<input type=\"submit\" value=\"Submit advertisement\">";
 		echo "		</form>";
