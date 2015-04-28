@@ -45,7 +45,7 @@ class SearchResultsView extends View
 			
 			foreach( $results as $res )
 			{
-				echo "	<li>";
+				echo "	<li class='result'>";
 				switch( $res['type'] )
 				{
 					case "customer":
