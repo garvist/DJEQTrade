@@ -53,7 +53,7 @@ class SearchResultsView extends View
 						echo "<span class='result-title'>User: <a href='{$profileUrl}'>{$res['first_name']} {$res['last_name']}</a></span>";
 						break;
 					case "post":
-						$profileUrl = "/?c=profile&id=" .$res['customer_id'];
+						$profileUrl = "/?c=profile&id=" .$res['from_customer_id'];
 						echo "<span class='result-title'><a href='{$profileUrl}'>Post: {$res['title']}</a></span>";
 						echo "<p class='result-description'>{$res['message']}</p>";
 						echo "<span class='result-byline'>Posted by {$res['first_name_from']} {$res['last_name_from']}</span>";
