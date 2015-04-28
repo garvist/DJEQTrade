@@ -70,7 +70,7 @@ class PostListView extends View
 					echo "<form action=\"/\" method='post' id=\"comment\">";
 					echo "  <input type='hidden' name='c' value='add comment' />";
 					echo "  <input type='hidden' name='post_id' value='{$post['post_id']}' />";
-					echo "	Write a Comment: <br><textarea name='message' form='comment'></textarea>";
+					echo "	Write a Comment: <br><textarea name='message' id='message' form='comment'></textarea>";
 					echo "	<br><input type=\"submit\" value=\"Post Comment\">";
 					echo "</form>";
 				}
