@@ -26,7 +26,7 @@ class CreateAdController extends Controller
 	
 	public function executeBefore()
 	{
-		$maxUploadFileSize = 1024 * 30;
+		$maxUploadFileSize = 1024 * 1024 * 2;
 		
 		//is the user submitting an ad?
 		if( isset($_POST['postTitle']) ) //yep
