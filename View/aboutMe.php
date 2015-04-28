@@ -53,7 +53,7 @@ class AboutMeView extends View
 		echo "		<input type=\"submit\" value=\"add Friend\" />";	
 		echo "	</from>";
 			}else{
-		echo "	<p>Your Friend<br>Add friend button</p>";
+		echo "	<p>Your Friend</p>";
 			}
 		}
 		echo "";
