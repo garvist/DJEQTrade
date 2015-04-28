@@ -26,8 +26,8 @@ class CreateReviewController extends Controller
 			if( !$this->db->isLoggedIn() )
 				die("Only logged in users can comment");
 			
-			$rating = $_POST['rating'];
-			$message = intval( $_POST['message'] );
+			$rating = intval( $_POST['rating'] );
+			$message = $_POST['message'];
 			$target_id = $_POST['target_id'];
 			
 			if( $rating < 0 || $rating > 5 )
