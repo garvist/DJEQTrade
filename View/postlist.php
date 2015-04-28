@@ -71,6 +71,8 @@ class PostListView extends View
 			if(count($this->db->getAllPostComments($post['post_id'])) > 0){
 				echo"<h3>Comments:</h3>";
 				echo "<hr>";
+			}
+			
 				foreach( $this->db->getAllPostComments($post['post_id']) as $comment){
 
 					echo "<div class=\"comment\">";
@@ -80,8 +82,7 @@ class PostListView extends View
 					echo "</div>";
 				}
 
-			echo "	</div>";
-			}
+		echo "	</div>";
 		}
 		
 		/*
