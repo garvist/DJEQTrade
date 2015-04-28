@@ -65,7 +65,7 @@
 
 .result .result-byline {
 	display: block;
-	border-bottom: solid 2px black;
+	border-top: solid 2px black;
 	padding-top: 0.25em;
 	padding-left: 1em;
 	font-size: 14px;
