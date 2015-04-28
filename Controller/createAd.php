@@ -34,9 +34,6 @@ class CreateAdController extends Controller
 			if( $_FILES['postImageData']['size'] < 0 && $_FILES['postImageData']['size'] > $maxUploadFileSize )
 				die("The image you uploaded was too large");
 			
-			if( $_FILES['postImageData']['size'] == 0 )
-				die("You didn't upload an image");
-			
 			if( $_FILES['postImageData']['error'] > 0 )
 			{
 				switch( $_FILES['postImageData']['error'] )
@@ -44,9 +41,12 @@ class CreateAdController extends Controller
 					case UPLOAD_ERR_INI_SIZE:
 						die("File is too large");
 					default:
-						die("Error uploading image");
+						die("Error uploading image: error code = " .$_FILES['postImageData']['error']);
 				}
 			}
+			
+			if( $_FILES['postImageData']['size'] == 0 )
+				die("You didn't upload an image");
 			
 			$post_title = $_POST['postTitle'];
 			$post_tags = $_POST['postTags'];
