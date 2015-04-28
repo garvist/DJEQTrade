@@ -29,9 +29,9 @@
 }
 
 .review h1.review-title {
-	text-decoration: none;
 	margin-top: 0.25em;
 	margin-bottom: 0;
+	border-bottom: none;
 }
 
 .review p.review-description {
