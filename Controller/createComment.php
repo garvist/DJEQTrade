@@ -33,7 +33,7 @@ class CreateCommentController extends Controller
 			
 			$this->db->createComment($this->db->getLoggedInId(), $post_id, $message);
 			
-			header("Location: /"); //redirect the user back to the homepage
+			//header("Location: /"); //redirect the user back to the homepage
 		}
 	}
 }
