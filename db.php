@@ -567,6 +567,14 @@ class DJEXDB
 		return ["success" => true, "post_id" => $post_id];
 	}
 	
+	public function createReview($author_id, $target_id, $score, $review_text)
+	{
+		$stmt = $this->con->prepare("INSERT INTO Reviews (author_customer_id, target_customer_id, review_text, score) VALUES (?, ?, ?, ?)");
+		$stmt->bind_param("iisi", $author_id, $target_id, $review_text, $score);
+		$stmt->execute();
+		$stmt->close();
+	}
+	
 	/** Returns the reviews of the given user */
 	public function getReviewsForUser($customer_id)
 	{
