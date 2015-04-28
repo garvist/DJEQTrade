@@ -39,7 +39,10 @@ class AboutMeView extends View
 		echo "		<h3>Email:</h3>";
 		echo "		<p>{$customer['email']}</p>";
 		echo "		<h3>User Rating: </h3>";
-		echo "		<p>{$this->db->getUserRating( $this->db->getLoggedInId() )} ({count($this->db->getReviewsForUser( $this->db->getLoggedInId() ))} reviews)</p>";
+		
+		$reviewCount = count($this->db->getReviewsForUser( $this->db->getLoggedInId() ));
+		
+		echo "		<p>{$this->db->getUserRating( $this->db->getLoggedInId() )} ({$reviewCount} reviews)</p>";
 		echo "		<h3>Number of Friends: </h3>";
 		echo "		<p>{$friendCount}</p>";
 		echo "		<h3>Number of Posts: </h3>";
