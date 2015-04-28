@@ -42,7 +42,7 @@ class AboutMeView extends View
 		
 		$reviewCount = count($this->db->getReviewsForUser( $customer_id ));
 		
-		echo "		<p>{$this->db->getUserRating( $this->db->getLoggedInId() )} ({$reviewCount} reviews)</p>";
+		echo "		<p>{$this->db->getUserRating( $customer_id )} ({$reviewCount} reviews)</p>";
 		echo "		<h3>Number of Friends: </h3>";
 		echo "		<p>{$friendCount}</p>";
 		echo "		<h3>Number of Posts: </h3>";
