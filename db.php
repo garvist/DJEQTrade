@@ -546,7 +546,31 @@ class DJEXDB
 		
 		return ["success" => true, "post_id" => $post_id];
 	}
-
+	
+	/** Returns the average of this user's reviews */
+	public function getUserRating($customer_id)
+	{
+		//count the number of reviews this user has
+		$stmt = $this->con->prepare("SELECT COUNT(score) FROM Reviews WHERE target_customer_id = ?");
+		$stmt->bind_param("i", $customer_id);
+		$stmt->execute();
+		$stmt->bind_result($review_count);
+		$stmt->fetch();
+		$stmt->close();
+		
+		//if the user has no reviews, their score is 0
+		if( $review_count == 0 )
+			return 0;
+		
+		$stmt = $this->con->prepare("SELECT AVG(score) FROM Reviews WHERE target_customer_id = ?");
+		$stmt->bind_param("i", $customer_id);
+		$stmt->execute();
+		$stmt->bind_result($average);
+		$stmt->fetch();
+		$stmt->close();
+		
+		return $average;
+	}
 
 
 	/**delete a Post from the Database
