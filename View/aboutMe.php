@@ -75,7 +75,16 @@ class AboutMeView extends View
 		echo "	<h1>All Reviews</h1>";
 		echo "</div>";
 		echo "<div class=\"review-list\">";
-		
+
+		//write review
+		if ( $customer_id != $this->db->getLoggedInId() ) {
+			echo "<form action=\"/\" method='post' id=\"review\">";
+			echo "	Write a Review: <br><textarea name='message' form='comment'></textarea>";
+			echo "	<br><input type=\"submit\" value=\"Write Review\">";
+			echo "</form>";
+			echo "<p>warren make this work!</p>";
+		}
+
 		foreach( $this->db->getReviewsForUser( $customer_id ) as $review )
 		{
 			/*
@@ -86,16 +95,6 @@ class AboutMeView extends View
 						
 			echo "	<div class=\"review\">";
 			echo "	<h3 class=\"review-title\">Rating: {$review['score']}</h3>";
-
-			//write review
-			if ( $customer_id != $this->db->getLoggedInId() ) {
-				echo "<form action=\"/\" method='post' id=\"review\">";
-				echo "	Write a Review: <br><textarea name='message' form='comment'></textarea>";
-				echo "	<br><input type=\"submit\" value=\"Write Review\">";
-				echo "</form>";
-				echo "<p>warren make this work!</p>";
-			}
-
 			echo "	";
 			echo "	<p class=\"review-description\">";
 			echo "	{$review['review_text']}";
