@@ -34,7 +34,7 @@ class DJEXDB
 		$schema = [
 			"customers" => "CREATE TABLE customers (first_name TEXT, last_name TEXT, customer_id INT primary key auto_increment, email TEXT, administrator BOOLEAN);",
 			"passwords" => "CREATE TABLE passwords (customer_id INT, FOREIGN KEY (customer_id) REFERENCES customers(customer_id), hash_pass TEXT);",
-			"Posts" => "CREATE TABLE Posts (post_id INT PRIMARY KEY auto_increment, title TEXT, image_url TEXT, message TEXT, from_customer_id INT, FOREIGN KEY (from_customer_id) REFERENCES customers(customer_id));",
+			"Posts" => "CREATE TABLE Posts (post_id INT PRIMARY KEY auto_increment, title TEXT, image_data BLOB, message TEXT, from_customer_id INT, FOREIGN KEY (from_customer_id) REFERENCES customers(customer_id));",
 			"Equipment_Tags" => "CREATE TABLE Equipment_Tags (post_id INT, FOREIGN KEY (post_id) REFERENCES Posts(post_id), tag TEXT);",
 			"Comments" => "CREATE TABLE Comments (post_id INT, customer_id INT, FOREIGN KEY (post_id) REFERENCES Posts(post_id), FOREIGN KEY (customer_id) REFERENCES customers(customer_id), date_written DATETIME, comment_text TEXT);",
 			"Messages" => "CREATE TABLE Messages (message TEXT, ID_to INT, ID_from INT, FOREIGN KEY (ID_to) REFERENCES customers(customer_id), FOREIGN KEY (ID_from) REFERENCES customers(customer_id), date_sent DATETIME, date_opened DATETIME );",
@@ -328,17 +328,17 @@ class DJEXDB
 	/** Returns an array of all posts written by the given user */
 	public function getAllPostsForUser($customer_id)
 	{
-		$stmt = $this->con->prepare("SELECT post_id,title,image_url,message,customers.first_name,customers.last_name From Posts, customers WHERE Posts.from_customer_id = customers.customer_id AND customers.customer_id = ? ORDER BY post_id DESC");
+		$stmt = $this->con->prepare("SELECT post_id,title,image_data,message,customers.first_name,customers.last_name From Posts, customers WHERE Posts.from_customer_id = customers.customer_id AND customers.customer_id = ? ORDER BY post_id DESC");
 		$stmt->bind_param("i", $customer_id);
 		$stmt->execute();
-		$stmt->bind_result($post_id, $title, $image_url, $message, $customer_fname, $customer_lname);
+		$stmt->bind_result($post_id, $title, $image_data, $message, $customer_fname, $customer_lname);
 		
 		$posts = [];
 		
 		while( $stmt->fetch() )
 		{
 			//create an associative array for this post
-			$post = [ "post_id" => $post_id, "title" => $title, "image_url" => $image_url, "message" => $message, "first_name" => $customer_fname, "last_name" => $customer_lname ];
+			$post = [ "post_id" => $post_id, "title" => $title, "image_data" => $image_data, "message" => $message, "first_name" => $customer_fname, "last_name" => $customer_lname ];
 			
 			//add this post onto the end of our array
 			$posts[] = $post;
@@ -408,13 +408,13 @@ class DJEXDB
 	/** Returns the post with the given ID */
 	public function getPostById($post_id)
 	{
-		$stmt = $this->con->prepare("SELECT post_id,title,image_url,message,customers.customer_id,customers.first_name,customers.last_name From Posts, customers WHERE Posts.from_customer_id = customers.customer_id AND Posts.post_id = ? ORDER BY post_id DESC");
+		$stmt = $this->con->prepare("SELECT post_id,title,image_data,message,customers.customer_id,customers.first_name,customers.last_name From Posts, customers WHERE Posts.from_customer_id = customers.customer_id AND Posts.post_id = ? ORDER BY post_id DESC");
 		$stmt->bind_param("i", $post_id);
 		$stmt->execute();
-		$stmt->bind_result($post_id, $title, $image_url, $message, $customer_id, $customer_fname, $customer_lname);
+		$stmt->bind_result($post_id, $title, $image_data, $message, $customer_id, $customer_fname, $customer_lname);
 		$stmt->fetch();
 		
-		$post = [ "post_id" => $post_id, "title" => $title, "image_url" => $image_url, "message" => $message, "first_name" => $customer_fname, "last_name" => $customer_lname, "customer_id" => $customer_id ];
+		$post = [ "post_id" => $post_id, "title" => $title, "image_data" => $image_data, "message" => $message, "first_name" => $customer_fname, "last_name" => $customer_lname, "customer_id" => $customer_id ];
 		
 		return $post;
 	}
@@ -540,15 +540,18 @@ class DJEXDB
 	 *	On failure, returns this associative array: ["success" => false]
 	 *  On success, returns this associative array: ["success" => true, "post_id" => post_id ]
 	 */
-	public function createPost($title, $image_url, $message, $tags)
+	public function createPost($title, $image_filename, $message, $tags)
 	{
 		//return false if we aren't logged in
 		if( !$this->isLoggedIn() )
 			return ["success" => false];
 		
+		//get the image file data
+		$image_file_data = file_get_contents($image_filename);
+		
 		//create the post
-		$stmt = $this->con->prepare("INSERT INTO Posts (title, image_url, message, from_customer_id) VALUES (?, ?, ?, ?)");
-		$stmt->bind_param("sssi", $title, $image_url, $message, $this->getLoggedInId());
+		$stmt = $this->con->prepare("INSERT INTO Posts (title, image_data, message, from_customer_id) VALUES (?, ?, ?, ?)");
+		$stmt->bind_param("sbsi", $title, $image_file_data, $message, $this->getLoggedInId());
 		$stmt->execute();
 		
 		$post_id = $this->con->insert_id;
